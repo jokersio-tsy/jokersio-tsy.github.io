@@ -437,13 +437,21 @@
 
     .results-layout {
       display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(250px, 0.92fr);
+      grid-template-columns: 1fr;
       gap: 1rem;
-      align-items: start;
     }
 
     .table-shell {
       overflow: hidden;
+    }
+
+    .quality-card {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .quality-card .mini-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
     }
 
     .table-wrap {
@@ -582,12 +590,15 @@
 
     @media (max-width: 1040px) {
       .hero,
-      .results-layout,
       .highlights-grid {
         grid-template-columns: 1fr;
       }
 
       .idea-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .quality-card .mini-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
@@ -614,12 +625,15 @@
       }
 
       .hero-stats,
-      .mini-grid,
       .visual-grid {
         grid-template-columns: 1fr;
       }
 
       .idea-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .quality-card .mini-grid {
         grid-template-columns: 1fr;
       }
 
@@ -677,11 +691,6 @@
         <div class="affiliations">
           Chongqing University &nbsp;&middot;&nbsp; Southern University of Science and Technology &nbsp;&middot;&nbsp;
           Singapore University of Technology and Design
-        </div>
-        <div class="hero-tags">
-          <span class="hero-tag">CVPR 2024</span>
-          <span class="hero-tag oral">Oral</span>
-          <span class="hero-tag">CCF-A</span>
         </div>
         <div class="actions">
           <a class="btn primary" href="https://openaccess.thecvf.com/content/CVPR2024/papers/Tian_CroSel_Cross_Selection_of_Confident_Pseudo_Labels_for_Partial-Label_Learning_CVPR_2024_paper.pdf" target="_blank" rel="noreferrer">Paper</a>
@@ -747,7 +756,7 @@
       <div class="section-head">
         <div>
           <div class="section-kicker">Method</div>
-          <h2 class="section-title">Three Design Choices</h2>
+          <h2 class="section-title">Three Core Components</h2>
         </div>
         <p class="section-copy">
           The method is built around stable pseudo-label identification, error correction across two
@@ -909,7 +918,7 @@
           </div>
         </div>
 
-        <aside class="panel citation-card fade-up" style="--delay: 180ms;">
+        <aside class="panel citation-card quality-card fade-up" style="--delay: 180ms;">
           <h3>Selected Label Quality</h3>
           <p style="margin-bottom: 1rem;">
             CroSel does not only improve final classification accuracy. It also identifies true labels with
@@ -954,7 +963,7 @@
             <h3>Dual vs. Single Model on CIFAR-100</h3>
             <p>
               The selection advantage remains visible on the harder CIFAR-100 setting, supporting the
-              design choice of cross correction between two networks.
+              cross-selection component built on two cooperating networks.
             </p>
           </div>
         </figure>
