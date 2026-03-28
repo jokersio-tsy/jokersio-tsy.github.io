@@ -272,7 +272,8 @@
     .pmc-grid,
     .step-grid,
     .visual-grid,
-    .result-grid {
+    .result-grid,
+    .method-flow {
       display: grid;
       gap: 1rem;
     }
@@ -286,6 +287,10 @@
 
     .metric-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
     .visual-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .method-flow {
+      grid-template-columns: minmax(280px, 0.88fr) minmax(0, 1.12fr);
+      align-items: stretch;
+    }
 
     .stat,
     .pmc-card,
@@ -427,9 +432,64 @@
 
     .results-shell {
       display: grid;
-      grid-template-columns: minmax(0, 1.08fr) minmax(220px, 0.8fr);
+      grid-template-columns: 1fr;
       gap: 1.15rem;
       align-items: start;
+    }
+
+    .pmc-summary,
+    .method-iterative {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .pmc-summary {
+      padding: 1.2rem 1.3rem;
+      border-radius: 1.2rem;
+      border: 1px solid rgba(20, 52, 58, 0.08);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(243, 250, 246, 0.92) 100%);
+    }
+
+    .pmc-summary p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.97rem;
+    }
+
+    .pmc-summary strong {
+      color: var(--ink);
+    }
+
+    .method-main {
+      padding: 1.35rem;
+    }
+
+    .method-main .badge,
+    .method-iterative .badge {
+      margin-bottom: 0.9rem;
+    }
+
+    .method-main h3,
+    .method-iterative .step-card h3 {
+      margin: 0 0 0.5rem;
+      font-size: 1.08rem;
+    }
+
+    .method-main p,
+    .method-iterative .step-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.96rem;
+    }
+
+    .method-main {
+      display: grid;
+      align-content: start;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(236, 247, 243, 0.98) 100%);
+    }
+
+    .method-iterative .step-card {
+      min-height: 0;
     }
 
     .table-wrap { overflow-x: auto; }
@@ -554,10 +614,6 @@
 
     @media (max-width: 1040px) {
       .hero,
-      .results-shell {
-        grid-template-columns: 1fr;
-      }
-
       .metric-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
@@ -571,7 +627,7 @@
 
       .actions { width: 100%; }
       .btn { flex: 1 1 180px; }
-      .quick-grid, .pmc-grid, .step-grid, .visual-grid, .result-grid { grid-template-columns: 1fr; }
+      .quick-grid, .pmc-grid, .step-grid, .visual-grid, .result-grid, .method-flow { grid-template-columns: 1fr; }
       .metric-grid {
         grid-template-columns: 1fr;
       }
@@ -625,13 +681,7 @@
           <span>Yu-Feng Li</span>
         </div>
         <div class="meta">
-          LAMDA Group, Nanjing University &nbsp;&middot;&nbsp; Suzhou, China &nbsp;&middot;&nbsp; *Equal contribution
-        </div>
-        <div class="hero-tags">
-          <span class="hero-tag">EMNLP 2025</span>
-          <span class="hero-tag oral">Oral</span>
-          <span class="hero-tag">CAAI-A</span>
-          <span class="hero-tag">CCF-B</span>
+          LAMDA Group, Nanjing University &nbsp;&middot;&nbsp; *Equal contribution
         </div>
         <div class="actions">
           <a class="btn primary" href="https://aclanthology.org/2025.emnlp-main.642.pdf" target="_blank" rel="noreferrer">Paper PDF</a>
@@ -660,7 +710,7 @@
           </div>
           <div class="stat">
             <span class="value">8</span>
-            <span class="label">benchmark subsets across Missing and Contra types</span>
+            <span class="label">benchmark subsets covering incomplete and contradictory cases</span>
           </div>
           <div class="stat">
             <span class="value">Training-Free</span>
@@ -685,16 +735,9 @@
       <article class="panel figure-card fade-up" style="--delay: 60ms;">
         <img src="./picture/intro.png" alt="Examples of well-defined and ill-defined math problems and corresponding model behavior.">
         <div class="figure-caption">
-          The paper contrasts ordinary solvable math word problems with two ill-defined categories:
-          <strong>Missing-type</strong> problems, where necessary information is absent, and
-          <strong>Contra-type</strong> problems, where the conditions contradict each other.
-          Standard prompting often hallucinates answers instead of rejecting these cases.
-          <div class="pill-row">
-            <span class="pill">Missing-type</span>
-            <span class="pill">Contra-type</span>
-            <span class="pill">Reject when unsolvable</span>
-            <span class="pill">Avoid plausible hallucinations</span>
-          </div>
+          The paper contrasts ordinary solvable math word problems with cases that are incomplete or
+          internally contradictory. Standard prompting often produces fluent answers even when the
+          problem statement itself should first be checked for solvability.
         </div>
       </article>
     </section>
@@ -703,7 +746,7 @@
       <div class="section-head">
         <div>
           <div class="section-kicker">Benchmark</div>
-          <h2 class="section-title">PMC: Problems with Missing and Contradictory Conditions</h2>
+          <h2 class="section-title">PMC: Ill-Defined Math Problems at Scale</h2>
         </div>
         <p class="section-copy">
           PMC is built by mutating four common math reasoning datasets and validating the resulting
@@ -712,26 +755,45 @@
         </p>
       </div>
 
-      <div class="pmc-grid">
-        <article class="panel pmc-card fade-up" style="--delay: 30ms;">
-          <div class="badge">01</div>
-          <h3>Seed Datasets</h3>
-          <p>PMC is constructed from GSM8K, SVAMP, AddSub, and MultiArith.</p>
+      <article class="panel pmc-summary fade-up" style="--delay: 40ms;">
+        <p>
+          <strong>PMC</strong> is constructed from <strong>GSM8K</strong>, <strong>SVAMP</strong>,
+          <strong>AddSub</strong>, and <strong>MultiArith</strong> by turning standard solvable
+          questions into unsolvable ones through incompleteness or contradiction. Candidate instances
+          are validated by multiple LLMs, with disputed cases reviewed by humans, and the released
+          benchmark exposes <code>missing_test</code> and <code>contra_test</code> splits together with
+          <strong>R-Rate</strong> and <strong>R-Score</strong> for evaluation.
+        </p>
+      </article>
+    </section>
+
+    <section class="section" id="motivation">
+      <div class="section-head">
+        <div>
+          <div class="section-kicker">Motivation</div>
+          <h2 class="section-title">Why a Neuro-Symbolic Method Is Needed</h2>
+        </div>
+        <p class="section-copy">
+          PMC makes the core tension visible: once a system must both solve normal problems and detect
+          unsolvable ones, prompt-only strategies run into a trade-off. That points to a deeper
+          bottleneck, namely reliable formalization of variables and constraints before solving.
+        </p>
+      </div>
+
+      <div class="visual-grid">
+        <article class="panel visual-card fade-up" style="--delay: 40ms;">
+          <img src="./picture/trade_off_R-rate.png" alt="Trade-off in rejection rate between pure prompts and mixed prompts on ill-defined problems.">
+          <div class="visual-body">
+            <h3>Trade-Off on Ill-Defined Problems</h3>
+            <p>Mixed prompting weakens robustness on unsolvable cases, especially for smaller models.</p>
+          </div>
         </article>
-        <article class="panel pmc-card fade-up" style="--delay: 90ms;">
-          <div class="badge">02</div>
-          <h3>Two Ill-Defined Modes</h3>
-          <p>Missing-type removes necessary conditions; Contra-type injects conflicting conditions.</p>
-        </article>
-        <article class="panel pmc-card fade-up" style="--delay: 150ms;">
-          <div class="badge">03</div>
-          <h3>Validation Pipeline</h3>
-          <p>Candidate problems are checked by multiple LLMs, with disputed cases reviewed by humans.</p>
-        </article>
-        <article class="panel pmc-card fade-up" style="--delay: 210ms;">
-          <div class="badge">04</div>
-          <h3>Evaluation Metrics</h3>
-          <p><strong>R-Rate</strong> measures rejection; <strong>R-Score</strong> measures mixed-setting utility.</p>
+        <article class="panel visual-card fade-up" style="--delay: 100ms;">
+          <img src="./picture/trade_off_Acc.png" alt="Trade-off in accuracy between pure prompts and mixed prompts on well-defined problems.">
+          <div class="visual-body">
+            <h3>Trade-Off on Well-Defined Problems</h3>
+            <p>The same prompting strategy also harms ordinary problem solving, showing that the issue is structural rather than cosmetic.</p>
+          </div>
         </article>
       </div>
     </section>
@@ -743,8 +805,9 @@
           <h2 class="section-title">Variable-Constraint Search</h2>
         </div>
         <p class="section-copy">
-          Instead of forcing an LLM to formalize the whole problem in one pass, VCSearch decomposes the
-          formalization process into a dynamic search over variables and constraints.
+          Instead of forcing an LLM to formalize the whole problem in one pass, VCSearch treats
+          formalization itself as the hard part and decomposes it into a neuro-symbolic search over
+          variables and constraints.
         </p>
       </div>
 
@@ -758,27 +821,33 @@
         </div>
       </article>
 
-      <div class="step-grid" style="margin-top: 1rem;">
-        <article class="panel step-card fade-up" style="--delay: 30ms;">
+      <div class="method-flow" style="margin-top: 1rem;">
+        <article class="panel step-card method-main fade-up" style="--delay: 30ms;">
           <div class="badge">I</div>
           <h3>Anchored Initialization</h3>
-          <p>Build a draft formal state and fall back to a variable-only anchor when constraints fail.</p>
+          <p>
+            VCSearch first builds a draft formal state and, when full constraints are still unstable,
+            falls back to a variable-centered anchor. This gives the search a reliable starting point
+            instead of forcing brittle one-shot formalization.
+          </p>
         </article>
-        <article class="panel step-card fade-up" style="--delay: 90ms;">
-          <div class="badge">II</div>
-          <h3>Preparation</h3>
-          <p>Select one unexplored head variable and its related constraints to localize reasoning.</p>
-        </article>
-        <article class="panel step-card fade-up" style="--delay: 150ms;">
-          <div class="badge">III</div>
-          <h3>Exploration</h3>
-          <p>Use the LLM to polish constraints and discover implicit variables that were missed before.</p>
-        </article>
-        <article class="panel step-card fade-up" style="--delay: 210ms;">
-          <div class="badge">IV</div>
-          <h3>Verification</h3>
-          <p>Use Z3 and an LLM judge to compare states and keep the better formalization branch.</p>
-        </article>
+        <div class="method-iterative">
+          <article class="panel step-card fade-up" style="--delay: 90ms;">
+            <div class="badge">II</div>
+            <h3>Preparation</h3>
+            <p>Select one unexplored head variable and its related constraints so the next search step stays localized.</p>
+          </article>
+          <article class="panel step-card fade-up" style="--delay: 150ms;">
+            <div class="badge">III</div>
+            <h3>Exploration</h3>
+            <p>Use the LLM to polish constraints, recover implicit variables, and expand the current formal state.</p>
+          </article>
+          <article class="panel step-card fade-up" style="--delay: 210ms;">
+            <div class="badge">IV</div>
+            <h3>Verification</h3>
+            <p>Use Z3 and an LLM judge to compare candidate states and keep the branch with better formal consistency.</p>
+          </article>
+        </div>
       </div>
     </section>
 
@@ -789,8 +858,8 @@
           <h2 class="section-title">Robust Gains Across Models and Settings</h2>
         </div>
         <p class="section-copy">
-          The paper evaluates three things separately: rejection of ill-defined problems, modeling quality
-          on well-defined problems, and mixed real-world settings where both capabilities matter.
+          We highlight the main downstream gains on well-defined reasoning and mixed realistic settings,
+          then summarize robustness across model scales.
         </p>
       </div>
 
@@ -863,79 +932,43 @@
             </table>
           </div>
         </article>
-
-        <aside class="result-grid">
-          <article class="panel result-card fade-up" style="--delay: 120ms;">
-            <h3>Mixed Realistic Setting</h3>
-            <p>VCSearch acts as a solvability filter for downstream reasoning methods such as CoT and PAL.</p>
+        <article class="panel result-card fade-up" style="--delay: 120ms;">
+          <h3>Mixed Realistic Setting</h3>
+          <p>VCSearch acts as a solvability filter for downstream reasoning methods such as CoT and PAL.</p>
+          <div class="result-grid" style="margin-top: 0.95rem;">
             <div class="result-block">
               <div class="result-line">
-                <span>Qwen2.5 3B &nbsp;&middot;&nbsp; CoT 鈫?+VCSearch</span>
-                <strong>65.93 鈫?73.98</strong>
+                <span>Qwen2.5 3B &nbsp;&middot;&nbsp; CoT &rarr; VCSearch</span>
+                <strong>65.93 &rarr; 73.98</strong>
               </div>
               <div class="result-line">
-                <span>Qwen2.5 3B &nbsp;&middot;&nbsp; PAL 鈫?+VCSearch</span>
-                <strong>48.56 鈫?74.08</strong>
-              </div>
-              <div class="result-line">
-                <span>Qwen2.5 1.5B &nbsp;&middot;&nbsp; CoT 鈫?+VCSearch</span>
-                <strong>53.91 鈫?63.26</strong>
-              </div>
-              <div class="result-line">
-                <span>Qwen2.5 1.5B &nbsp;&middot;&nbsp; PAL 鈫?+VCSearch</span>
-                <strong>32.85 鈫?62.28</strong>
+                <span>Qwen2.5 3B &nbsp;&middot;&nbsp; PAL &rarr; VCSearch</span>
+                <strong>48.56 &rarr; 74.08</strong>
               </div>
             </div>
-          </article>
-
-          <article class="panel result-card fade-up" style="--delay: 180ms;">
-            <h3>Ill-Defined Rejection</h3>
-            <p>VCSearch dominates the rejection averages reported on PMC, especially on smaller models.</p>
             <div class="result-block">
               <div class="result-line">
-                <span>Qwen2.5 3B &nbsp;&middot;&nbsp; Contra Avg</span>
-                <strong>62.53%</strong>
+                <span>Qwen2.5 1.5B &nbsp;&middot;&nbsp; CoT &rarr; VCSearch</span>
+                <strong>53.91 &rarr; 63.26</strong>
               </div>
               <div class="result-line">
-                <span>Qwen2.5 3B &nbsp;&middot;&nbsp; Missing Avg</span>
-                <strong>87.04%</strong>
-              </div>
-              <div class="result-line">
-                <span>Qwen2.5 7B &nbsp;&middot;&nbsp; Contra Avg</span>
-                <strong>56.89%</strong>
-              </div>
-              <div class="result-line">
-                <span>Qwen2.5 7B &nbsp;&middot;&nbsp; Missing Avg</span>
-                <strong>92.60%</strong>
+                <span>Qwen2.5 1.5B &nbsp;&middot;&nbsp; PAL &rarr; VCSearch</span>
+                <strong>32.85 &rarr; 62.28</strong>
               </div>
             </div>
-          </article>
-        </aside>
+          </div>
+        </article>
       </div>
 
       <div class="visual-grid" style="margin-top: 1rem;">
         <article class="panel visual-card fade-up" style="--delay: 40ms;">
-          <img src="./picture/trade_off_R-rate.png" alt="Trade-off in rejection rate between pure prompts and mixed prompts on ill-defined problems.">
+          <img src="./picture/R-rate.png" alt="Rejection rate across different model sizes for multiple baselines and VCSearch.">
           <div class="visual-body">
-            <h3>Trade-Off on Ill-Defined Problems</h3>
-            <p>Mixed prompting hurts rejection ability, especially on smaller models.</p>
+            <h3>Robustness Across Model Sizes</h3>
+            <p>VCSearch remains strongest from 1.5B to 7B when models must recognize unsolvable inputs.</p>
           </div>
         </article>
         <article class="panel visual-card fade-up" style="--delay: 100ms;">
-          <img src="./picture/trade_off_Acc.png" alt="Trade-off in accuracy between pure prompts and mixed prompts on well-defined problems.">
-          <div class="visual-body">
-            <h3>Trade-Off on Well-Defined Problems</h3>
-            <p>Mixed prompting also hurts ordinary solving accuracy.</p>
-          </div>
-        </article>
-        <article class="panel visual-card fade-up" style="--delay: 160ms;">
-          <img src="./picture/R-rate.png" alt="Rejection rate across different model sizes for multiple baselines and VCSearch.">
-          <div class="visual-body">
-            <h3>Rejection Across Model Sizes</h3>
-            <p>VCSearch stays strongest from 1.5B to 7B on ill-defined problem rejection.</p>
-          </div>
-        </article>
-        <article class="panel visual-card fade-up" style="--delay: 220ms;">
           <img src="./picture/Acc.png" alt="Accuracy across different model sizes for SatLM and VCSearch.">
           <div class="visual-body">
             <h3>Accuracy Across Model Sizes</h3>
@@ -975,7 +1008,6 @@
   booktitle = "Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing",
   month     = nov,
   year      = "2025",
-  address   = "Suzhou, China",
   publisher = "Association for Computational Linguistics",
   url       = "https://aclanthology.org/2025.emnlp-main.642/",
   doi       = "10.18653/v1/2025.emnlp-main.642",
