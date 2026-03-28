@@ -6,6 +6,36 @@ window.SITE_CONFIG = {
 
 window.SITE_PUBLICATIONS = [
   {
+    slug: "last",
+    category: "preprint",
+    selected: false,
+    venueTag: "Preprint",
+    title: "LAST: Leveraging Tools as Hints to Enhance Spatial Reasoning for Multimodal Large Language Models",
+    authors: "<u>Shi-Yu Tian</u>, Zhi Zhou, Kun-Yang Yu, Ming Yang, Yang Chen, Ziqiao Shang, Lan-Zhe Guo, Yu-Feng Li.",
+    venueShort: "Preprint.",
+    venueFull: "Preprint.",
+    summary: "A tool-augmented framework with LAST-Box and progressive training that turns vision tools into short-horizon hints for multimodal spatial reasoning.",
+    badges: [
+      { label: "Preprint" }
+    ],
+    ratings: [],
+    thumb: {
+      type: "image",
+      src: "./projects/last/image/toolbox.png",
+      alt: "LAST-Box overview",
+      badge: "Preprint",
+      contain: true
+    },
+    selectedLinks: [
+      { label: "Project Page", href: "./projects/last/index.html", primary: true },
+      { label: "Preprint", href: "./projects/last/main.pdf" }
+    ],
+    fullLinks: [
+      { label: "Page", href: "./projects/last/index.html" },
+      { label: "Preprint", href: "./projects/last/main.pdf" }
+    ]
+  },
+  {
     slug: "tabularmath",
     category: "preprint",
     selected: true,

@@ -91,6 +91,10 @@
       letter-spacing: 0.02em;
     }
 
+    .brand-name {
+      font-weight: 700;
+    }
+
     .brand-mark {
       width: 2.35rem;
       height: 2.35rem;
@@ -186,6 +190,33 @@
       gap: 0.65rem;
     }
 
+    .profile-caption {
+      color: var(--muted);
+      font-size: 0.98rem;
+      font-weight: 600;
+      line-height: 1.45;
+      text-align: center;
+    }
+
+    .hero-name {
+      margin: 0;
+      text-align: center;
+      font-family: var(--display);
+      font-size: clamp(1.95rem, 3.1vw, 2.7rem);
+      line-height: 1.02;
+      letter-spacing: -0.03em;
+    }
+
+    .hero-name span {
+      display: block;
+      margin-top: 0.22rem;
+      color: var(--muted);
+      font-size: clamp(0.98rem, 1.6vw, 1.18rem);
+      font-family: var(--body);
+      letter-spacing: 0.02em;
+      font-weight: 700;
+    }
+
     .pill,
     .link-pill,
     .meta-pill {
@@ -251,24 +282,6 @@
       letter-spacing: 0.08em;
       font-size: 0.82rem;
       font-weight: 800;
-    }
-
-    .intro-panel h1 {
-      margin: 0;
-      font-family: var(--display);
-      font-size: clamp(2.2rem, 5vw, 4.2rem);
-      line-height: 0.98;
-      letter-spacing: -0.03em;
-    }
-
-    .intro-panel h1 span {
-      display: block;
-      margin-top: 0.25rem;
-      color: var(--muted);
-      font-size: clamp(1.05rem, 2vw, 1.4rem);
-      font-family: var(--body);
-      letter-spacing: 0.02em;
-      font-weight: 700;
     }
 
     .lede {
@@ -824,8 +837,8 @@
   <header class="topbar">
     <div class="shell topbar-inner">
       <a class="brand" href="#top">
-        <span class="brand-mark">ST</span>
-        <span>Shi-Yu Tian</span>
+        <span class="brand-mark">SY</span>
+        <span class="brand-name">Shi-Yu Tian</span>
       </a>
       <nav class="nav">
         <a href="#about">About</a>
@@ -843,10 +856,8 @@
         <div class="portrait-frame">
           <img src="./src/tiansy.jpg" alt="Portrait of Shi-Yu Tian">
         </div>
-        <div class="badge-row">
-          <span class="pill accent">Ph.D. Student</span>
-          <span class="pill soft">LAMDA Group</span>
-        </div>
+        <h1 class="hero-name">Shi-Yu Tian<span>&#30000;&#26102;&#38632;</span></h1>
+        <div class="profile-caption">A Ph.D. student in LAMDA Group</div>
         <div class="logo-grid">
           <div class="logo-card">
             <img src="./src/lamda.jpg" alt="LAMDA Group logo">
@@ -859,7 +870,6 @@
 
       <section class="panel intro-panel fade-up" style="--delay: 120ms;">
         <div class="eyebrow">Spatial Intelligence &middot; Neuro-Symbolic AI &middot; Trustworthy AI</div>
-        <h1>Shi-Yu Tian<span>&#30000;&#26102;&#38632;</span></h1>
         <p class="lede">
           I am a Ph.D. student in Computer Science at <a href="https://www.nju.edu.cn/" target="_blank" rel="noreferrer">Nanjing University</a>
           and a member of the <a href="https://www.lamda.nju.edu.cn/" target="_blank" rel="noreferrer">LAMDA Group</a>, within the
