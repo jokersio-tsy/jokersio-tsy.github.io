@@ -6,6 +6,38 @@ window.SITE_CONFIG = {
 
 window.SITE_PUBLICATIONS = [
   {
+    slug: "tabularmath",
+    category: "preprint",
+    selected: true,
+    venueTag: "Preprint",
+    title: "TabularMath: Understanding Math Reasoning over Tables with Large Language Models",
+    authors: "<u>Shi-Yu Tian</u>*, Zhi Zhou*, Wei Dong*, Kun-Yang Yu, Ming Yang, Zi-Jian Cheng, Lan-Zhe Guo, Yu-Feng Li.",
+    venueShort: "Preprint.",
+    venueFull: "Preprint.",
+    summary: "A neuro-symbolic pipeline and benchmark for studying mathematical reasoning over large, imperfect, and multimodal tables.",
+    badges: [
+      { label: "Preprint" }
+    ],
+    ratings: [],
+    thumb: {
+      type: "image",
+      src: "./projects/tabularmath/Figure/intro.png",
+      alt: "TabularMath benchmark examples",
+      badge: "Preprint",
+      contain: true
+    },
+    selectedLinks: [
+      { label: "Project Page", href: "./projects/tabularmath/index.html", primary: true },
+      { label: "ArXiv", href: "https://arxiv.org/abs/2505.19563" },
+      { label: "Benchmark", href: "https://huggingface.co/datasets/kevin715/TabularGSM" }
+    ],
+    fullLinks: [
+      { label: "Page", href: "./projects/tabularmath/index.html" },
+      { label: "ArXiv", href: "https://arxiv.org/abs/2505.19563" },
+      { label: "Benchmark", href: "https://huggingface.co/datasets/kevin715/TabularGSM" }
+    ]
+  },
+  {
     slug: "vcsearch",
     category: "conference",
     selected: true,
@@ -106,19 +138,6 @@ window.SITE_PUBLICATIONS = [
     ratings: [],
     fullLinks: [
       { label: "ArXiv", href: "https://arxiv.org/pdf/2502.06572" }
-    ]
-  },
-  {
-    slug: "tabularmath",
-    category: "preprint",
-    selected: false,
-    title: "TabularMath: Understanding the Limitations of LLMs in Tabular Math Reasoning",
-    authors: "<u>Shi-Yu Tian</u>*, Zhi Zhou*, Wei Dong, Ming Yang, Kun-Yang Yu, Zi-Jian Cheng, Lan-Zhe Guo, Yu-Feng Li.",
-    venueFull: "Preprint, 2025.",
-    ratings: [],
-    fullLinks: [
-      { label: "ArXiv", href: "https://arxiv.org/abs/2505.19563" },
-      { label: "Benchmark", href: "https://huggingface.co/datasets/kevin715/TabularGSM" }
     ]
   }
 ];

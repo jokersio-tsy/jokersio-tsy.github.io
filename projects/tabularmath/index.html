@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TabularMath | Project Page</title>
+  <meta
+    name="description"
+    content="TabularMath: Understanding Math Reasoning over Tables with Large Language Models. A project page for the AutoT2T pipeline, the TabularMath benchmark, and key findings on tabular mathematical reasoning."
+  >
+  <style>
+    :root {
+      --bg: #f6f3eb;
+      --bg-strong: #efe7d8;
+      --panel: rgba(255, 251, 244, 0.82);
+      --panel-strong: rgba(255, 255, 255, 0.94);
+      --ink: #1a3147;
+      --muted: #5e6f7e;
+      --line: rgba(26, 49, 71, 0.1);
+      --accent: #b35f2d;
+      --accent-deep: #95481e;
+      --teal: #0f6e69;
+      --teal-soft: rgba(15, 110, 105, 0.12);
+      --gold: #c78d2b;
+      --shadow: 0 24px 60px rgba(34, 47, 66, 0.14);
+      --display: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+      --body: "Aptos", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+      --mono: "Cascadia Code", "SFMono-Regular", Consolas, monospace;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      font-family: var(--body);
+      line-height: 1.65;
+      background:
+        radial-gradient(circle at top left, rgba(15, 110, 105, 0.12), transparent 34%),
+        radial-gradient(circle at top right, rgba(179, 95, 45, 0.14), transparent 34%),
+        linear-gradient(180deg, #fbf8f2 0%, var(--bg) 44%, #f0e8dc 100%);
+      min-height: 100vh;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.3;
+      background-image:
+        linear-gradient(rgba(26, 49, 71, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(26, 49, 71, 0.03) 1px, transparent 1px);
+      background-size: 28px 28px;
+      mask-image: radial-gradient(circle at center, black 48%, transparent 88%);
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    code, pre { font-family: var(--mono); }
+
+    .container {
+      width: min(1040px, calc(100% - 2rem));
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 12;
+      backdrop-filter: blur(14px);
+      background: rgba(251, 248, 242, 0.8);
+      border-bottom: 1px solid rgba(26, 49, 71, 0.08);
+    }
+
+    .topbar-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      padding: 0.9rem 0;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.8rem;
+      font-size: 0.88rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .brand-mark {
+      width: 2.15rem;
+      height: 2.15rem;
+      display: grid;
+      place-items: center;
+      border-radius: 0.82rem;
+      color: #fff9f2;
+      background: linear-gradient(145deg, var(--accent) 0%, #da8b55 54%, #f2c36b 100%);
+      box-shadow: 0 12px 24px rgba(179, 95, 45, 0.22);
+      font-family: var(--display);
+      font-size: 1rem;
+    }
+
+    .nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 0.95rem;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .nav a:hover { color: var(--ink); }
+
+    .hero {
+      padding: clamp(3.2rem, 6vw, 5.3rem) 0 2.6rem;
+      display: grid;
+      grid-template-columns: minmax(0, 1.06fr) minmax(280px, 0.94fr);
+      gap: 1.25rem;
+      align-items: start;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      padding: 0.38rem 0.8rem;
+      border-radius: 999px;
+      background: rgba(255, 251, 244, 0.86);
+      border: 1px solid rgba(26, 49, 71, 0.08);
+      color: var(--teal);
+      font-size: 0.86rem;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow .status {
+      color: var(--accent-deep);
+      font-weight: 900;
+    }
+
+    h1, h2, h3, p { margin: 0; }
+
+    .hero h1 {
+      margin: 1rem 0 0.9rem;
+      font-family: var(--display);
+      font-size: clamp(1.86rem, 3.72vw, 3.34rem);
+      line-height: 1.02;
+      letter-spacing: -0.03em;
+    }
+
+    .subtitle {
+      max-width: 720px;
+      color: var(--muted);
+      font-size: 1.08rem;
+    }
+
+    .authors {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem 1.05rem;
+      margin-top: 1.15rem;
+      font-size: 1rem;
+      font-weight: 700;
+    }
+
+    .meta {
+      margin-top: 0.5rem;
+      color: var(--muted);
+      font-size: 0.98rem;
+    }
+
+    .meta-note {
+      margin-top: 0.2rem;
+      font-size: 0.84rem;
+    }
+
+    .hero-tags,
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+    }
+
+    .hero-tags { margin-top: 1rem; }
+    .actions { margin-top: 1.35rem; }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 2rem;
+      padding: 0.34rem 0.78rem;
+      border-radius: 999px;
+      background: rgba(255, 251, 244, 0.92);
+      border: 1px solid rgba(26, 49, 71, 0.08);
+      font-size: 0.84rem;
+      font-weight: 700;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 2.9rem;
+      padding: 0.74rem 1.1rem;
+      border-radius: 999px;
+      border: 1px solid rgba(26, 49, 71, 0.12);
+      background: rgba(255, 251, 244, 0.9);
+      box-shadow: 0 10px 28px rgba(26, 49, 71, 0.08);
+      font-weight: 700;
+      transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 32px rgba(26, 49, 71, 0.12);
+      border-color: rgba(26, 49, 71, 0.18);
+    }
+
+    .btn.primary {
+      color: #fff9f2;
+      border-color: transparent;
+      background: linear-gradient(135deg, var(--accent) 0%, #d17d47 100%);
+    }
+
+    .panel {
+      background: var(--panel);
+      border: 1px solid rgba(26, 49, 71, 0.1);
+      border-radius: 1.5rem;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+    }
+
+    .hero-side {
+      padding: 1.1rem;
+      display: grid;
+      gap: 0.95rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-side::after {
+      content: "";
+      position: absolute;
+      width: 220px;
+      height: 220px;
+      right: -80px;
+      top: -80px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(15, 110, 105, 0.14), transparent 70%);
+    }
+
+    .hero-figure {
+      border-radius: 1.1rem;
+      overflow: hidden;
+      border: 1px solid rgba(26, 49, 71, 0.08);
+      background: var(--panel-strong);
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-figure img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+    }
+
+    .hero-note {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      gap: 0.7rem;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .hero-stats {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.75rem;
+    }
+
+    .stat-card {
+      padding: 0.85rem 0.9rem;
+      border-radius: 1rem;
+      background: rgba(255, 255, 255, 0.88);
+      border: 1px solid rgba(26, 49, 71, 0.08);
+    }
+
+    .stat-value {
+      font-family: var(--display);
+      font-size: 1.5rem;
+      line-height: 1;
+      color: var(--accent-deep);
+    }
+
+    .stat-label {
+      margin-top: 0.28rem;
+      color: var(--muted);
+      font-size: 0.86rem;
+    }
+
+    .section {
+      padding: 1rem 0 2.5rem;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 1rem;
+      margin-bottom: 1.15rem;
+    }
+
+    .section-label {
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.8rem;
+      font-weight: 800;
+      margin-bottom: 0.3rem;
+    }
+
+    .section-title {
+      font-family: var(--display);
+      font-size: clamp(1.65rem, 3vw, 2.35rem);
+      line-height: 1.08;
+    }
+
+    .section-intro {
+      max-width: 540px;
+      color: var(--muted);
+      font-size: 0.98rem;
+    }
+
+    .abstract-card,
+    .figure-card,
+    .citation-card,
+    .subset-card,
+    .finding-card,
+    .step-card,
+    .insight-card {
+      padding: 1.2rem;
+      border-radius: 1.35rem;
+      border: 1px solid rgba(26, 49, 71, 0.1);
+      background: rgba(255, 255, 255, 0.8);
+    }
+
+    .abstract-card p,
+    .subset-card p,
+    .step-card p,
+    .insight-card p,
+    .finding-card p {
+      color: var(--muted);
+      font-size: 0.97rem;
+    }
+
+    .insight-grid,
+    .step-grid,
+    .subset-grid,
+    .findings-grid {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .insight-grid {
+      margin-top: 1rem;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .step-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      margin-top: 1rem;
+    }
+
+    .subset-grid {
+      margin-top: 1rem;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .findings-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .card-kicker {
+      display: inline-flex;
+      margin-bottom: 0.55rem;
+      padding: 0.2rem 0.56rem;
+      border-radius: 999px;
+      background: var(--teal-soft);
+      color: var(--teal);
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .figure-card {
+      padding: 1rem;
+      overflow: hidden;
+    }
+
+    .figure-card img {
+      width: 100%;
+      height: auto;
+      border-radius: 0.95rem;
+      border: 1px solid rgba(26, 49, 71, 0.08);
+      background: #fff;
+    }
+
+    .figure-caption {
+      margin-top: 0.8rem;
+      color: var(--muted);
+      font-size: 0.93rem;
+    }
+
+    .overview-grid,
+    .benchmark-grid {
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: 1.05fr 0.95fr;
+    }
+
+    .finding-figure {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 0.85rem;
+    }
+
+    .finding-figure img {
+      width: 82%;
+      height: auto;
+      border-radius: 0.95rem;
+      border: 1px solid rgba(26, 49, 71, 0.08);
+      background: #fff;
+    }
+
+    .citation-card pre {
+      margin: 0;
+      padding: 1rem;
+      overflow: auto;
+      border-radius: 1rem;
+      background: #16283a;
+      color: #edf4fb;
+      font-size: 0.86rem;
+      line-height: 1.55;
+    }
+
+    .citation-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-bottom: 0.95rem;
+    }
+
+    .copy-status {
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .footer {
+      padding: 0 0 3rem;
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    @media (max-width: 980px) {
+      .hero,
+      .overview-grid,
+      .benchmark-grid,
+      .insight-grid,
+      .step-grid,
+      .subset-grid,
+      .findings-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .container {
+        width: min(100%, calc(100% - 1rem));
+      }
+
+      .topbar-inner,
+      .section-head {
+        flex-direction: column;
+        align-items: start;
+      }
+
+      .hero-stats {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .finding-figure img {
+        width: 92%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a class="brand" href="#top">
+        <span class="brand-mark">TM</span>
+        <span>TabularMath</span>
+      </a>
+      <nav class="nav">
+        <a href="#overview">Overview</a>
+        <a href="#pipeline">AutoT2T</a>
+        <a href="#benchmark">Benchmark</a>
+        <a href="#findings">Findings</a>
+        <a href="#citation">Citation</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container" id="top">
+    <section class="hero">
+      <div>
+        <div class="eyebrow">
+          <span>Preprint</span>
+          <span>&middot;</span>
+          <span class="status">Under Review</span>
+          <span>&middot;</span>
+          <span>Structured Reasoning</span>
+        </div>
+        <h1>TabularMath: Understanding Math Reasoning over Tables with Large Language Models</h1>
+        <p class="subtitle">
+          A neuro-symbolic pipeline and benchmark for probing mathematical reasoning over large,
+          imperfect, and multimodal tables.
+        </p>
+
+        <div class="authors">
+          <span>Shi-Yu Tian*</span>
+          <span>Zhi Zhou*</span>
+          <span>Wei Dong*</span>
+          <span>Kun-Yang Yu</span>
+          <span>Ming Yang</span>
+          <span>Zi-Jian Cheng</span>
+          <span>Lan-Zhe Guo</span>
+          <span>Yu-Feng Li</span>
+        </div>
+        <div class="meta">
+          LAMDA Group, School of Artificial Intelligence, Nanjing University.
+        </div>
+        <div class="meta meta-note">
+          * Equal contribution.
+        </div>
+
+        <div class="hero-tags">
+          <span class="tag">AutoT2T</span>
+          <span class="tag">TabularMath Benchmark</span>
+          <span class="tag">Text + Image Tables</span>
+          <span class="tag">Robustness Evaluation</span>
+        </div>
+
+        <div class="actions">
+          <a class="btn primary" href="https://arxiv.org/abs/2505.19563" target="_blank" rel="noreferrer">arXiv</a>
+          <a class="btn" href="https://arxiv.org/pdf/2505.19563" target="_blank" rel="noreferrer">PDF</a>
+          <a class="btn" href="https://huggingface.co/datasets/kevin715/TabularGSM" target="_blank" rel="noreferrer">Benchmark</a>
+          <a class="btn" href="#citation">BibTeX</a>
+        </div>
+      </div>
+
+      <aside class="panel hero-side">
+        <div class="hero-figure">
+          <img src="./Figure/intro.png" alt="Illustrative TabularMath examples and model responses">
+        </div>
+        <div class="hero-note">
+          <p>
+            TabularMath studies where current LLMs fail once mathematical reasoning is entangled with
+            table retrieval, imperfect data, and different table modalities.
+          </p>
+        </div>
+        <div class="hero-stats">
+          <div class="stat-card">
+            <div class="stat-value">6,782</div>
+            <div class="stat-label">Text-image samples in the benchmark</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value">18</div>
+            <div class="stat-label">Open-source and proprietary models evaluated</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value">4</div>
+            <div class="stat-label">Subsets across complexity and robustness</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value">15%</div>
+            <div class="stat-label">Average gain from AutoT2T-generated fine-tuning</div>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="section" id="overview">
+      <div class="section-head">
+        <div>
+          <div class="section-label">Overview</div>
+          <h2 class="section-title">Why TabularMath Matters</h2>
+        </div>
+        <p class="section-intro">
+          Existing math reasoning benchmarks under-test structured retrieval, imperfect tables,
+          and the gap between text and visual table reasoning.
+        </p>
+      </div>
+
+      <div class="overview-grid">
+        <div class="abstract-card">
+          <span class="card-kicker">Abstract</span>
+          <p>
+            Mathematical reasoning has long been a key benchmark for evaluating large language
+            models, yet reasoning over tables remains underexplored. Real-world applications such
+            as business intelligence require not only multi-step numerical reasoning with tables,
+            but also robustness to incomplete or inconsistent information. To address this gap,
+            TabularMath introduces AutoT2T, a neuro-symbolic framework that controllably transforms
+            math word problems into scalable and verified tabular reasoning tasks, and builds a
+            benchmark spanning table complexity, table quality, and table representation.
+          </p>
+
+          <div class="insight-grid">
+            <div class="insight-card">
+              <span class="card-kicker">Finding 1</span>
+              <p>
+                Table complexity and reasoning difficulty interact directly, and both dimensions
+                hurt model performance.
+              </p>
+            </div>
+            <div class="insight-card">
+              <span class="card-kicker">Finding 2</span>
+              <p>
+                Missing or contradictory table information still causes many strong models to
+                produce confident but misleading answers.
+              </p>
+            </div>
+            <div class="insight-card">
+              <span class="card-kicker">Finding 3</span>
+              <p>
+                Text-based tables are typically easier than image-based tables, even for multimodal
+                models.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="figure-card">
+          <img src="./Figure/intro_performance.png" alt="Performance gap between average and hard problems">
+          <p class="figure-caption">
+            Performance on top-complexity questions drops much more sharply than on average samples,
+            motivating a benchmark that stresses retrieval and reasoning jointly.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="pipeline">
+      <div class="section-head">
+        <div>
+          <div class="section-label">Method</div>
+          <h2 class="section-title">AutoT2T: Automated Text-to-Table Generation</h2>
+        </div>
+        <p class="section-intro">
+          AutoT2T converts math word problems into validated tabular reasoning tasks without manual
+          table annotation.
+        </p>
+      </div>
+
+      <div class="figure-card">
+        <img src="./Figure/frame.png" alt="Overview of the AutoT2T pipeline">
+        <p class="figure-caption">
+          AutoT2T first formalizes the problem, then transforms it into a seed table, and finally
+          applies controllable augmentations for difficulty and robustness testing.
+        </p>
+      </div>
+
+      <div class="step-grid">
+        <div class="step-card">
+          <span class="card-kicker">Stage 1</span>
+          <h3>Semantic Decoupling</h3>
+          <p>
+            Large language models extract variables, constraints, and goals from natural-language
+            math problems, while formal solvers verify satisfiability and consistency.
+          </p>
+        </div>
+        <div class="step-card">
+          <span class="card-kicker">Stage 2</span>
+          <h3>Table Transformation</h3>
+          <p>
+            The verified formal state is rewritten into a structured seed table with explicit fields,
+            entity rows, and tabularized assignments.
+          </p>
+        </div>
+        <div class="step-card">
+          <span class="card-kicker">Stage 3</span>
+          <h3>Table Augmentation</h3>
+          <p>
+            Row augmentation, column augmentation, order shuffling, and information modification
+            create controllable splits for complexity, retrieval stress, and robustness.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="benchmark">
+      <div class="section-head">
+        <div>
+          <div class="section-label">Benchmark</div>
+          <h2 class="section-title">A Structured Testbed for Table Reasoning</h2>
+        </div>
+        <p class="section-intro">
+          The benchmark is built from transformed GSM8K-style problems and covers both text-based
+          and rendered image-based tables.
+        </p>
+      </div>
+
+      <div class="benchmark-grid">
+        <div class="figure-card">
+          <img src="./Figure/datasetcompare.png" alt="Dataset comparison for TabularMath">
+          <p class="figure-caption">
+            Compared with prior math and table reasoning datasets, TabularMath emphasizes larger
+            tables, coupled retrieval-and-reasoning, and robustness to flawed inputs.
+          </p>
+        </div>
+
+        <div class="abstract-card">
+          <span class="card-kicker">Release</span>
+          <p>
+            The paper names the benchmark <strong>TabularMath</strong>. The released Hugging Face
+            dataset is available as <strong>TabularGSM</strong>, covering easy, medium, hard, and
+            imperfect settings for controlled evaluation.
+          </p>
+
+          <div class="subset-grid">
+            <div class="subset-card">
+              <span class="card-kicker">Easy</span>
+              <p>Low structural variation with simpler retrieval.</p>
+            </div>
+            <div class="subset-card">
+              <span class="card-kicker">Medium</span>
+              <p>Shuffled tables that increase localization difficulty.</p>
+            </div>
+            <div class="subset-card">
+              <span class="card-kicker">Hard</span>
+              <p>Larger tables with row and column augmentation.</p>
+            </div>
+            <div class="subset-card">
+              <span class="card-kicker">Imperfect</span>
+              <p>Missing or contradictory tables for robustness testing.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="findings">
+      <div class="section-head">
+        <div>
+          <div class="section-label">Findings</div>
+          <h2 class="section-title">Three Core Experimental Messages</h2>
+        </div>
+        <p class="section-intro">
+          The experiments focus on complexity, table quality, and representation, with additional
+          discussion on code-based reasoning and fine-tuning.
+        </p>
+      </div>
+
+      <div class="findings-grid">
+        <div class="finding-card">
+          <div class="finding-figure">
+            <img src="./Figure/retrival_vs.png" alt="Retrieval versus full reasoning comparison">
+          </div>
+          <h3>Retrieval Alone Is Much Easier Than Full Tabular Reasoning</h3>
+          <p>
+            When the retrieval target is made explicit, models perform much better. The major
+            bottleneck emerges when retrieval is embedded inside multi-step reasoning.
+          </p>
+        </div>
+
+        <div class="finding-card">
+          <div class="finding-figure">
+            <img src="./Figure/medium_well_diff.png" alt="Trade-off between robustness checking and normal performance">
+          </div>
+          <h3>Checking for Flawed Tables Comes with a Real Trade-off</h3>
+          <p>
+            Informing models that a table may be problematic improves discrimination, but also hurts
+            accuracy on ordinary well-defined problems.
+          </p>
+        </div>
+
+        <div class="finding-card">
+          <div class="finding-figure">
+            <img src="./Figure/se_md_mean.png" alt="Different text table representations">
+          </div>
+          <h3>Structured Text Formats Beat Markdown on Harder Tables</h3>
+          <p>
+            JSON and serialized representations remain more reliable than Markdown, and the gap
+            widens as table complexity increases.
+          </p>
+        </div>
+
+        <div class="finding-card">
+          <div class="finding-figure">
+            <img src="./Figure/code_reasoning_comparison.png" alt="Code reasoning comparison">
+          </div>
+          <h3>Code Helps Less Than Clear Retrieval Guidance</h3>
+          <p>
+            Writing code does not automatically solve table reasoning; strong gains appear when the
+            model is explicitly guided toward the right retrieval trajectory.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="citation">
+      <div class="section-head">
+        <div>
+          <div class="section-label">Citation</div>
+          <h2 class="section-title">BibTeX</h2>
+        </div>
+        <p class="section-intro">
+          The citation below follows the current arXiv preprint metadata for
+          <code>arXiv:2505.19563</code>.
+        </p>
+      </div>
+
+      <div class="citation-card">
+        <div class="citation-actions">
+          <button class="btn primary" id="copy-bib" type="button">Copy BibTeX</button>
+          <a class="btn" href="https://doi.org/10.48550/arXiv.2505.19563" target="_blank" rel="noreferrer">DOI</a>
+        </div>
+        <div class="copy-status" id="copy-status">Ready to copy.</div>
+        <pre id="bibtex">@article{tian2025tabularmath,
+  title   = {TabularMath: Understanding Math Reasoning over Tables with Large Language Models},
+  author  = {Tian, Shi-Yu and Zhou, Zhi and Dong, Wei and Yu, Kun-Yang and Yang, Ming and Cheng, Zi-Jian and Guo, Lan-Zhe and Li, Yu-Feng},
+  journal = {arXiv preprint arXiv:2505.19563},
+  year    = {2025},
+  doi     = {10.48550/arXiv.2505.19563},
+  url     = {https://arxiv.org/abs/2505.19563}
+}</pre>
+      </div>
+    </section>
+
+    <footer class="footer">
+      Local project page built from the manuscript source and figure assets in this directory.
+    </footer>
+  </main>
+
+  <script>
+    const copyButton = document.getElementById("copy-bib");
+    const copyStatus = document.getElementById("copy-status");
+    const bib = document.getElementById("bibtex").textContent;
+
+    copyButton.addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(bib);
+        copyStatus.textContent = "BibTeX copied.";
+      } catch (error) {
+        const textarea = document.createElement("textarea");
+        textarea.value = bib;
+        textarea.setAttribute("readonly", "");
+        textarea.style.position = "absolute";
+        textarea.style.left = "-9999px";
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand("copy");
+        document.body.removeChild(textarea);
+        copyStatus.textContent = "BibTeX copied.";
+      }
+    });
+  </script>
+</body>
+</html>
