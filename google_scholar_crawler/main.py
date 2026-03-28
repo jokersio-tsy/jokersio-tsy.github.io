@@ -27,7 +27,7 @@ def configure_scholarly():
         print(f"[scholar] proxy=ScraperAPI success={success}", flush=True)
         if success:
             scholarly.use_proxy(pg)
-        return
+        return "scraperapi"
 
     if http_proxy or https_proxy:
         pg = ProxyGenerator()
@@ -35,7 +35,7 @@ def configure_scholarly():
         print(f"[scholar] proxy=SingleProxy success={success}", flush=True)
         if success:
             scholarly.use_proxy(pg, pg)
-        return
+        return "single"
 
     if use_free_proxies:
         pg = ProxyGenerator()
@@ -43,18 +43,45 @@ def configure_scholarly():
         print(f"[scholar] proxy=FreeProxies success={success}", flush=True)
         if success:
             scholarly.use_proxy(pg)
-        return
+        return "free"
 
     print("[scholar] proxy=none", flush=True)
+    return "none"
 
 
-def main():
-    configure_scholarly()
-    scholar_user_id = os.environ["GOOGLE_SCHOLAR_ID"]
+def enable_free_proxies():
+    pg = ProxyGenerator()
+    success = pg.FreeProxies()
+    print(f"[scholar] fallback proxy=FreeProxies success={success}", flush=True)
+    if success:
+        scholarly.use_proxy(pg)
+    return success
+
+
+def fetch_author(scholar_user_id):
     print(f"[scholar] fetching author {scholar_user_id}", flush=True)
     author = scholarly.search_author_id(scholar_user_id)
     print("[scholar] filling author profile", flush=True)
     scholarly.fill(author, sections=["basics", "indices", "counts", "publications"])
+    return author
+
+
+def main():
+    proxy_mode = configure_scholarly()
+    scholar_user_id = os.environ["GOOGLE_SCHOLAR_ID"]
+    try:
+        author = fetch_author(scholar_user_id)
+    except Exception as error:
+        print(f"[scholar] direct fetch failed: {type(error).__name__}: {error}", flush=True)
+        should_try_fallback = proxy_mode == "none" and _as_bool(os.getenv("GITHUB_ACTIONS", "false"))
+        if should_try_fallback and enable_free_proxies():
+            print("[scholar] retrying fetch with free proxies", flush=True)
+            author = fetch_author(scholar_user_id)
+        else:
+            raise RuntimeError(
+                "Google Scholar rejected the runner request. Configure SCRAPER_API_KEY "
+                "or SCHOLAR_HTTP_PROXY/SCHOLAR_HTTPS_PROXY in GitHub Actions secrets."
+            ) from error
 
     author["updated"] = datetime.now(timezone.utc).isoformat()
     author["publications"] = {
