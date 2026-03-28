@@ -678,9 +678,7 @@
         <div class="eyebrow">CVPR 2024 &nbsp;|&nbsp; <span class="eyebrow-oral">Oral</span> &nbsp;|&nbsp; Partial-Label Learning</div>
         <h1>CroSel: Cross Selection of Confident Pseudo Labels for Partial-Label Learning</h1>
         <p class="subtitle">
-          CroSel tackles label ambiguity in partial-label learning by selecting confident pseudo labels
-          from historical predictions and training two networks to cross-correct each other. A co-mix
-          consistency term further prevents sample waste and stabilizes training.
+          CroSel improves partial-label learning with historical prediction selection, cross-network correction, and co-mix regularization.
         </p>
         <div class="authors">
           <span>Shiyu Tian</span>
@@ -703,8 +701,11 @@
       <aside class="panel hero-panel fade-up" style="--delay: 180ms;">
         <h2>At a Glance</h2>
         <p class="section-copy">
-          Official project page for the CVPR 2024 paper and code release. CroSel consistently improves
-          benchmark performance while selecting true labels with high precision.
+          Official project page for the CVPR 2024 paper and code release. CroSel first mines stable
+          pseudo labels from a memory bank of historical predictions, then lets two networks select for
+          each other to reduce error accumulation, and finally uses co-mix consistency regularization so
+          unselected examples still contribute useful training signal. The result is stronger benchmark
+          accuracy together with high-precision label selection.
         </p>
         <div class="hero-stats">
           <div class="stat">
