@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Shi-Yu Tian | Full Publications</title>
+  <meta
+    name="description"
+    content="Full publication list of Shi-Yu Tian."
+  >
+  <style>
+    :root {
+      --bg: #f6f2ea;
+      --card: rgba(255, 255, 255, 0.9);
+      --ink: #18324a;
+      --muted: #61717f;
+      --line: rgba(24, 50, 74, 0.1);
+      --accent: #b86333;
+      --forest: #1d6a57;
+      --shadow: 0 20px 50px rgba(31, 45, 61, 0.1);
+      --display: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+      --body: "Aptos", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      font-family: var(--body);
+      line-height: 1.7;
+      background:
+        radial-gradient(circle at top left, rgba(184, 99, 51, 0.1), transparent 28%),
+        radial-gradient(circle at top right, rgba(29, 106, 87, 0.1), transparent 30%),
+        linear-gradient(180deg, #fbf8f1 0%, var(--bg) 42%, #f2ebe0 100%);
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .shell {
+      width: min(980px, calc(100% - 2rem));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(12px);
+      background: rgba(251, 248, 241, 0.84);
+      border-bottom: 1px solid rgba(24, 50, 74, 0.08);
+    }
+
+    .topbar-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      padding: 0.9rem 0;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.8rem;
+      font-family: var(--display);
+      font-size: 1rem;
+    }
+
+    .brand-mark {
+      width: 2.3rem;
+      height: 2.3rem;
+      display: grid;
+      place-items: center;
+      border-radius: 0.8rem;
+      color: #fff8f0;
+      background: linear-gradient(145deg, var(--accent) 0%, #cf8557 48%, #f0c36e 100%);
+      box-shadow: 0 12px 24px rgba(184, 99, 51, 0.2);
+      font-weight: 700;
+    }
+
+    .nav {
+      display: flex;
+      gap: 0.9rem;
+      flex-wrap: wrap;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .nav a:hover { color: var(--ink); }
+
+    .hero {
+      padding: 3rem 0 1.8rem;
+    }
+
+    .eyebrow {
+      color: var(--forest);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.82rem;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+    }
+
+    h1, h2, h3 { margin: 0; }
+
+    h1 {
+      font-family: var(--display);
+      font-size: clamp(2.2rem, 4vw, 3.5rem);
+      line-height: 1.02;
+      letter-spacing: -0.03em;
+      margin-bottom: 0.7rem;
+    }
+
+    .hero p {
+      margin: 0;
+      color: var(--muted);
+      max-width: 760px;
+      font-size: 1rem;
+    }
+
+    .section {
+      padding: 0.8rem 0 2rem;
+    }
+
+    .section-card {
+      padding: 1.35rem 1.45rem;
+      border-radius: 1.35rem;
+      border: 1px solid var(--line);
+      background: var(--card);
+      box-shadow: var(--shadow);
+    }
+
+    .section-title {
+      font-family: var(--display);
+      font-size: 1.55rem;
+      margin-bottom: 0.9rem;
+    }
+
+    .pub-list {
+      margin: 0;
+      padding-left: 1.3rem;
+    }
+
+    .pub-list li + li {
+      margin-top: 1.1rem;
+    }
+
+    .pub-title {
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .pub-authors,
+    .pub-venue,
+    .pub-links {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .pub-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      margin: 0.35rem 0 0.45rem;
+    }
+
+    .rating-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 1.7rem;
+      padding: 0.18rem 0.58rem;
+      border-radius: 999px;
+      font-size: 0.76rem;
+      font-weight: 700;
+      border: 1px solid rgba(24, 50, 74, 0.08);
+      background: rgba(255, 255, 255, 0.88);
+      color: var(--ink);
+    }
+
+    .rating-pill.ccf {
+      background: rgba(99, 115, 255, 0.1);
+      color: #3f52a8;
+      border-color: transparent;
+    }
+
+    .rating-pill.caai {
+      background: rgba(216, 154, 43, 0.14);
+      color: #9b6406;
+      border-color: transparent;
+    }
+
+    .pub-links a {
+      color: var(--ink);
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 2px;
+    }
+
+    .pub-links a + a::before {
+      content: " · ";
+      color: var(--muted);
+      text-decoration: none;
+    }
+
+    .footer {
+      padding: 0.8rem 0 3rem;
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    @media (max-width: 640px) {
+      .topbar-inner {
+        flex-direction: column;
+        align-items: start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="shell topbar-inner">
+      <a class="brand" href="./index.html">
+        <span class="brand-mark">ST</span>
+        <span>Shi-Yu Tian</span>
+      </a>
+      <nav class="nav">
+        <a href="./index.html">Home</a>
+        <a href="#conference">Conference</a>
+        <a href="#journal">Journal</a>
+        <a href="#preprint">Preprints</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="shell">
+    <section class="hero">
+      <div class="eyebrow">Publications</div>
+      <h1>Full Publications</h1>
+      <p>
+        A text-only publication list. `*` denotes co-first authorship.
+      </p>
+    </section>
+
+    <section class="section" id="conference">
+      <div class="section-card">
+        <h2 class="section-title">Conference Papers</h2>
+        <ol class="pub-list" id="conference-list"></ol>
+      </div>
+    </section>
+
+    <section class="section" id="journal">
+      <div class="section-card">
+        <h2 class="section-title">Journal Papers</h2>
+        <ol class="pub-list" id="journal-list"></ol>
+      </div>
+    </section>
+
+    <section class="section" id="preprint">
+      <div class="section-card">
+        <h2 class="section-title">Preprints and Workshop Papers</h2>
+        <ol class="pub-list" id="preprint-list"></ol>
+      </div>
+    </section>
+
+    <footer class="footer">
+      Page updated on 2026.03.
+    </footer>
+  </main>
+  <script src="./assets/data/publications.js"></script>
+  <script src="./assets/js/site-render.js"></script>
+</body>
+</html>
