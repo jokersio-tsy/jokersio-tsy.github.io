@@ -17,11 +17,11 @@
       --ink: #1a3147;
       --muted: #5e6f7e;
       --line: rgba(26, 49, 71, 0.1);
-      --accent: #b35f2d;
-      --accent-deep: #95481e;
+      --accent: #6f7f43;
+      --accent-deep: #4d5d2a;
       --teal: #0f6e69;
       --teal-soft: rgba(15, 110, 105, 0.12);
-      --gold: #c78d2b;
+      --gold: #b48d42;
       --shadow: 0 24px 60px rgba(34, 47, 66, 0.14);
       --display: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
       --body: "Aptos", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
@@ -38,7 +38,7 @@
       line-height: 1.65;
       background:
         radial-gradient(circle at top left, rgba(15, 110, 105, 0.12), transparent 34%),
-        radial-gradient(circle at top right, rgba(179, 95, 45, 0.14), transparent 34%),
+        radial-gradient(circle at top right, rgba(111, 127, 67, 0.16), transparent 34%),
         linear-gradient(180deg, #fbf8f2 0%, var(--bg) 44%, #f0e8dc 100%);
       min-height: 100vh;
     }
@@ -101,8 +101,8 @@
       place-items: center;
       border-radius: 0.82rem;
       color: #fff9f2;
-      background: linear-gradient(145deg, var(--accent) 0%, #da8b55 54%, #f2c36b 100%);
-      box-shadow: 0 12px 24px rgba(179, 95, 45, 0.22);
+      background: linear-gradient(145deg, var(--accent) 0%, #8c9c5e 54%, #d3bf83 100%);
+      box-shadow: 0 12px 24px rgba(111, 127, 67, 0.22);
       font-family: var(--display);
       font-size: 1rem;
     }
@@ -228,7 +228,7 @@
     .btn.primary {
       color: #fff9f2;
       border-color: transparent;
-      background: linear-gradient(135deg, var(--accent) 0%, #d17d47 100%);
+      background: linear-gradient(135deg, var(--accent) 0%, #87995b 100%);
     }
 
     .panel {
@@ -368,7 +368,8 @@
     .insight-grid,
     .step-grid,
     .subset-grid,
-    .findings-grid {
+    .findings-grid,
+    .discussion-grid {
       display: grid;
       gap: 1rem;
     }
@@ -385,10 +386,33 @@
 
     .subset-grid {
       margin-top: 1rem;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
+      grid-template-columns: 1fr;
+    }
+
+    .subset-card .card-kicker {
+      margin-bottom: 0;
+      flex: 0 0 auto;
+    }
+
+    .subset-card {
+      display: flex;
+      align-items: baseline;
+      gap: 0.5rem;
+      padding: 0.72rem 0.82rem;
+    }
+
+    .subset-card p {
+      margin: 0;
+      line-height: 1.5;
+      white-space: nowrap;
     }
 
     .findings-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .discussion-grid {
+      margin-top: 1rem;
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
@@ -429,6 +453,10 @@
       display: grid;
       gap: 1rem;
       grid-template-columns: 1.05fr 0.95fr;
+    }
+
+    .benchmark-grid {
+      grid-template-columns: 0.86fr 1.14fr;
     }
 
     .finding-figure {
@@ -481,8 +509,13 @@
       .insight-grid,
       .step-grid,
       .subset-grid,
-      .findings-grid {
+      .findings-grid,
+      .discussion-grid {
         grid-template-columns: 1fr;
+      }
+
+      .subset-card p {
+        white-space: normal;
       }
     }
 
@@ -557,13 +590,6 @@
           * Equal contribution.
         </div>
 
-        <div class="hero-tags">
-          <span class="tag">AutoT2T</span>
-          <span class="tag">TabularMath Benchmark</span>
-          <span class="tag">Text + Image Tables</span>
-          <span class="tag">Robustness Evaluation</span>
-        </div>
-
         <div class="actions">
           <a class="btn primary" href="https://arxiv.org/abs/2505.19563" target="_blank" rel="noreferrer">arXiv</a>
           <a class="btn" href="https://arxiv.org/pdf/2505.19563" target="_blank" rel="noreferrer">PDF</a>
@@ -610,56 +636,20 @@
           <h2 class="section-title">Why TabularMath Matters</h2>
         </div>
         <p class="section-intro">
-          Existing math reasoning benchmarks under-test structured retrieval, imperfect tables,
-          and the gap between text and visual table reasoning.
+          Existing math reasoning benchmarks still under-cover realistic table use: larger structured
+          contexts, flawed tables, and the split between text and visual table inputs.
         </p>
       </div>
 
-      <div class="overview-grid">
-        <div class="abstract-card">
-          <span class="card-kicker">Abstract</span>
-          <p>
-            Mathematical reasoning has long been a key benchmark for evaluating large language
-            models, yet reasoning over tables remains underexplored. Real-world applications such
-            as business intelligence require not only multi-step numerical reasoning with tables,
-            but also robustness to incomplete or inconsistent information. To address this gap,
-            TabularMath introduces AutoT2T, a neuro-symbolic framework that controllably transforms
-            math word problems into scalable and verified tabular reasoning tasks, and builds a
-            benchmark spanning table complexity, table quality, and table representation.
-          </p>
-
-          <div class="insight-grid">
-            <div class="insight-card">
-              <span class="card-kicker">Finding 1</span>
-              <p>
-                Table complexity and reasoning difficulty interact directly, and both dimensions
-                hurt model performance.
-              </p>
-            </div>
-            <div class="insight-card">
-              <span class="card-kicker">Finding 2</span>
-              <p>
-                Missing or contradictory table information still causes many strong models to
-                produce confident but misleading answers.
-              </p>
-            </div>
-            <div class="insight-card">
-              <span class="card-kicker">Finding 3</span>
-              <p>
-                Text-based tables are typically easier than image-based tables, even for multimodal
-                models.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div class="figure-card">
-          <img src="./Figure/intro_performance.png" alt="Performance gap between average and hard problems">
-          <p class="figure-caption">
-            Performance on top-complexity questions drops much more sharply than on average samples,
-            motivating a benchmark that stresses retrieval and reasoning jointly.
-          </p>
-        </div>
+      <div class="abstract-card">
+        <span class="card-kicker">Motivation</span>
+        <p>
+          Mathematical reasoning is widely used to evaluate large language models, but table-based
+          reasoning remains comparatively underexplored. In practice, systems must retrieve evidence
+          from larger tables, remain robust when tables are incomplete or inconsistent, and generalize
+          across both text-rendered and visually rendered inputs. TabularMath is introduced to make
+          these pressures explicit rather than hiding them behind average-case scores.
+        </p>
       </div>
     </section>
 
@@ -739,23 +729,22 @@
             dataset is available as <strong>TabularGSM</strong>, covering easy, medium, hard, and
             imperfect settings for controlled evaluation.
           </p>
-
           <div class="subset-grid">
             <div class="subset-card">
               <span class="card-kicker">Easy</span>
-              <p>Low structural variation with simpler retrieval.</p>
+              <p>Low variation with simpler retrieval.</p>
             </div>
             <div class="subset-card">
               <span class="card-kicker">Medium</span>
-              <p>Shuffled tables that increase localization difficulty.</p>
+              <p>Shuffled tables with harder localization.</p>
             </div>
             <div class="subset-card">
               <span class="card-kicker">Hard</span>
-              <p>Larger tables with row and column augmentation.</p>
+              <p>Larger tables with row and column expansion.</p>
             </div>
             <div class="subset-card">
               <span class="card-kicker">Imperfect</span>
-              <p>Missing or contradictory tables for robustness testing.</p>
+              <p>Missing or contradictory tables for robustness.</p>
             </div>
           </div>
         </div>
@@ -769,20 +758,21 @@
           <h2 class="section-title">Three Core Experimental Messages</h2>
         </div>
         <p class="section-intro">
-          The experiments focus on complexity, table quality, and representation, with additional
-          discussion on code-based reasoning and fine-tuning.
+          We analyze TabularMath from three main angles: table size and structural complexity, table
+          quality, and modality-sensitive representation.
         </p>
       </div>
 
       <div class="findings-grid">
         <div class="finding-card">
           <div class="finding-figure">
-            <img src="./Figure/retrival_vs.png" alt="Retrieval versus full reasoning comparison">
+            <img src="./Figure/intro_performance.png" alt="Performance gap between average and hard problems">
           </div>
-          <h3>Retrieval Alone Is Much Easier Than Full Tabular Reasoning</h3>
+          <span class="card-kicker">Angle 1</span>
+          <h3>Table Size and Structural Complexity Drive Difficulty</h3>
           <p>
-            When the retrieval target is made explicit, models perform much better. The major
-            bottleneck emerges when retrieval is embedded inside multi-step reasoning.
+            Performance on top-complexity questions drops much more sharply than on average samples,
+            showing that larger and more structurally demanding tables remain a major bottleneck.
           </p>
         </div>
 
@@ -790,10 +780,11 @@
           <div class="finding-figure">
             <img src="./Figure/medium_well_diff.png" alt="Trade-off between robustness checking and normal performance">
           </div>
-          <h3>Checking for Flawed Tables Comes with a Real Trade-off</h3>
+          <span class="card-kicker">Angle 2</span>
+          <h3>Table Quality Matters, Especially for Imperfect Inputs</h3>
           <p>
             Informing models that a table may be problematic improves discrimination, but also hurts
-            accuracy on ordinary well-defined problems.
+            accuracy on ordinary well-defined problems, revealing a genuine robustness trade-off.
           </p>
         </div>
 
@@ -801,10 +792,25 @@
           <div class="finding-figure">
             <img src="./Figure/se_md_mean.png" alt="Different text table representations">
           </div>
-          <h3>Structured Text Formats Beat Markdown on Harder Tables</h3>
+          <span class="card-kicker">Angle 3</span>
+          <h3>Modality and Representation Change the Difficulty Profile</h3>
           <p>
-            JSON and serialized representations remain more reliable than Markdown, and the gap
-            widens as table complexity increases.
+            Text-rendered tables remain easier than visual ones in general, and within text inputs,
+            structured formats such as JSON or serialization stay more reliable than Markdown.
+          </p>
+        </div>
+      </div>
+
+      <div class="discussion-grid">
+        <div class="finding-card">
+          <div class="finding-figure">
+            <img src="./Figure/retrival_vs.png" alt="Retrieval versus full reasoning comparison">
+          </div>
+          <span class="card-kicker">Discussion</span>
+          <h3>Retrieval Is Not the Same as End-to-End Reasoning</h3>
+          <p>
+            When the retrieval target is made explicit, models perform much better. The harder part is
+            deciding what to retrieve while reasoning through the full problem.
           </p>
         </div>
 
@@ -812,6 +818,7 @@
           <div class="finding-figure">
             <img src="./Figure/code_reasoning_comparison.png" alt="Code reasoning comparison">
           </div>
+          <span class="card-kicker">Discussion</span>
           <h3>Code Helps Less Than Clear Retrieval Guidance</h3>
           <p>
             Writing code does not automatically solve table reasoning; strong gains appear when the
