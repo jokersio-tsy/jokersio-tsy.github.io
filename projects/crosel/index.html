@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CroSel | CVPR 2024 Project Page</title>
+  <meta
+    name="description"
+    content="CroSel: Cross Selection of Confident Pseudo Labels for Partial-Label Learning. CVPR 2024 project page with paper, code, method overview, results, and citation."
+  >
+  <style>
+    :root {
+      --bg: #f4efe5;
+      --bg-deep: #e7dbc4;
+      --card: rgba(255, 250, 242, 0.78);
+      --card-strong: #fffaf2;
+      --ink: #17314a;
+      --muted: #5f6f7f;
+      --accent: #c6552e;
+      --accent-deep: #a9431f;
+      --accent-soft: rgba(198, 85, 46, 0.14);
+      --teal: #0f766e;
+      --teal-soft: rgba(15, 118, 110, 0.12);
+      --line: rgba(23, 49, 74, 0.12);
+      --shadow: 0 24px 60px rgba(44, 55, 73, 0.14);
+      --display: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+      --body: "Aptos", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+      --mono: "Cascadia Code", "SFMono-Regular", Consolas, monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      font-family: var(--body);
+      line-height: 1.6;
+      background:
+        radial-gradient(circle at top left, rgba(15, 118, 110, 0.12), transparent 34%),
+        radial-gradient(circle at top right, rgba(198, 85, 46, 0.13), transparent 32%),
+        linear-gradient(180deg, #f8f4ec 0%, var(--bg) 38%, #f0e7da 100%);
+      min-height: 100vh;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.33;
+      background-image:
+        linear-gradient(rgba(23, 49, 74, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(23, 49, 74, 0.03) 1px, transparent 1px);
+      background-size: 28px 28px;
+      mask-image: radial-gradient(circle at center, black 48%, transparent 88%);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    code,
+    pre {
+      font-family: var(--mono);
+    }
+
+    .container {
+      width: min(980px, calc(100% - 2rem));
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(14px);
+      background: rgba(248, 244, 236, 0.76);
+      border-bottom: 1px solid rgba(23, 49, 74, 0.08);
+    }
+
+    .topbar-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      padding: 0.9rem 0;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      font-size: 0.84rem;
+    }
+
+    .brand-mark {
+      width: 2.1rem;
+      height: 2.1rem;
+      display: grid;
+      place-items: center;
+      border-radius: 0.8rem;
+      color: #fff8f0;
+      background:
+        linear-gradient(145deg, var(--accent) 0%, #db7b4f 48%, #f4c46f 100%);
+      box-shadow: 0 12px 24px rgba(198, 85, 46, 0.25);
+      font-family: var(--display);
+      font-size: 1rem;
+    }
+
+    .nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 0.9rem;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .nav a:hover {
+      color: var(--ink);
+    }
+
+    .hero {
+      padding: clamp(3.2rem, 6vw, 5.6rem) 0 2.8rem;
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(250px, 0.95fr);
+      gap: 1.2rem;
+      align-items: start;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      padding: 0.38rem 0.8rem;
+      border-radius: 999px;
+      background: rgba(255, 250, 242, 0.82);
+      border: 1px solid rgba(23, 49, 74, 0.08);
+      color: var(--teal);
+      font-size: 0.88rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow-oral {
+      color: #b4472d;
+      font-weight: 900;
+    }
+
+    .hero h1 {
+      margin: 1rem 0 0.8rem;
+      font-family: var(--display);
+      font-size: clamp(2.4rem, 5vw, 4.4rem);
+      line-height: 1.02;
+      letter-spacing: -0.03em;
+    }
+
+    .subtitle {
+      max-width: 760px;
+      margin: 0 0 1.1rem;
+      font-size: 1.08rem;
+      color: var(--muted);
+    }
+
+    .authors {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem 1.2rem;
+      margin: 1.2rem 0 0.5rem;
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+    .affiliations {
+      color: var(--muted);
+      font-size: 0.98rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.85rem;
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin: 1rem 0 1.1rem;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 2rem;
+      padding: 0.34rem 0.76rem;
+      border-radius: 999px;
+      border: 1px solid rgba(23, 49, 74, 0.08);
+      background: rgba(255, 250, 242, 0.92);
+      color: var(--ink);
+      font-size: 0.84rem;
+      font-weight: 700;
+    }
+
+    .hero-tag.oral {
+      background: rgba(198, 85, 46, 0.12);
+      color: var(--accent-deep);
+      border-color: transparent;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      min-height: 2.9rem;
+      padding: 0.72rem 1.1rem;
+      border-radius: 999px;
+      border: 1px solid rgba(23, 49, 74, 0.12);
+      background: rgba(255, 250, 242, 0.9);
+      box-shadow: 0 10px 30px rgba(23, 49, 74, 0.08);
+      font-weight: 700;
+      transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 32px rgba(23, 49, 74, 0.12);
+      border-color: rgba(23, 49, 74, 0.18);
+    }
+
+    .btn.primary {
+      background: linear-gradient(135deg, var(--accent) 0%, #de7b4a 100%);
+      color: #fff8f0;
+      border-color: transparent;
+    }
+
+    .panel {
+      background: var(--card);
+      border: 1px solid rgba(23, 49, 74, 0.1);
+      border-radius: 1.6rem;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(12px);
+    }
+
+    .hero-panel {
+      padding: 1.4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-panel::after {
+      content: "";
+      position: absolute;
+      inset: auto -18% -28% auto;
+      width: 230px;
+      height: 230px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(198, 85, 46, 0.15), transparent 68%);
+    }
+
+    .hero-panel h2,
+    .section-title {
+      margin: 0 0 0.55rem;
+      font-family: var(--display);
+      font-size: clamp(1.6rem, 2vw, 2.1rem);
+      line-height: 1.1;
+    }
+
+    .hero-stats,
+    .mini-grid,
+    .idea-grid,
+    .visual-grid,
+    .highlights-grid {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .hero-stats {
+      margin-top: 1rem;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .mini-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .stat {
+      padding: 0.95rem;
+      border-radius: 1.1rem;
+      background: rgba(255, 255, 255, 0.48);
+      border: 1px solid rgba(23, 49, 74, 0.08);
+    }
+
+    .stat .value {
+      display: block;
+      font-size: 1.5rem;
+      font-weight: 800;
+      line-height: 1;
+      margin-bottom: 0.35rem;
+    }
+
+    .stat .label {
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .section {
+      padding: 1.2rem 0 3rem;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 1rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .section-kicker {
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.85rem;
+      font-weight: 800;
+    }
+
+    .section-copy {
+      max-width: 700px;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .teaser {
+      overflow: hidden;
+    }
+
+    .teaser figure,
+    .visual-card {
+      margin: 0;
+    }
+
+    .teaser img {
+      width: 100%;
+      object-fit: cover;
+      border-bottom: 1px solid rgba(23, 49, 74, 0.08);
+      background: linear-gradient(180deg, #edf2f8 0%, #f7f8fb 100%);
+    }
+
+    .teaser figcaption,
+    .visual-body {
+      padding: 1rem 1.2rem 1.2rem;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .idea-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .idea-card,
+    .highlight-card,
+    .visual-card,
+    .citation-card,
+    .table-shell {
+      padding: 1.2rem;
+    }
+
+    .idea-card h3,
+    .highlight-card h3,
+    .visual-card h3,
+    .citation-card h3 {
+      margin: 0 0 0.5rem;
+      font-size: 1.08rem;
+    }
+
+    .idea-card p,
+    .highlight-card p,
+    .visual-card p,
+    .citation-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.96rem;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 2rem;
+      height: 2rem;
+      margin-bottom: 0.9rem;
+      border-radius: 0.65rem;
+      font-weight: 800;
+      color: #fff8f0;
+      background: linear-gradient(135deg, var(--teal) 0%, #2e988f 100%);
+      box-shadow: 0 10px 24px rgba(15, 118, 110, 0.18);
+    }
+
+    .highlights-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      margin-bottom: 1.2rem;
+    }
+
+    .highlight-card {
+      background: linear-gradient(180deg, rgba(255, 250, 242, 0.96) 0%, rgba(249, 242, 231, 0.8) 100%);
+    }
+
+    .highlight-value {
+      display: block;
+      margin-bottom: 0.3rem;
+      font-size: 1.7rem;
+      line-height: 1;
+      font-weight: 800;
+      color: var(--accent);
+    }
+
+    .results-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(250px, 0.92fr);
+      gap: 1rem;
+      align-items: start;
+    }
+
+    .table-shell {
+      overflow: hidden;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 540px;
+      font-size: 0.95rem;
+    }
+
+    th,
+    td {
+      padding: 0.8rem 0.7rem;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      white-space: nowrap;
+    }
+
+    th {
+      color: var(--muted);
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.18rem 0.56rem;
+      border-radius: 999px;
+      font-size: 0.84rem;
+      font-weight: 700;
+    }
+
+    .pill.up {
+      background: var(--teal-soft);
+      color: var(--teal);
+    }
+
+    .pill.down {
+      background: var(--accent-soft);
+      color: var(--accent-deep);
+    }
+
+    .strong {
+      font-weight: 800;
+      color: var(--ink);
+    }
+
+    .visual-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      margin-top: 1.2rem;
+    }
+
+    .visual-card {
+      overflow: hidden;
+    }
+
+    .visual-card img {
+      width: 82%;
+      height: auto;
+      display: block;
+      margin: 0 auto 1rem;
+      aspect-ratio: auto;
+      object-fit: contain;
+      border-radius: 1rem;
+      border: 1px solid rgba(23, 49, 74, 0.08);
+      background: #f7f8fb;
+    }
+
+    .citation-card {
+      position: relative;
+    }
+
+    .citation-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .copy-btn {
+      cursor: pointer;
+      border: 1px solid rgba(23, 49, 74, 0.12);
+      background: rgba(255, 250, 242, 0.92);
+      color: var(--ink);
+      border-radius: 999px;
+      padding: 0.58rem 0.95rem;
+      font: inherit;
+      font-weight: 700;
+    }
+
+    .copy-btn:hover {
+      border-color: rgba(23, 49, 74, 0.18);
+    }
+
+    pre {
+      margin: 0;
+      padding: 1rem;
+      border-radius: 1rem;
+      overflow: auto;
+      background: #13283c;
+      color: #f6efe6;
+      font-size: 0.92rem;
+      line-height: 1.55;
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+    }
+
+    .footer {
+      padding: 1rem 0 3rem;
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .fade-up {
+      opacity: 0;
+      transform: translateY(18px);
+      animation: fade-up 700ms ease forwards;
+      animation-delay: var(--delay, 0ms);
+    }
+
+    @keyframes fade-up {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 1040px) {
+      .hero,
+      .results-layout,
+      .highlights-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .idea-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .hero-panel::after {
+        width: 180px;
+        height: 180px;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .topbar-inner,
+      .section-head,
+      .citation-actions {
+        align-items: start;
+        flex-direction: column;
+      }
+
+      .nav {
+        justify-content: flex-start;
+      }
+
+      .hero {
+        padding-top: 2.4rem;
+      }
+
+      .hero-stats,
+      .mini-grid,
+      .visual-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .idea-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .actions {
+        width: 100%;
+      }
+
+      .btn {
+        flex: 1 1 180px;
+      }
+
+      table {
+        min-width: 460px;
+      }
+
+      th,
+      td {
+        white-space: normal;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a class="brand" href="#">
+        <span class="brand-mark">Cr</span>
+        <span>CroSel</span>
+      </a>
+      <nav class="nav">
+        <a href="#overview">Overview</a>
+        <a href="#method">Method</a>
+        <a href="#results">Results</a>
+        <a href="#citation">Citation</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="fade-up" style="--delay: 60ms;">
+        <div class="eyebrow">CVPR 2024 &nbsp;|&nbsp; <span class="eyebrow-oral">Oral</span> &nbsp;|&nbsp; Partial-Label Learning</div>
+        <h1>CroSel: Cross Selection of Confident Pseudo Labels for Partial-Label Learning</h1>
+        <p class="subtitle">
+          CroSel tackles label ambiguity in partial-label learning by selecting confident pseudo labels
+          from historical predictions and training two networks to cross-correct each other. A co-mix
+          consistency term further prevents sample waste and stabilizes training.
+        </p>
+        <div class="authors">
+          <span>Shiyu Tian</span>
+          <span>Hongxin Wei</span>
+          <span>Yiqun Wang</span>
+          <span>Lei Feng</span>
+        </div>
+        <div class="affiliations">
+          Chongqing University &nbsp;&middot;&nbsp; Southern University of Science and Technology &nbsp;&middot;&nbsp;
+          Singapore University of Technology and Design
+        </div>
+        <div class="hero-tags">
+          <span class="hero-tag">CVPR 2024</span>
+          <span class="hero-tag oral">Oral</span>
+          <span class="hero-tag">CCF-A</span>
+        </div>
+        <div class="actions">
+          <a class="btn primary" href="https://openaccess.thecvf.com/content/CVPR2024/papers/Tian_CroSel_Cross_Selection_of_Confident_Pseudo_Labels_for_Partial-Label_Learning_CVPR_2024_paper.pdf" target="_blank" rel="noreferrer">Paper</a>
+          <a class="btn" href="https://arxiv.org/abs/2303.10365" target="_blank" rel="noreferrer">arXiv</a>
+          <a class="btn" href="https://github.com/jokersio-tsy/CroSel" target="_blank" rel="noreferrer">Code</a>
+          <a class="btn" href="#citation">BibTeX</a>
+        </div>
+      </div>
+
+      <aside class="panel hero-panel fade-up" style="--delay: 180ms;">
+        <h2>At a Glance</h2>
+        <p class="section-copy">
+          Official project page for the CVPR 2024 paper and code release. CroSel consistently improves
+          benchmark performance while selecting true labels with high precision.
+        </p>
+        <div class="hero-stats">
+          <div class="stat">
+            <span class="value">84.07%</span>
+            <span class="label">CIFAR-100 accuracy at q = 0.10</span>
+          </div>
+          <div class="stat">
+            <span class="value">97.96%</span>
+            <span class="label">SVHN accuracy at q = 0.30</span>
+          </div>
+          <div class="stat">
+            <span class="value">93.61%</span>
+            <span class="label">Selection ratio on CIFAR-100</span>
+          </div>
+          <div class="stat">
+            <span class="value">97.93%</span>
+            <span class="label">Selection accuracy on CIFAR-100</span>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="section fade-up" id="overview" style="--delay: 240ms;">
+      <div class="section-head">
+        <div>
+          <div class="section-kicker">Overview</div>
+          <h2 class="section-title">What CroSel Solves</h2>
+        </div>
+        <p class="section-copy">
+          In partial-label learning, each training example comes with a candidate label set rather than a
+          single clean annotation. The core challenge is to identify the true label accurately enough to
+          turn ambiguous supervision into reliable training signals.
+        </p>
+      </div>
+
+      <div class="panel teaser">
+        <figure>
+          <img src="./img/frame1.png" alt="Overview of the CroSel framework with memory banks, cross selection, and co-mix regularization.">
+          <figcaption>
+            CroSel combines memory-bank-based selection with dual-network cross supervision and a co-mix
+            consistency term. Historical predictions are used to identify stable, confident labels, while
+            the two networks train on each other's selected subsets to reduce self-confirmation errors.
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section" id="method">
+      <div class="section-head">
+        <div>
+          <div class="section-kicker">Method</div>
+          <h2 class="section-title">Three Design Choices</h2>
+        </div>
+        <p class="section-copy">
+          The method is built around stable pseudo-label identification, error correction across two
+          models, and regularized learning on all examples instead of only the selected subset.
+        </p>
+      </div>
+
+      <div class="idea-grid">
+        <article class="panel idea-card fade-up" style="--delay: 40ms;">
+          <div class="badge">1</div>
+          <h3>Historical Prediction Selection</h3>
+          <p>
+            A memory bank stores recent softmax outputs. Labels are selected only when predictions stay
+            inside the candidate set, remain stable across epochs, and exceed a confidence threshold.
+          </p>
+        </article>
+
+        <article class="panel idea-card fade-up" style="--delay: 120ms;">
+          <div class="badge">2</div>
+          <h3>Cross Selection Between Two Networks</h3>
+          <p>
+            Two identical models select labels for each other instead of trusting their own selections.
+            This cross-supervised setup reduces error accumulation and improves pseudo-label quality.
+          </p>
+        </article>
+
+        <article class="panel idea-card fade-up" style="--delay: 200ms;">
+          <div class="badge">3</div>
+          <h3>Co-mix Consistency Regularization</h3>
+          <p>
+            Weak and strong augmentations generate soft pseudo targets, which are further mixed with
+            MixUp. This keeps all examples trainable and reduces waste from unselected samples.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="results">
+      <div class="section-head">
+        <div>
+          <div class="section-kicker">Results</div>
+          <h2 class="section-title">State-of-the-Art Performance</h2>
+        </div>
+        <p class="section-copy">
+          CroSel improves over previous methods on nearly all reported settings and is especially strong
+          on CIFAR-100, where the gap to the best baseline reaches +1.68 points at q = 0.10.
+        </p>
+      </div>
+
+      <div class="highlights-grid">
+        <article class="panel highlight-card fade-up" style="--delay: 30ms;">
+          <span class="highlight-value">+1.68</span>
+          <h3>CIFAR-100 Margin</h3>
+          <p>At q = 0.10, CroSel reaches 84.07% vs. 82.39% from the strongest baseline.</p>
+        </article>
+
+        <article class="panel highlight-card fade-up" style="--delay: 90ms;">
+          <span class="highlight-value">99.44%</span>
+          <h3>CIFAR-10 Selection Accuracy</h3>
+          <p>Selection accuracy remains extremely high even when the candidate set noise grows to q = 0.5.</p>
+        </article>
+
+        <article class="panel highlight-card fade-up" style="--delay: 150ms;">
+          <span class="highlight-value">83.34%</span>
+          <h3>Fine-Grained Setting</h3>
+          <p>CroSel stays ahead under the more realistic CIFAR-100 superclass-constrained candidate setup.</p>
+        </article>
+
+        <article class="panel highlight-card fade-up" style="--delay: 210ms;">
+          <span class="highlight-value">&gt; 90%</span>
+          <h3>Selection Ratio and Accuracy</h3>
+          <p>On CIFAR-type datasets, both selected quantity and selected label precision stay above 90%.</p>
+        </article>
+      </div>
+
+      <div class="results-layout">
+        <div class="panel table-shell fade-up" style="--delay: 120ms;">
+          <h3 style="margin-top: 0;">Benchmark Summary</h3>
+          <p class="section-copy" style="margin-bottom: 1rem;">
+            Comparison against the strongest non-CroSel result in each setting, distilled from the paper.
+          </p>
+          <div class="table-wrap">
+            <table aria-label="Benchmark accuracy summary">
+              <thead>
+                <tr>
+                  <th>Dataset</th>
+                  <th>q</th>
+                  <th>CroSel</th>
+                  <th>Best Baseline</th>
+                  <th>Delta</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>CIFAR-10</td>
+                  <td>0.10</td>
+                  <td class="strong">97.31%</td>
+                  <td>97.41% (CRDPLL)</td>
+                  <td><span class="pill down">-0.10</span></td>
+                </tr>
+                <tr>
+                  <td>CIFAR-10</td>
+                  <td>0.30</td>
+                  <td class="strong">97.50%</td>
+                  <td>97.38% (CRDPLL)</td>
+                  <td><span class="pill up">+0.12</span></td>
+                </tr>
+                <tr>
+                  <td>CIFAR-10</td>
+                  <td>0.50</td>
+                  <td class="strong">97.34%</td>
+                  <td>96.76% (CRDPLL)</td>
+                  <td><span class="pill up">+0.58</span></td>
+                </tr>
+                <tr>
+                  <td>SVHN</td>
+                  <td>0.10</td>
+                  <td class="strong">97.71%</td>
+                  <td>97.63% (CRDPLL)</td>
+                  <td><span class="pill up">+0.08</span></td>
+                </tr>
+                <tr>
+                  <td>SVHN</td>
+                  <td>0.30</td>
+                  <td class="strong">97.96%</td>
+                  <td>97.65% (CRDPLL)</td>
+                  <td><span class="pill up">+0.31</span></td>
+                </tr>
+                <tr>
+                  <td>SVHN</td>
+                  <td>0.50</td>
+                  <td class="strong">97.86%</td>
+                  <td>97.70% (CRDPLL)</td>
+                  <td><span class="pill up">+0.16</span></td>
+                </tr>
+                <tr>
+                  <td>CIFAR-100</td>
+                  <td>0.01</td>
+                  <td class="strong">84.24%</td>
+                  <td>83.03% (PoP)</td>
+                  <td><span class="pill up">+1.21</span></td>
+                </tr>
+                <tr>
+                  <td>CIFAR-100</td>
+                  <td>0.05</td>
+                  <td class="strong">83.92%</td>
+                  <td>82.79% (PoP)</td>
+                  <td><span class="pill up">+1.13</span></td>
+                </tr>
+                <tr>
+                  <td>CIFAR-100</td>
+                  <td>0.10</td>
+                  <td class="strong">84.07%</td>
+                  <td>82.39% (PoP)</td>
+                  <td><span class="pill up">+1.68</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <aside class="panel citation-card fade-up" style="--delay: 180ms;">
+          <h3>Selected Label Quality</h3>
+          <p style="margin-bottom: 1rem;">
+            CroSel does not only improve final classification accuracy. It also identifies true labels with
+            high precision on the selected subset.
+          </p>
+          <div class="mini-grid">
+            <div class="stat">
+              <span class="value">96.25%</span>
+              <span class="label">Selection ratio on CIFAR-10, q = 0.5</span>
+            </div>
+            <div class="stat">
+              <span class="value">99.44%</span>
+              <span class="label">Selection accuracy on CIFAR-10, q = 0.5</span>
+            </div>
+            <div class="stat">
+              <span class="value">93.61%</span>
+              <span class="label">Selection ratio on CIFAR-100, q = 0.10</span>
+            </div>
+            <div class="stat">
+              <span class="value">97.93%</span>
+              <span class="label">Selection accuracy on CIFAR-100, q = 0.10</span>
+            </div>
+          </div>
+        </aside>
+      </div>
+
+      <div class="visual-grid">
+        <figure class="panel visual-card fade-up" style="--delay: 90ms;">
+          <img src="./img/cifar10@comparation@sratio.png" alt="Selection ratio comparison between dual model and single model on CIFAR-10.">
+          <div class="visual-body">
+            <h3>Dual vs. Single Model on CIFAR-10</h3>
+            <p>
+              The dual-model cross-selection setup consistently selects more examples than a single-model
+              version while preserving high precision.
+            </p>
+          </div>
+        </figure>
+
+        <figure class="panel visual-card fade-up" style="--delay: 150ms;">
+          <img src="./img/cifar100@comparation@sratio.png" alt="Selection ratio comparison between dual model and single model on CIFAR-100.">
+          <div class="visual-body">
+            <h3>Dual vs. Single Model on CIFAR-100</h3>
+            <p>
+              The selection advantage remains visible on the harder CIFAR-100 setting, supporting the
+              design choice of cross correction between two networks.
+            </p>
+          </div>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section" id="citation">
+      <div class="section-head">
+        <div>
+          <div class="section-kicker">Citation</div>
+          <h2 class="section-title">BibTeX</h2>
+        </div>
+        <p class="section-copy">
+          If CroSel is useful in your work, please cite the CVPR 2024 paper. The entry below matches the
+          official CVF Open Access record.
+        </p>
+      </div>
+
+      <div class="panel citation-card fade-up" style="--delay: 80ms;">
+        <div class="citation-actions">
+          <h3 style="margin: 0;">Reference Entry</h3>
+          <button class="copy-btn" type="button" data-copy-target="bibtex">Copy BibTeX</button>
+        </div>
+        <pre id="bibtex">@InProceedings{Tian_2024_CVPR,
+  author    = {Tian, Shiyu and Wei, Hongxin and Wang, Yiqun and Feng, Lei},
+  title     = {CroSel: Cross Selection of Confident Pseudo Labels for Partial-Label Learning},
+  booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+  month     = {June},
+  year      = {2024},
+  pages     = {19479-19488}
+}</pre>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <p>
+        Links: <a href="https://openaccess.thecvf.com/content/CVPR2024/html/Tian_CroSel_Cross_Selection_of_Confident_Pseudo_Labels_for_Partial-Label_Learning_CVPR_2024_paper.html" target="_blank" rel="noreferrer">CVF Open Access</a>
+        &nbsp;|&nbsp;
+        <a href="https://github.com/jokersio-tsy/CroSel" target="_blank" rel="noreferrer">Official GitHub</a>
+        &nbsp;|&nbsp;
+        <a href="https://arxiv.org/abs/2303.10365" target="_blank" rel="noreferrer">arXiv</a>
+      </p>
+    </footer>
+  </main>
+
+  <script>
+    const copyButton = document.querySelector("[data-copy-target]");
+
+    if (copyButton) {
+      copyButton.addEventListener("click", async () => {
+        const target = document.getElementById(copyButton.dataset.copyTarget);
+        if (!target) return;
+
+        const originalText = copyButton.textContent;
+        try {
+          if (navigator.clipboard && window.isSecureContext) {
+            await navigator.clipboard.writeText(target.textContent);
+          } else {
+            const textArea = document.createElement("textarea");
+            textArea.value = target.textContent;
+            textArea.setAttribute("readonly", "");
+            textArea.style.position = "fixed";
+            textArea.style.top = "-9999px";
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand("copy");
+            document.body.removeChild(textArea);
+          }
+          copyButton.textContent = "Copied";
+        } catch (error) {
+          copyButton.textContent = "Copy failed";
+        }
+
+        window.setTimeout(() => {
+          copyButton.textContent = originalText;
+        }, 1600);
+      });
+    }
+  </script>
+</body>
+</html>

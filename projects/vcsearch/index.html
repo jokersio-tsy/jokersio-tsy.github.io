@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>VCSearch | EMNLP 2025 Project Page</title>
+  <meta
+    name="description"
+    content="VCSearch: Bridging the Gap Between Well-Defined and Ill-Defined Problems in Mathematical Reasoning. EMNLP 2025 project page with paper, benchmark, method, results, dataset, and citation."
+  >
+  <style>
+    :root {
+      --bg: #f5fbf8;
+      --panel: rgba(255, 255, 255, 0.84);
+      --ink: #14343a;
+      --muted: #5c7277;
+      --line: rgba(20, 52, 58, 0.1);
+      --green: #0b8f72;
+      --green-deep: #0a705a;
+      --navy: #173a63;
+      --blue: #3f79d8;
+      --green-soft: rgba(11, 143, 114, 0.12);
+      --shadow: 0 20px 50px rgba(31, 57, 63, 0.12);
+      --display: "Consolas", "Lucida Console", "Courier New", monospace;
+      --body: "Aptos", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: var(--body);
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(63, 121, 216, 0.08), transparent 34%),
+        radial-gradient(circle at top right, rgba(11, 143, 114, 0.1), transparent 34%),
+        linear-gradient(180deg, #f8fdfa 0%, #f5fbf8 42%, #edf7f1 100%);
+      line-height: 1.65;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.35;
+      background-image:
+        linear-gradient(rgba(20, 52, 58, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(20, 52, 58, 0.035) 1px, transparent 1px);
+      background-size: 24px 24px;
+      mask-image: radial-gradient(circle at center, black 45%, transparent 88%);
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    code, pre { font-family: var(--display); }
+
+    .container {
+      width: min(1060px, calc(100% - 2rem));
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 12;
+      backdrop-filter: blur(12px);
+      background: rgba(248, 253, 250, 0.8);
+      border-bottom: 1px solid rgba(20, 52, 58, 0.08);
+    }
+
+    .topbar-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      padding: 0.9rem 0;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.8rem;
+      font-family: var(--display);
+      font-size: 0.92rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .brand-mark {
+      width: 2.2rem;
+      height: 2.2rem;
+      display: grid;
+      place-items: center;
+      border-radius: 0.8rem;
+      color: #f6fffc;
+      background: linear-gradient(135deg, var(--navy) 0%, var(--green) 100%);
+      box-shadow: 0 12px 24px rgba(23, 58, 99, 0.18);
+    }
+
+    .nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .nav a:hover { color: var(--ink); }
+
+    .hero {
+      padding: clamp(3rem, 6vw, 5rem) 0 2.4rem;
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(245px, 0.85fr);
+      gap: 1.45rem;
+      align-items: stretch;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      padding: 0.4rem 0.85rem;
+      border: 1px solid rgba(20, 52, 58, 0.08);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.86);
+      color: var(--green-deep);
+      font-size: 0.84rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+    }
+
+    .eyebrow-oral {
+      color: #b4472d;
+      font-weight: 900;
+    }
+
+    h1, h2, h3 { margin: 0; }
+
+    .hero h1 {
+      margin-top: 1rem;
+      font-family: var(--display);
+      font-size: clamp(2.2rem, 4.8vw, 4rem);
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+    }
+
+    .hero p {
+      margin: 1rem 0 0;
+      font-size: 1.04rem;
+      color: var(--muted);
+      max-width: 760px;
+    }
+
+    .authors {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem 1rem;
+      margin-top: 1.1rem;
+      font-size: 0.98rem;
+      font-weight: 700;
+    }
+
+    .meta {
+      margin-top: 0.55rem;
+      color: var(--muted);
+      font-size: 0.96rem;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin-top: 1.45rem;
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 1rem;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 2rem;
+      padding: 0.34rem 0.74rem;
+      border-radius: 999px;
+      border: 1px solid rgba(20, 52, 58, 0.08);
+      background: rgba(255, 255, 255, 0.9);
+      color: var(--ink);
+      font-size: 0.84rem;
+      font-weight: 700;
+    }
+
+    .hero-tag.oral {
+      background: rgba(198, 85, 46, 0.12);
+      color: #a9431f;
+      border-color: transparent;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 2.9rem;
+      padding: 0.74rem 1.1rem;
+      border-radius: 999px;
+      border: 1px solid rgba(20, 52, 58, 0.1);
+      background: rgba(255, 255, 255, 0.9);
+      box-shadow: 0 8px 24px rgba(20, 52, 58, 0.08);
+      font-weight: 700;
+      transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 26px rgba(20, 52, 58, 0.12);
+      border-color: rgba(20, 52, 58, 0.18);
+    }
+
+    .btn.primary {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--green) 100%);
+      color: #f6fffc;
+      border-color: transparent;
+    }
+
+    .panel {
+      border-radius: 1.5rem;
+      border: 1px solid rgba(20, 52, 58, 0.08);
+      background: var(--panel);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+    }
+
+    .hero-side {
+      padding: 1.2rem;
+      display: grid;
+      gap: 0.9rem;
+      align-content: start;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .hero-side::after {
+      content: "";
+      position: absolute;
+      width: 220px;
+      height: 220px;
+      right: -70px;
+      top: -70px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(63, 121, 216, 0.15), transparent 70%);
+    }
+
+    .hero-side h2,
+    .section-title {
+      font-family: var(--display);
+      font-size: clamp(1.45rem, 2.4vw, 2rem);
+      line-height: 1.1;
+    }
+
+    .quick-grid,
+    .metric-grid,
+    .pmc-grid,
+    .step-grid,
+    .visual-grid,
+    .result-grid {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .quick-grid,
+    .pmc-grid,
+    .step-grid,
+    .result-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .metric-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .visual-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+    .stat,
+    .pmc-card,
+    .step-card,
+    .metric-card,
+    .result-card,
+    .citation-card,
+    .table-card { padding: 1.1rem; }
+
+    .stat {
+      border-radius: 1.1rem;
+      background: rgba(255, 255, 255, 0.62);
+      border: 1px solid rgba(20, 52, 58, 0.08);
+    }
+
+    .value {
+      display: block;
+      font-size: 1.6rem;
+      line-height: 1;
+      font-weight: 800;
+      margin-bottom: 0.35rem;
+      color: var(--navy);
+    }
+
+    .label {
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .section { padding: 1rem 0 2.7rem; }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 1rem;
+      margin-bottom: 1.15rem;
+    }
+
+    .section-kicker {
+      color: var(--green);
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      font-size: 0.84rem;
+      font-weight: 800;
+    }
+
+    .section-copy {
+      max-width: 720px;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .figure-card { overflow: hidden; }
+
+    .figure-card img {
+      width: 100%;
+      background: #f4f7fa;
+      border-bottom: 1px solid rgba(20, 52, 58, 0.08);
+    }
+
+    .figure-caption {
+      padding: 1rem 1.2rem 1.2rem;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      margin-top: 1rem;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.35rem 0.7rem;
+      border-radius: 999px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      border: 1px solid rgba(20, 52, 58, 0.08);
+      background: rgba(255, 255, 255, 0.9);
+      color: var(--ink);
+    }
+
+    .pmc-card,
+    .step-card,
+    .metric-card,
+    .result-card,
+    .citation-card,
+    .table-card {
+      border-radius: 1.2rem;
+      border: 1px solid rgba(20, 52, 58, 0.08);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(243, 250, 246, 0.92) 100%);
+    }
+
+    .pmc-card h3,
+    .step-card h3,
+    .metric-card h3,
+    .result-card h3,
+    .citation-card h3,
+    .table-card h3 {
+      margin-bottom: 0.5rem;
+      font-size: 1.04rem;
+    }
+
+    .pmc-card p,
+    .step-card p,
+    .metric-card p,
+    .result-card p,
+    .citation-card p,
+    .table-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .badge {
+      display: inline-grid;
+      place-items: center;
+      width: 2rem;
+      height: 2rem;
+      margin-bottom: 0.85rem;
+      border-radius: 0.7rem;
+      font-family: var(--display);
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: #f6fffc;
+      background: linear-gradient(135deg, var(--green) 0%, var(--blue) 100%);
+      box-shadow: 0 10px 20px rgba(11, 143, 114, 0.18);
+    }
+
+    .metric-card .value {
+      color: var(--green);
+      font-size: 1.8rem;
+    }
+
+    .results-shell {
+      display: grid;
+      grid-template-columns: minmax(0, 1.08fr) minmax(220px, 0.8fr);
+      gap: 1.15rem;
+      align-items: start;
+    }
+
+    .table-wrap { overflow-x: auto; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 560px;
+      font-size: 0.94rem;
+    }
+
+    th, td {
+      padding: 0.78rem 0.7rem;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      white-space: nowrap;
+    }
+
+    th {
+      color: var(--muted);
+      font-size: 0.84rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    tbody tr:last-child td { border-bottom: none; }
+
+    .delta {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.18rem 0.55rem;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.82rem;
+      background: var(--green-soft);
+      color: var(--green-deep);
+    }
+
+    .result-block {
+      display: grid;
+      gap: 0.7rem;
+      margin-top: 0.85rem;
+    }
+
+    .result-line {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 0.75rem 0.8rem;
+      border-radius: 0.95rem;
+      background: rgba(245, 251, 248, 0.92);
+      border: 1px solid rgba(20, 52, 58, 0.08);
+      font-size: 0.92rem;
+    }
+
+    .visual-card { overflow: hidden; }
+
+    .visual-card img {
+      width: 82%;
+      height: auto;
+      display: block;
+      margin: 1rem auto 0.25rem;
+      aspect-ratio: auto;
+      object-fit: contain;
+      border: 1px solid rgba(20, 52, 58, 0.08);
+      border-radius: 1rem;
+      background: #f7fafc;
+    }
+
+    .visual-body { padding: 1rem 1.1rem 1.15rem; }
+
+    .citation-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .copy-btn {
+      cursor: pointer;
+      border: 1px solid rgba(20, 52, 58, 0.12);
+      background: rgba(255, 255, 255, 0.92);
+      border-radius: 999px;
+      padding: 0.56rem 0.95rem;
+      font: inherit;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    pre {
+      margin: 0;
+      padding: 1rem;
+      border-radius: 1rem;
+      overflow: auto;
+      background: #12263f;
+      color: #eff7ff;
+      font-size: 0.9rem;
+      line-height: 1.55;
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+    }
+
+    .footer {
+      padding: 1rem 0 3rem;
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .fade-up {
+      opacity: 0;
+      transform: translateY(18px);
+      animation: fade-up 700ms ease forwards;
+      animation-delay: var(--delay, 0ms);
+    }
+
+    @keyframes fade-up {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 1040px) {
+      .hero,
+      .results-shell {
+        grid-template-columns: 1fr;
+      }
+
+      .metric-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 760px) {
+      .topbar-inner, .section-head, .citation-actions {
+        flex-direction: column;
+        align-items: start;
+      }
+
+      .actions { width: 100%; }
+      .btn { flex: 1 1 180px; }
+      .quick-grid, .pmc-grid, .step-grid, .visual-grid, .result-grid { grid-template-columns: 1fr; }
+      .metric-grid {
+        grid-template-columns: 1fr;
+      }
+
+      table {
+        min-width: 460px;
+      }
+
+      th,
+      td {
+        white-space: normal;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a class="brand" href="#">
+        <span class="brand-mark">VC</span>
+        <span>VCSearch</span>
+      </a>
+      <nav class="nav">
+        <a href="#problem">Problem</a>
+        <a href="#benchmark">Benchmark</a>
+        <a href="#method">Method</a>
+        <a href="#results">Results</a>
+        <a href="#citation">Citation</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="fade-up" style="--delay: 40ms;">
+        <div class="eyebrow">EMNLP 2025 &nbsp;|&nbsp; <span class="eyebrow-oral">Oral</span> &nbsp;|&nbsp; Robust Mathematical Reasoning</div>
+        <h1>VCSearch: Bridging the Gap Between Well-Defined and Ill-Defined Problems in Mathematical Reasoning</h1>
+        <p>
+          VCSearch studies a failure mode that standard math benchmarks largely ignore: real-world
+          mathematical problems with missing or contradictory conditions. It introduces a new benchmark,
+          PMC, and a training-free formal-search framework that improves rejection of unsolvable problems
+          without giving up performance on well-defined ones.
+        </p>
+        <div class="authors">
+          <span>Shi-Yu Tian*</span>
+          <span>Zhi Zhou*</span>
+          <span>Kun-Yang Yu</span>
+          <span>Ming Yang</span>
+          <span>Lin-Han Jia</span>
+          <span>Lan-Zhe Guo</span>
+          <span>Yu-Feng Li</span>
+        </div>
+        <div class="meta">
+          LAMDA Group, Nanjing University &nbsp;&middot;&nbsp; Suzhou, China &nbsp;&middot;&nbsp; *Equal contribution
+        </div>
+        <div class="hero-tags">
+          <span class="hero-tag">EMNLP 2025</span>
+          <span class="hero-tag oral">Oral</span>
+          <span class="hero-tag">CAAI-A</span>
+          <span class="hero-tag">CCF-B</span>
+        </div>
+        <div class="actions">
+          <a class="btn primary" href="https://aclanthology.org/2025.emnlp-main.642.pdf" target="_blank" rel="noreferrer">Paper PDF</a>
+          <a class="btn" href="https://aclanthology.org/2025.emnlp-main.642/" target="_blank" rel="noreferrer">ACL Anthology</a>
+          <a class="btn" href="https://arxiv.org/abs/2406.05055" target="_blank" rel="noreferrer">arXiv</a>
+          <a class="btn" href="https://huggingface.co/datasets/kevin715/PMC" target="_blank" rel="noreferrer">Dataset</a>
+          <a class="btn" href="https://github.com/jokersio-tsy/VCSearch" target="_blank" rel="noreferrer">Code</a>
+        </div>
+      </div>
+
+      <aside class="panel hero-side fade-up" style="--delay: 160ms;">
+        <h2>Why This Matters</h2>
+        <p class="section-copy">
+          Existing math reasoning systems are usually judged on carefully specified questions, but
+          educational and real-world settings often contain incomplete or contradictory statements. A
+          useful system should know when to reject.
+        </p>
+        <div class="quick-grid">
+          <div class="stat">
+            <span class="value">5,000+</span>
+            <span class="label">validated ill-defined math problems in PMC</span>
+          </div>
+          <div class="stat">
+            <span class="value">+12%</span>
+            <span class="label">minimum gain in unsolvable-problem identification</span>
+          </div>
+          <div class="stat">
+            <span class="value">8</span>
+            <span class="label">benchmark subsets across Missing and Contra types</span>
+          </div>
+          <div class="stat">
+            <span class="value">Training-Free</span>
+            <span class="label">framework using SMT-Lib and Z3 instead of fine-tuning</span>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="section" id="problem">
+      <div class="section-head">
+        <div>
+          <div class="section-kicker">Problem</div>
+          <h2 class="section-title">Well-Defined vs. Ill-Defined Reasoning</h2>
+        </div>
+        <p class="section-copy">
+          VCSearch starts from a practical observation: LLMs often produce fluent but wrong answers when
+          a math word problem is missing key conditions or contains internal contradictions.
+        </p>
+      </div>
+
+      <article class="panel figure-card fade-up" style="--delay: 60ms;">
+        <img src="./picture/intro.png" alt="Examples of well-defined and ill-defined math problems and corresponding model behavior.">
+        <div class="figure-caption">
+          The paper contrasts ordinary solvable math word problems with two ill-defined categories:
+          <strong>Missing-type</strong> problems, where necessary information is absent, and
+          <strong>Contra-type</strong> problems, where the conditions contradict each other.
+          Standard prompting often hallucinates answers instead of rejecting these cases.
+          <div class="pill-row">
+            <span class="pill">Missing-type</span>
+            <span class="pill">Contra-type</span>
+            <span class="pill">Reject when unsolvable</span>
+            <span class="pill">Avoid plausible hallucinations</span>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section class="section" id="benchmark">
+      <div class="section-head">
+        <div>
+          <div class="section-kicker">Benchmark</div>
+          <h2 class="section-title">PMC: Problems with Missing and Contradictory Conditions</h2>
+        </div>
+        <p class="section-copy">
+          PMC is built by mutating four common math reasoning datasets and validating the resulting
+          problems as truly unsolvable. The public Hugging Face release exposes <code>missing_test</code>
+          and <code>contra_test</code> splits.
+        </p>
+      </div>
+
+      <div class="pmc-grid">
+        <article class="panel pmc-card fade-up" style="--delay: 30ms;">
+          <div class="badge">01</div>
+          <h3>Seed Datasets</h3>
+          <p>PMC is constructed from GSM8K, SVAMP, AddSub, and MultiArith.</p>
+        </article>
+        <article class="panel pmc-card fade-up" style="--delay: 90ms;">
+          <div class="badge">02</div>
+          <h3>Two Ill-Defined Modes</h3>
+          <p>Missing-type removes necessary conditions; Contra-type injects conflicting conditions.</p>
+        </article>
+        <article class="panel pmc-card fade-up" style="--delay: 150ms;">
+          <div class="badge">03</div>
+          <h3>Validation Pipeline</h3>
+          <p>Candidate problems are checked by multiple LLMs, with disputed cases reviewed by humans.</p>
+        </article>
+        <article class="panel pmc-card fade-up" style="--delay: 210ms;">
+          <div class="badge">04</div>
+          <h3>Evaluation Metrics</h3>
+          <p><strong>R-Rate</strong> measures rejection; <strong>R-Score</strong> measures mixed-setting utility.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="method">
+      <div class="section-head">
+        <div>
+          <div class="section-kicker">Method</div>
+          <h2 class="section-title">Variable-Constraint Search</h2>
+        </div>
+        <p class="section-copy">
+          Instead of forcing an LLM to formalize the whole problem in one pass, VCSearch decomposes the
+          formalization process into a dynamic search over variables and constraints.
+        </p>
+      </div>
+
+      <article class="panel figure-card fade-up" style="--delay: 50ms;">
+        <img src="./picture/frame.png" alt="Overview of VCSearch with anchored initialization and variable-constraint dynamic search.">
+        <div class="figure-caption">
+          VCSearch begins from an anchored initialization state, then repeatedly runs
+          <strong>Preparation</strong>, <strong>Exploration</strong>, and
+          <strong>Verification</strong> over a head variable. SMT solving and LLM-based judging are used
+          together to refine the formal modeling state.
+        </div>
+      </article>
+
+      <div class="step-grid" style="margin-top: 1rem;">
+        <article class="panel step-card fade-up" style="--delay: 30ms;">
+          <div class="badge">I</div>
+          <h3>Anchored Initialization</h3>
+          <p>Build a draft formal state and fall back to a variable-only anchor when constraints fail.</p>
+        </article>
+        <article class="panel step-card fade-up" style="--delay: 90ms;">
+          <div class="badge">II</div>
+          <h3>Preparation</h3>
+          <p>Select one unexplored head variable and its related constraints to localize reasoning.</p>
+        </article>
+        <article class="panel step-card fade-up" style="--delay: 150ms;">
+          <div class="badge">III</div>
+          <h3>Exploration</h3>
+          <p>Use the LLM to polish constraints and discover implicit variables that were missed before.</p>
+        </article>
+        <article class="panel step-card fade-up" style="--delay: 210ms;">
+          <div class="badge">IV</div>
+          <h3>Verification</h3>
+          <p>Use Z3 and an LLM judge to compare states and keep the better formalization branch.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="results">
+      <div class="section-head">
+        <div>
+          <div class="section-kicker">Results</div>
+          <h2 class="section-title">Robust Gains Across Models and Settings</h2>
+        </div>
+        <p class="section-copy">
+          The paper evaluates three things separately: rejection of ill-defined problems, modeling quality
+          on well-defined problems, and mixed real-world settings where both capabilities matter.
+        </p>
+      </div>
+
+      <div class="metric-grid">
+        <article class="panel metric-card fade-up" style="--delay: 30ms;">
+          <span class="value">+14.95%</span>
+          <h3>Average Accuracy Gain</h3>
+          <p>Average improvement over SatLM on well-defined tasks.</p>
+        </article>
+        <article class="panel metric-card fade-up" style="--delay: 90ms;">
+          <span class="value">77.76%</span>
+          <h3>Qwen 7B Accuracy</h3>
+          <p>Average well-defined accuracy of VCSearch vs. 61.51% for SatLM.</p>
+        </article>
+        <article class="panel metric-card fade-up" style="--delay: 150ms;">
+          <span class="value">+20.20</span>
+          <h3>1.5B Delta</h3>
+          <p>Qwen 1.5B rises from 15.10% to 35.30% on well-defined tasks.</p>
+        </article>
+        <article class="panel metric-card fade-up" style="--delay: 210ms;">
+          <span class="value">+29.43</span>
+          <h3>Best R-Score Gain</h3>
+          <p>VCSearch + PAL improves Qwen2.5 1.5B from 32.85 to 62.28.</p>
+        </article>
+      </div>
+
+      <div class="results-shell" style="margin-top: 1rem;">
+        <article class="panel table-card fade-up" style="--delay: 80ms;">
+          <h3>Well-Defined Problems: VCSearch vs. SatLM</h3>
+          <p class="section-copy" style="margin-bottom: 0.9rem;">
+            Average accuracy distilled from the main paper table over AddSub, MultiArith, SVAMP, GSM8K,
+            RobustMath, and GSM-IC.
+          </p>
+          <div class="table-wrap">
+            <table aria-label="Well-defined accuracy comparison">
+              <thead>
+                <tr>
+                  <th>Model</th>
+                  <th>SatLM</th>
+                  <th>VCSearch</th>
+                  <th>Delta</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>DeepSeek-Coder 6.7B</td>
+                  <td>43.97%</td>
+                  <td><strong>50.87%</strong></td>
+                  <td><span class="delta">+6.90</span></td>
+                </tr>
+                <tr>
+                  <td>Qwen2.5 7B</td>
+                  <td>61.51%</td>
+                  <td><strong>77.76%</strong></td>
+                  <td><span class="delta">+16.25</span></td>
+                </tr>
+                <tr>
+                  <td>Qwen2.5 3B</td>
+                  <td>37.58%</td>
+                  <td><strong>54.64%</strong></td>
+                  <td><span class="delta">+17.06</span></td>
+                </tr>
+                <tr>
+                  <td>Qwen2.5 1.5B</td>
+                  <td>15.10%</td>
+                  <td><strong>35.30%</strong></td>
+                  <td><span class="delta">+20.20</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+
+        <aside class="result-grid">
+          <article class="panel result-card fade-up" style="--delay: 120ms;">
+            <h3>Mixed Realistic Setting</h3>
+            <p>VCSearch acts as a solvability filter for downstream reasoning methods such as CoT and PAL.</p>
+            <div class="result-block">
+              <div class="result-line">
+                <span>Qwen2.5 3B &nbsp;&middot;&nbsp; CoT 鈫?+VCSearch</span>
+                <strong>65.93 鈫?73.98</strong>
+              </div>
+              <div class="result-line">
+                <span>Qwen2.5 3B &nbsp;&middot;&nbsp; PAL 鈫?+VCSearch</span>
+                <strong>48.56 鈫?74.08</strong>
+              </div>
+              <div class="result-line">
+                <span>Qwen2.5 1.5B &nbsp;&middot;&nbsp; CoT 鈫?+VCSearch</span>
+                <strong>53.91 鈫?63.26</strong>
+              </div>
+              <div class="result-line">
+                <span>Qwen2.5 1.5B &nbsp;&middot;&nbsp; PAL 鈫?+VCSearch</span>
+                <strong>32.85 鈫?62.28</strong>
+              </div>
+            </div>
+          </article>
+
+          <article class="panel result-card fade-up" style="--delay: 180ms;">
+            <h3>Ill-Defined Rejection</h3>
+            <p>VCSearch dominates the rejection averages reported on PMC, especially on smaller models.</p>
+            <div class="result-block">
+              <div class="result-line">
+                <span>Qwen2.5 3B &nbsp;&middot;&nbsp; Contra Avg</span>
+                <strong>62.53%</strong>
+              </div>
+              <div class="result-line">
+                <span>Qwen2.5 3B &nbsp;&middot;&nbsp; Missing Avg</span>
+                <strong>87.04%</strong>
+              </div>
+              <div class="result-line">
+                <span>Qwen2.5 7B &nbsp;&middot;&nbsp; Contra Avg</span>
+                <strong>56.89%</strong>
+              </div>
+              <div class="result-line">
+                <span>Qwen2.5 7B &nbsp;&middot;&nbsp; Missing Avg</span>
+                <strong>92.60%</strong>
+              </div>
+            </div>
+          </article>
+        </aside>
+      </div>
+
+      <div class="visual-grid" style="margin-top: 1rem;">
+        <article class="panel visual-card fade-up" style="--delay: 40ms;">
+          <img src="./picture/trade_off_R-rate.png" alt="Trade-off in rejection rate between pure prompts and mixed prompts on ill-defined problems.">
+          <div class="visual-body">
+            <h3>Trade-Off on Ill-Defined Problems</h3>
+            <p>Mixed prompting hurts rejection ability, especially on smaller models.</p>
+          </div>
+        </article>
+        <article class="panel visual-card fade-up" style="--delay: 100ms;">
+          <img src="./picture/trade_off_Acc.png" alt="Trade-off in accuracy between pure prompts and mixed prompts on well-defined problems.">
+          <div class="visual-body">
+            <h3>Trade-Off on Well-Defined Problems</h3>
+            <p>Mixed prompting also hurts ordinary solving accuracy.</p>
+          </div>
+        </article>
+        <article class="panel visual-card fade-up" style="--delay: 160ms;">
+          <img src="./picture/R-rate.png" alt="Rejection rate across different model sizes for multiple baselines and VCSearch.">
+          <div class="visual-body">
+            <h3>Rejection Across Model Sizes</h3>
+            <p>VCSearch stays strongest from 1.5B to 7B on ill-defined problem rejection.</p>
+          </div>
+        </article>
+        <article class="panel visual-card fade-up" style="--delay: 220ms;">
+          <img src="./picture/Acc.png" alt="Accuracy across different model sizes for SatLM and VCSearch.">
+          <div class="visual-body">
+            <h3>Accuracy Across Model Sizes</h3>
+            <p>The method also improves formal modeling quality on well-defined benchmarks.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="citation">
+      <div class="section-head">
+        <div>
+          <div class="section-kicker">Citation</div>
+          <h2 class="section-title">BibTeX</h2>
+        </div>
+        <p class="section-copy">The BibTeX below follows the ACL Anthology entry for EMNLP 2025.</p>
+      </div>
+
+      <article class="panel citation-card fade-up" style="--delay: 80ms;">
+        <div class="citation-actions">
+          <h3>Reference Entry</h3>
+          <button class="copy-btn" type="button" data-copy-target="bibtex">Copy BibTeX</button>
+        </div>
+        <pre id="bibtex">@inproceedings{tian-etal-2025-vcsearch,
+  title     = "{VCS}earch: Bridging the Gap Between Well-Defined and Ill-Defined Problems in Mathematical Reasoning",
+  author    = "Tian, Shi-Yu and
+               Zhou, Zhi and
+               Yu, Kun-Yang and
+               Yang, Ming and
+               Jia, Lin-Han and
+               Guo, Lan-Zhe and
+               Li, Yu-Feng",
+  editor    = "Christodoulopoulos, Christos and
+               Chakraborty, Tanmoy and
+               Rose, Carolyn and
+               Peng, Violet",
+  booktitle = "Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing",
+  month     = nov,
+  year      = "2025",
+  address   = "Suzhou, China",
+  publisher = "Association for Computational Linguistics",
+  url       = "https://aclanthology.org/2025.emnlp-main.642/",
+  doi       = "10.18653/v1/2025.emnlp-main.642",
+  pages     = "12710--12731",
+  ISBN      = "979-8-89176-332-6"
+}</pre>
+      </article>
+    </section>
+
+    <footer class="footer">
+      <p>
+        Links:
+        <a href="https://aclanthology.org/2025.emnlp-main.642/" target="_blank" rel="noreferrer">ACL Anthology</a>
+        &nbsp;|&nbsp;
+        <a href="https://arxiv.org/abs/2406.05055" target="_blank" rel="noreferrer">arXiv</a>
+        &nbsp;|&nbsp;
+        <a href="https://huggingface.co/datasets/kevin715/PMC" target="_blank" rel="noreferrer">PMC Dataset</a>
+        &nbsp;|&nbsp;
+        <a href="https://github.com/jokersio-tsy/VCSearch" target="_blank" rel="noreferrer">Code</a>
+        &nbsp;|&nbsp;
+        <a href="https://www.lamda.nju.edu.cn/tiansy/src/vcsearch_web/index.html" target="_blank" rel="noreferrer">Existing Project Page</a>
+      </p>
+    </footer>
+  </main>
+
+  <script>
+    const copyButton = document.querySelector("[data-copy-target]");
+
+    if (copyButton) {
+      copyButton.addEventListener("click", async () => {
+        const target = document.getElementById(copyButton.dataset.copyTarget);
+        if (!target) return;
+
+        const originalText = copyButton.textContent;
+        try {
+          if (navigator.clipboard && window.isSecureContext) {
+            await navigator.clipboard.writeText(target.textContent);
+          } else {
+            const textArea = document.createElement("textarea");
+            textArea.value = target.textContent;
+            textArea.setAttribute("readonly", "");
+            textArea.style.position = "fixed";
+            textArea.style.top = "-9999px";
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand("copy");
+            document.body.removeChild(textArea);
+          }
+          copyButton.textContent = "Copied";
+        } catch (error) {
+          copyButton.textContent = "Copy failed";
+        }
+
+        window.setTimeout(() => {
+          copyButton.textContent = originalText;
+        }, 1600);
+      });
+    }
+  </script>
+</body>
+</html>

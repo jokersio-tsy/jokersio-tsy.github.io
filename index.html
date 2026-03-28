@@ -6,7 +6,7 @@
   <title>Shi-Yu Tian | Homepage</title>
   <meta
     name="description"
-    content="Shi-Yu Tian, Ph.D. student at LAMDA Group, Nanjing University. Research interests include neuro-symbolic AI, robust reasoning, and trustworthy AI."
+    content="Shi-Yu Tian, Ph.D. student at LAMDA Group, Nanjing University. Research interests include spatial intelligence, neuro-symbolic AI, and trustworthy AI."
   >
   <style>
     :root {
@@ -59,7 +59,7 @@
     img { display: block; max-width: 100%; }
 
     .shell {
-      width: min(1160px, calc(100% - 2rem));
+      width: min(1020px, calc(100% - 2rem));
       margin: 0 auto;
       position: relative;
       z-index: 1;
@@ -137,8 +137,8 @@
     .hero {
       padding: clamp(3rem, 5vw, 4.8rem) 0 2.4rem;
       display: grid;
-      grid-template-columns: 320px minmax(0, 1fr);
-      gap: 1.2rem;
+      grid-template-columns: 290px minmax(0, 1.08fr);
+      gap: 1.1rem;
       align-items: stretch;
     }
 
@@ -329,12 +329,6 @@
       color: var(--forest);
     }
 
-    .scholar-stat {
-      color: var(--muted);
-      font-size: 0.89rem;
-      white-space: nowrap;
-    }
-
     .education-block {
       margin-top: 0.3rem;
       padding: 1.15rem 1.2rem;
@@ -484,6 +478,13 @@
       margin-right: 0.45rem;
     }
 
+    .service-lines {
+      display: grid;
+      gap: 0.2rem;
+      margin-top: 0.28rem;
+      padding-left: 0.1rem;
+    }
+
     .news-icon {
       display: inline-flex;
       align-items: center;
@@ -532,7 +533,7 @@
 
     .paper-card {
       display: grid;
-      grid-template-columns: 420px minmax(0, 1fr);
+      grid-template-columns: minmax(320px, 0.92fr) minmax(0, 1fr);
       gap: 1rem;
       align-items: stretch;
       border-radius: 1.5rem;
@@ -541,7 +542,7 @@
     }
 
     .paper-thumb {
-      min-height: 250px;
+      min-height: 228px;
       border-radius: 1.1rem;
       overflow: hidden;
       position: relative;
@@ -857,16 +858,16 @@
       </aside>
 
       <section class="panel intro-panel fade-up" style="--delay: 120ms;">
-        <div class="eyebrow">Neuro-Symbolic AI &middot; Spatial Intelligence &middot; Trustworthy AI</div>
+        <div class="eyebrow">Spatial Intelligence &middot; Neuro-Symbolic AI &middot; Trustworthy AI</div>
         <h1>Shi-Yu Tian<span>&#30000;&#26102;&#38632;</span></h1>
         <p class="lede">
           I am a Ph.D. student in Computer Science at <a href="https://www.nju.edu.cn/" target="_blank" rel="noreferrer">Nanjing University</a>
           and a member of the <a href="https://www.lamda.nju.edu.cn/" target="_blank" rel="noreferrer">LAMDA Group</a>, within the
           <a href="https://ai.nju.edu.cn/" target="_blank" rel="noreferrer">School of Artificial Intelligence</a>. I am advised by
           Professor <a href="http://www.lamda.nju.edu.cn/liyf/" target="_blank" rel="noreferrer">Yu-Feng Li</a>, and previously I worked
-          closely with Prof. <a href="https://lfeng1995.github.io/index.html" target="_blank" rel="noreferrer">Lei Feng</a>. My long-term goal
-          is to build robust and trustworthy AI systems, especially by connecting large language models
-          with symbolic tools and structured reasoning.
+          closely with Prof. <a href="https://lfeng1995.github.io/index.html" target="_blank" rel="noreferrer">Lei Feng</a>.
+          My current research mainly focuses on spatial intelligence, especially how learning systems understand, reason about, and act on structured spatial information.
+          I also work on neuro-symbolic AI and trustworthy AI, with an interest in combining large language models, symbolic tools, and reliable reasoning.
         </p>
         <div class="identity-list">
           <div class="identity-item">
@@ -889,7 +890,6 @@
               <path d="M12 12v7"></path>
             </svg>
             <a href="https://scholar.google.com/citations?user=2UwjVasAAAAJ" target="_blank" rel="noreferrer">Google Scholar</a>
-            <span class="scholar-stat" id="scholar-total-citations">Citations: --</span>
           </div>
         </div>
         <div class="education-block">
@@ -962,6 +962,13 @@
           <div class="service-item">
             <strong>Conference Reviewer</strong>
             IJCAI 2025; ICLR 2025, 2026; ICML 2026; CVPR 2026; ECCV 2026.
+          </div>
+          <div class="service-item">
+            <strong>Teaching Assistant</strong>
+            <div class="service-lines">
+              <div>2026 Spring: Matrix Computation, with Prof. Yu-Feng Li.</div>
+              <div>2026 Spring: Advanced Machine Learning, with Prof. Yu-Feng Li.</div>
+            </div>
           </div>
         </div>
       </div>

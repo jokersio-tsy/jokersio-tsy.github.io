@@ -26,19 +26,19 @@ window.SITE_PUBLICATIONS = [
     ],
     thumb: {
       type: "image",
-      src: "./src/vcsearch_web/static/images/frame.png",
-      alt: "VCSearch method figure",
+      src: "./projects/vcsearch/picture/intro.png",
+      alt: "VCSearch problem illustration",
       badge: "EMNLP 2025",
       contain: true
     },
     selectedLinks: [
-      { label: "Project Page", href: "#", primary: true, title: "Project page to be added" },
+      { label: "Project Page", href: "./projects/vcsearch/index.html", primary: true },
       { label: "Paper", href: "https://arxiv.org/abs/2406.05055v2" },
       { label: "Dataset", href: "https://huggingface.co/datasets/kevin715/PMC" },
       { label: "Code", href: "https://github.com/jokersio-tsy/VCSearch" }
     ],
     fullLinks: [
-      { label: "Page", href: "./src/vcsearch_web/index.html" },
+      { label: "Page", href: "./projects/vcsearch/index.html" },
       { label: "Poster", href: "./src/papers/VCSearch_poster.pdf" },
       { label: "Paper", href: "https://arxiv.org/abs/2406.05055v2" },
       { label: "Dataset", href: "https://huggingface.co/datasets/kevin715/PMC" },
@@ -64,18 +64,19 @@ window.SITE_PUBLICATIONS = [
       { label: "CCF-A", type: "ccf" }
     ],
     thumb: {
-      type: "synthetic",
+      type: "image",
+      src: "./projects/crosel/img/frame1.png",
+      alt: "CroSel framework overview",
       badge: "CVPR 2024",
-      title: "CroSel",
-      subtitle: "Cross selection of confident pseudo labels for partial-label learning.",
-      notes: ["PLL", "Pseudo Labels", "Dual Network"]
+      contain: true
     },
     selectedLinks: [
-      { label: "Project Page", href: "#", primary: true, title: "Project page to be added" },
+      { label: "Project Page", href: "./projects/crosel/index.html", primary: true },
       { label: "Paper", href: "./src/papers/CroSel_paper.pdf" },
       { label: "Code", href: "https://github.com/jokersio-tsy/CroSel" }
     ],
     fullLinks: [
+      { label: "Page", href: "./projects/crosel/index.html" },
       { label: "Paper", href: "./src/papers/CroSel_paper.pdf" },
       { label: "Poster", href: "./src/papers/Crosel_poster.pdf" },
       { label: "Code", href: "https://github.com/jokersio-tsy/CroSel" }
