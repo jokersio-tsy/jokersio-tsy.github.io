@@ -169,7 +169,11 @@
           continue;
         }
 
-        totalCitations.textContent = `Citations: ${data.citedby}`;
+        if (totalCitations.tagName === "IMG") {
+          totalCitations.alt = `Citations: ${data.citedby}`;
+        } else {
+          totalCitations.textContent = `Citations: ${data.citedby}`;
+        }
         if (data.updated) {
           totalCitations.title = `Updated: ${data.updated}`;
         }
