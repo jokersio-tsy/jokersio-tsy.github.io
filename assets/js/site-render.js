@@ -102,6 +102,14 @@
     return `<a href="${escapeHtml(link.href)}"${linkAttrs(link)}>${escapeHtml(link.label)}</a>`;
   }
 
+  function formatVenue(text) {
+    const escaped = escapeHtml(text);
+    return escaped.replace(/\(([^)]+)\)/, function(match, inner) {
+      const highlighted = inner.replace(/Oral/g, '<span class="venue-oral">Oral</span>');
+      return '<span class="venue-abbr">(' + highlighted + ')</span>';
+    });
+  }
+
   function renderFullPublication(publication) {
     const ratings = (publication.ratings || []).length
       ? `<div class="pub-meta">${publication.ratings.map(renderRating).join("")}</div>`
@@ -111,7 +119,7 @@
       <li>
         <div class="pub-title">${escapeHtml(publication.title)}</div>
         <div class="pub-authors">${publication.authors || ""}</div>
-        <div class="pub-venue">${escapeHtml(publication.venueFull || publication.venueShort || "")}</div>
+        <div class="pub-venue">${formatVenue(publication.venueFull || publication.venueShort || "")}</div>
         ${ratings}
         <div class="pub-links">${(publication.fullLinks || []).map(renderFullLink).join("")}</div>
       </li>
