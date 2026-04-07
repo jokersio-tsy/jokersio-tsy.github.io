@@ -37,34 +37,39 @@ window.SITE_PUBLICATIONS = [
   },
   {
     slug: "tabularmath",
-    category: "preprint",
+    category: "conference",
     selected: true,
-    venueTag: "Preprint",
+    venueTag: "ACL 2026",
     title: "TabularMath: Understanding Math Reasoning over Tables with Large Language Models",
     authors: "<u>Shi-Yu Tian</u>*, Zhi Zhou*, Wei Dong*, Kun-Yang Yu, Ming Yang, Zi-Jian Cheng, Lan-Zhe Guo, Yu-Feng Li.",
-    venueShort: "Preprint.",
-    venueFull: "Preprint.",
+    venueShort: "In: Findings of the Association for Computational Linguistics: ACL 2026.",
+    venueFull: "In: Findings of the Association for Computational Linguistics (ACL 2026, Findings).",
     summary: "A neuro-symbolic pipeline and benchmark for studying mathematical reasoning over large, imperfect, and multimodal tables.",
     badges: [
-      { label: "Preprint" }
+      { label: "ACL 2026 (Findings)" },
+      { label: "CCF-A", type: "rank-highlight" }
     ],
-    ratings: [],
+    ratings: [
+      { label: "CCF-A", type: "ccf" }
+    ],
     thumb: {
       type: "image",
       src: "./projects/tabularmath/Figure/intro.png",
       alt: "TabularMath benchmark examples",
-      badge: "Preprint",
+      badge: "ACL 2026",
       contain: true
     },
     selectedLinks: [
       { label: "Project Page", href: "./projects/tabularmath/index.html", primary: true },
       { label: "ArXiv", href: "https://arxiv.org/abs/2505.19563" },
-      { label: "Benchmark", href: "https://huggingface.co/datasets/kevin715/TabularGSM" }
+      { label: "Benchmark", href: "https://huggingface.co/datasets/kevin715/TabularGSM" },
+      { label: "Code", href: "https://github.com/jokersio-tsy/AutoT2T" }
     ],
     fullLinks: [
       { label: "Page", href: "./projects/tabularmath/index.html" },
       { label: "ArXiv", href: "https://arxiv.org/abs/2505.19563" },
-      { label: "Benchmark", href: "https://huggingface.co/datasets/kevin715/TabularGSM" }
+      { label: "Benchmark", href: "https://huggingface.co/datasets/kevin715/TabularGSM" },
+      { label: "Code", href: "https://github.com/jokersio-tsy/AutoT2T" }
     ]
   },
   {
@@ -83,8 +88,7 @@ window.SITE_PUBLICATIONS = [
       { label: "CAAI-A", type: "rank-highlight" }
     ],
     ratings: [
-      { label: "CAAI-A", type: "caai" },
-      { label: "CCF-B", type: "ccf" }
+      { label: "CAAI-A", type: "caai" }
     ],
     thumb: {
       type: "image",

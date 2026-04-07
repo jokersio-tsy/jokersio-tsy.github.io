@@ -181,8 +181,8 @@
     }
 
     .rating-pill.ccf {
-      background: rgba(99, 115, 255, 0.1);
-      color: #3f52a8;
+      background: rgba(216, 154, 43, 0.14);
+      color: #9b6406;
       border-color: transparent;
     }
 
@@ -199,10 +199,16 @@
       text-underline-offset: 2px;
     }
 
+    .pub-links a + a {
+      margin-left: 0.5em;
+    }
+
     .pub-links a + a::before {
-      content: " · ";
+      content: "· ";
       color: var(--muted);
       text-decoration: none;
+      display: inline-block;
+      margin-right: 0.15em;
     }
 
     .footer {
