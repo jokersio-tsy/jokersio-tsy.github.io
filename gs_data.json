@@ -1,0 +1,173 @@
+{
+  "container_type": "Author",
+  "filled": [
+    "basics",
+    "publications",
+    "indices",
+    "counts"
+  ],
+  "scholar_id": "2UwjVasAAAAJ",
+  "source": "AUTHOR_PROFILE_PAGE",
+  "name": "Shi-Yu Tian",
+  "affiliation": "Nanjing University",
+  "organization": 8752502527516415164,
+  "interests": [
+    "machine learning"
+  ],
+  "email_domain": "@lamda.nju.edu.cn",
+  "homepage": "https://www.lamda.nju.edu.cn/tiansy/",
+  "citedby": 54,
+  "publications": {
+    "2UwjVasAAAAJ:u5HHmVD_uO8C": {
+      "container_type": "Publication",
+      "source": "AUTHOR_PUBLICATION_ENTRY",
+      "bib": {
+        "title": "CroSel: Cross Selection of Confident Pseudo Labels for Partial-Label Learning",
+        "pub_year": "2024"
+      },
+      "filled": false,
+      "author_pub_id": "2UwjVasAAAAJ:u5HHmVD_uO8C",
+      "num_citations": 23,
+      "citedby_url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=3647096781729090049",
+      "cites_id": [
+        "3647096781729090049"
+      ]
+    },
+    "2UwjVasAAAAJ:9yKSN-GCB0IC": {
+      "container_type": "Publication",
+      "source": "AUTHOR_PUBLICATION_ENTRY",
+      "bib": {
+        "title": "LawGPT: Knowledge-Guided Data Generation and Its Application to Legal LLM",
+        "pub_year": "2025"
+      },
+      "filled": false,
+      "author_pub_id": "2UwjVasAAAAJ:9yKSN-GCB0IC",
+      "num_citations": 14,
+      "citedby_url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=2864960780266797793",
+      "cites_id": [
+        "2864960780266797793"
+      ]
+    },
+    "2UwjVasAAAAJ:zYLM7Y9cAGgC": {
+      "container_type": "Publication",
+      "source": "AUTHOR_PUBLICATION_ENTRY",
+      "bib": {
+        "title": "VCSearch: Bridging the Gap Between Well-Defined and Ill-Defined Problems in Mathematical Reasoning",
+        "pub_year": "2025"
+      },
+      "filled": false,
+      "author_pub_id": "2UwjVasAAAAJ:zYLM7Y9cAGgC",
+      "num_citations": 8,
+      "citedby_url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=7161241870803916192",
+      "cites_id": [
+        "7161241870803916192"
+      ]
+    },
+    "2UwjVasAAAAJ:YsMSGLbcyi4C": {
+      "container_type": "Publication",
+      "source": "AUTHOR_PUBLICATION_ENTRY",
+      "bib": {
+        "title": "TabularMath: Understanding Math Reasoning over Tables with Large Language Models",
+        "pub_year": "2025"
+      },
+      "filled": false,
+      "author_pub_id": "2UwjVasAAAAJ:YsMSGLbcyi4C",
+      "num_citations": 4,
+      "citedby_url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=11851664692189461412,17764569492427961013,5813773494250998201",
+      "cites_id": [
+        "11851664692189461412",
+        "17764569492427961013",
+        "5813773494250998201"
+      ]
+    },
+    "2UwjVasAAAAJ:2osOgNQ5qMEC": {
+      "container_type": "Publication",
+      "source": "AUTHOR_PUBLICATION_ENTRY",
+      "bib": {
+        "title": "Rethinking evaluation for multi-label drug-drug interaction prediction",
+        "pub_year": "2025"
+      },
+      "filled": false,
+      "author_pub_id": "2UwjVasAAAAJ:2osOgNQ5qMEC",
+      "num_citations": 3,
+      "citedby_url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=2338901982686123231",
+      "cites_id": [
+        "2338901982686123231"
+      ]
+    },
+    "2UwjVasAAAAJ:WF5omc3nYNoC": {
+      "container_type": "Publication",
+      "source": "AUTHOR_PUBLICATION_ENTRY",
+      "bib": {
+        "title": "NeSy-Route: A Neuro-Symbolic Benchmark for Constrained Route Planning in Remote Sensing",
+        "pub_year": "2026"
+      },
+      "filled": false,
+      "author_pub_id": "2UwjVasAAAAJ:WF5omc3nYNoC",
+      "num_citations": 1,
+      "citedby_url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=2973243343817137202",
+      "cites_id": [
+        "2973243343817137202"
+      ]
+    },
+    "2UwjVasAAAAJ:Se3iqnhoufwC": {
+      "container_type": "Publication",
+      "source": "AUTHOR_PUBLICATION_ENTRY",
+      "bib": {
+        "title": "MapTab: Are MLLMs Ready for Multi-Criteria Route Planning in Heterogeneous Graphs?",
+        "pub_year": "2026"
+      },
+      "filled": false,
+      "author_pub_id": "2UwjVasAAAAJ:Se3iqnhoufwC",
+      "num_citations": 1,
+      "citedby_url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=9418012546504353805,18134269311725438016",
+      "cites_id": [
+        "9418012546504353805",
+        "18134269311725438016"
+      ]
+    },
+    "2UwjVasAAAAJ:roLk4NBRz8UC": {
+      "container_type": "Publication",
+      "source": "AUTHOR_PUBLICATION_ENTRY",
+      "bib": {
+        "title": "LAST: Leveraging Tools as Hints to Enhance Spatial Reasoning for Multimodal Large Language Models",
+        "pub_year": "2026"
+      },
+      "filled": false,
+      "author_pub_id": "2UwjVasAAAAJ:roLk4NBRz8UC",
+      "num_citations": 0
+    },
+    "2UwjVasAAAAJ:ufrVoPGSRksC": {
+      "container_type": "Publication",
+      "source": "AUTHOR_PUBLICATION_ENTRY",
+      "bib": {
+        "title": "Thinking with Tables: Enhancing Multi-Modal Tabular Understanding via Neuro-Symbolic Reasoning",
+        "pub_year": "2026"
+      },
+      "filled": false,
+      "author_pub_id": "2UwjVasAAAAJ:ufrVoPGSRksC",
+      "num_citations": 0
+    },
+    "2UwjVasAAAAJ:W7OEmFMy1HYC": {
+      "container_type": "Publication",
+      "source": "AUTHOR_PUBLICATION_ENTRY",
+      "bib": {
+        "title": "Handling Tabular Data under Coupled Shifts of Feature Missingness and Distributional Change"
+      },
+      "filled": false,
+      "author_pub_id": "2UwjVasAAAAJ:W7OEmFMy1HYC",
+      "num_citations": 0
+    }
+  },
+  "citedby5y": 54,
+  "hindex": 4,
+  "hindex5y": 4,
+  "i10index": 2,
+  "i10index5y": 2,
+  "cites_per_year": {
+    "2024": 3,
+    "2025": 32,
+    "2026": 19
+  },
+  "updated": "2026-05-03T05:53:25.356587+00:00"
+}
