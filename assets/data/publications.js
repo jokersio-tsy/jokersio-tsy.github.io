@@ -6,6 +6,26 @@ window.SITE_CONFIG = {
 
 window.SITE_PUBLICATIONS = [
   {
+    slug: "learnability-tta",
+    category: "conference",
+    selected: false,
+    venueTag: "ICML 2026",
+    title: "On the Learnability of Test-Time Adaptation: A Recovery Complexity Perspective",
+    authors: "Zhi Zhou, Ming Yang, <u>Shi-Yu Tian</u>, Kun-Yang Yu, Lan-Zhe Guo, Yu-Feng Li.",
+    venueShort: "In: Proceedings of the 43rd International Conference on Machine Learning.",
+    venueFull: "In: Proceedings of the 43rd International Conference on Machine Learning, 2026 (ICML 26).",
+    badges: [
+      { label: "ICML 2026" },
+      { label: "CCF-A", type: "rank-highlight" }
+    ],
+    ratings: [
+      { label: "CCF-A", type: "ccf" }
+    ],
+    fullLinks: [
+      { label: "BibTeX", href: "./assets/bib/zhou2026learnability.bib" }
+    ]
+  },
+  {
     slug: "last",
     category: "preprint",
     selected: false,
@@ -41,9 +61,9 @@ window.SITE_PUBLICATIONS = [
     selected: true,
     venueTag: "ACL 2026",
     title: "TabularMath: Understanding Math Reasoning over Tables with Large Language Models",
-    authors: "<u>Shi-Yu Tian</u>*, Zhi Zhou*, Wei Dong*, Kun-Yang Yu, Ming Yang, Zi-Jian Cheng, Lan-Zhe Guo, Yu-Feng Li.",
+    authors: "<u>Shi-Yu Tian</u>, Zhi Zhou, Kun-Yang Yu, Ming Yang, Yang Chen, Ziqiao Shang, Lan-Zhe Guo, Yu-Feng Li.",
     venueShort: "In: Findings of the Association for Computational Linguistics: ACL 2026.",
-    venueFull: "In: Findings of the Association for Computational Linguistics (ACL 2026, Findings).",
+    venueFull: "In: Findings of the Association for Computational Linguistics (ACL 2026 Findings).",
     summary: "A neuro-symbolic pipeline and benchmark for studying mathematical reasoning over large, imperfect, and multimodal tables.",
     badges: [
       { label: "ACL 2026 (Findings)" },
@@ -80,7 +100,7 @@ window.SITE_PUBLICATIONS = [
     title: "VCSearch: Bridging the Gap Between Well-Defined and Ill-Defined Problems in Mathematical Reasoning",
     authors: "<u>Shi-Yu Tian</u>*, Zhi Zhou*, Kun-Yang Yu, Ming Yang, Lin-Han Jia, Lan-Zhe Guo, Yu-Feng Li.",
     venueShort: "In: Conference on Empirical Methods in Natural Language Processing.",
-    venueFull: "In: Conference on Empirical Methods in Natural Language Processing (EMNLP 2025, Oral).",
+    venueFull: "In: Conference on Empirical Methods in Natural Language Processing (EMNLP 2025 Oral).",
     summary: "A training-free neuro-symbolic framework and benchmark for identifying unsolvable mathematical reasoning problems with missing or contradictory conditions.",
     badges: [
       { label: "EMNLP 2025" },
@@ -119,7 +139,7 @@ window.SITE_PUBLICATIONS = [
     title: "CroSel: Cross Selection of Confident Pseudo Labels for Partial-Label Learning",
     authors: "<u>Shi-Yu Tian</u>, Hong-Xin Wei, Yi-Qun Wang, Lei Feng.",
     venueShort: "In: IEEE/CVF Conference on Computer Vision and Pattern Recognition.",
-    venueFull: "In: IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR 2024, Oral).",
+    venueFull: "In: IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR 2024 Oral).",
     summary: "A high-precision pseudo-label selection framework that uses cross supervision and consistency regularization to improve partial-label learning.",
     badges: [
       { label: "CVPR 2024" },
