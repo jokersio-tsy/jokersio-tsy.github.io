@@ -453,6 +453,27 @@
       color: var(--muted);
     }
 
+    .news-panel .news-list {
+      max-height: 11.8rem;
+      overflow-y: auto;
+      padding-right: 0.75rem;
+      scrollbar-gutter: stable;
+    }
+
+    .news-panel .news-list::-webkit-scrollbar {
+      width: 0.45rem;
+    }
+
+    .news-panel .news-list::-webkit-scrollbar-track {
+      background: rgba(24, 50, 74, 0.06);
+      border-radius: 999px;
+    }
+
+    .news-panel .news-list::-webkit-scrollbar-thumb {
+      background: rgba(24, 50, 74, 0.24);
+      border-radius: 999px;
+    }
+
     .news-list li + li {
       margin-top: 0.75rem;
     }
@@ -919,7 +940,7 @@
         </div>
         <p class="section-intro">A short timeline of recent publications, releases, and milestones.</p>
       </div>
-      <div class="plain-panel fade-up" style="--delay: 30ms;">
+      <div class="plain-panel news-panel fade-up" style="--delay: 30ms;">
         <ul class="news-list">
           <li>[2026/05] <span class="news-icon" aria-hidden="true">&#10022;</span><b>On the Learnability of Test-Time Adaptation</b> is accepted by <b>ICML 2026</b>.</li>
           <li>[2026/04] <span class="news-icon" aria-hidden="true">&#10022;</span><b>TabularMath</b> is accepted by <b>ACL 2026</b>.</li>
