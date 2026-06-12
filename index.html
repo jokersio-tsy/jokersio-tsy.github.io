@@ -454,7 +454,7 @@
     }
 
     .news-panel .news-list {
-      max-height: 11.8rem;
+      max-height: 9rem;
       overflow-y: auto;
       padding-right: 0.75rem;
       scrollbar-gutter: stable;
@@ -840,6 +840,651 @@
         grid-template-columns: 1fr;
       }
     }
+
+    /* Simplified homepage pass inspired by zhouz.dev. */
+    :root {
+      --bg: #ffffff;
+      --ink: #30363d;
+      --muted: #5f6872;
+      --line: #e6e8eb;
+      --accent: #224b8d;
+      --accent-soft: #f4f7fb;
+      --forest: #224b8d;
+      --forest-soft: #edf3fb;
+      --gold: #a45c1d;
+      --shadow: none;
+      --display: "Trebuchet MS", "Aptos", "Segoe UI", Helvetica, Arial, sans-serif;
+      --body: "Trebuchet MS", "Aptos", "Segoe UI", Helvetica, Arial, sans-serif;
+      --mono: Monaco, Consolas, "Lucida Console", monospace;
+    }
+
+    body {
+      color: var(--ink);
+      font-size: 15px;
+      line-height: 1.55;
+      background: var(--bg);
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: #142d55;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    .shell {
+      width: min(1120px, calc(100% - 2rem));
+    }
+
+    .topbar {
+      background: rgba(255, 255, 255, 0.96);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: none;
+    }
+
+    .topbar-inner {
+      padding: 0.55rem 0;
+    }
+
+    .brand {
+      gap: 0;
+      color: var(--ink);
+      font-family: var(--body);
+      font-weight: 700;
+      letter-spacing: 0;
+    }
+
+    .brand-mark {
+      display: none;
+    }
+
+    .nav {
+      gap: 1.05rem;
+      color: var(--muted);
+      font-size: 0.93rem;
+    }
+
+    .nav a {
+      color: inherit;
+    }
+
+    .nav a:hover {
+      color: var(--accent);
+    }
+
+    .nav-cta {
+      padding: 0;
+      border: 0;
+      background: transparent;
+      color: inherit;
+      font-weight: 400;
+    }
+
+    .site-layout {
+      display: grid;
+      grid-template-columns: 220px minmax(0, 1fr);
+      gap: clamp(1.8rem, 4vw, 3rem);
+      align-items: start;
+      padding-top: 2rem;
+    }
+
+    .content-flow {
+      min-width: 0;
+    }
+
+    .panel,
+    .plain-panel,
+    .paper-card,
+    .mini-card,
+    .timeline-card,
+    .education-block,
+    .logo-card,
+    .portrait-frame {
+      border-radius: 0;
+      box-shadow: none;
+      backdrop-filter: none;
+    }
+
+    .profile-panel {
+      position: sticky;
+      top: 4.2rem;
+      display: grid;
+      gap: 0.8rem;
+      align-content: start;
+      justify-items: center;
+      padding: 0;
+      border: 0;
+      background: transparent;
+    }
+
+    .portrait-frame {
+      padding: 0;
+      border: 0;
+      background: transparent;
+    }
+
+    .portrait-frame img {
+      width: 180px;
+      height: auto;
+      border-radius: 2px;
+      object-fit: contain;
+      border: 1px solid var(--line);
+    }
+
+    .hero-name {
+      margin-top: 0.3rem;
+      color: var(--ink);
+      font-family: var(--body);
+      font-size: 1.45rem;
+      line-height: 1.18;
+      letter-spacing: 0;
+      text-align: center;
+    }
+
+    .hero-name span {
+      margin-top: 0.12rem;
+      color: var(--muted);
+      font-family: var(--body);
+      font-size: 1rem;
+      font-weight: 400;
+      letter-spacing: 0;
+    }
+
+    .profile-caption {
+      color: var(--muted);
+      font-size: 0.94rem;
+      font-weight: 400;
+      text-align: center;
+    }
+
+    .logo-grid {
+      display: flex;
+      justify-content: center;
+      gap: 0.75rem;
+      margin-top: 0.3rem;
+    }
+
+    .logo-card {
+      min-height: 0;
+      padding: 0;
+      border: 0;
+      background: transparent;
+    }
+
+    .logo-card img {
+      max-width: 74px;
+      max-height: 42px;
+      object-fit: contain;
+      opacity: 0.86;
+    }
+
+    .intro-panel {
+      padding: 0 0 1.2rem;
+      border: 0;
+      background: transparent;
+      display: grid;
+      gap: 0.7rem;
+    }
+
+    .eyebrow,
+    .section-label {
+      color: var(--muted);
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0;
+      text-transform: none;
+    }
+
+    .lede {
+      max-width: none;
+      color: var(--ink);
+      font-size: 1rem;
+    }
+
+    .lede a,
+    .identity-item a,
+    .news-list a {
+      color: var(--accent);
+      font-weight: 400;
+      text-decoration: none;
+    }
+
+    .identity-list {
+      display: grid;
+      width: 100%;
+      gap: 0.42rem;
+      justify-items: start;
+      margin-top: 0.1rem;
+    }
+
+    .identity-item {
+      display: grid;
+      grid-template-columns: 1rem minmax(0, 1fr);
+      column-gap: 0.48rem;
+      align-items: center;
+      width: 100%;
+      color: var(--muted);
+      font-size: 0.88rem;
+      line-height: 1.35;
+      overflow-wrap: anywhere;
+    }
+
+    .identity-icon {
+      grid-column: 1;
+      color: var(--muted);
+    }
+
+    .profile-panel .identity-item > span,
+    .profile-panel .identity-item > a:first-of-type {
+      grid-column: 2;
+    }
+
+    .profile-panel .identity-item > a + a {
+      grid-column: 2;
+      margin-left: 0 !important;
+      margin-top: 0.1rem;
+    }
+
+    .identity-item img {
+      display: inline-block;
+    }
+
+    .education-block {
+      margin-top: 0.4rem;
+      padding: 0;
+      border: 0;
+      background: transparent;
+    }
+
+    .education-title {
+      margin: 1rem 0 0.45rem;
+      color: var(--ink);
+      font-size: 1.12rem;
+      letter-spacing: 0;
+      text-transform: none;
+    }
+
+    .education-list {
+      gap: 0;
+    }
+
+    .edu-item {
+      grid-template-columns: 8.6rem minmax(0, 1fr);
+      gap: 0.7rem;
+      align-items: baseline;
+      padding: 0.38rem 0;
+      border-left: 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .edu-period {
+      color: var(--muted);
+      font-size: 0.9rem;
+      font-weight: 400;
+      letter-spacing: 0;
+      text-transform: none;
+    }
+
+    .edu-degree {
+      color: var(--ink);
+      font-size: 0.96rem;
+      font-weight: 700;
+    }
+
+    .edu-meta {
+      grid-column: 2;
+      color: var(--muted);
+      font-size: 0.93rem;
+    }
+
+    .section {
+      padding: 1.25rem 0 1.7rem;
+      border-top: 1px solid var(--line);
+    }
+
+    .section-head {
+      display: block;
+      margin-bottom: 0.7rem;
+    }
+
+    .section-label {
+      display: none;
+    }
+
+    .section-title {
+      margin: 0;
+      color: var(--ink);
+      font-family: var(--body);
+      font-size: 1.4rem;
+      line-height: 1.2;
+      letter-spacing: 0;
+    }
+
+    .section-intro {
+      max-width: none;
+      margin-top: 0.35rem;
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .plain-panel {
+      padding: 0;
+      border: 0;
+      background: transparent;
+    }
+
+    .news-panel .news-list {
+      max-height: 9rem;
+      overflow-y: auto;
+      padding-right: 0.75rem;
+      scrollbar-gutter: stable;
+    }
+
+    .news-panel .news-list::-webkit-scrollbar {
+      width: 0.45rem;
+    }
+
+    .news-panel .news-list::-webkit-scrollbar-track {
+      background: rgba(48, 54, 61, 0.06);
+      border-radius: 999px;
+    }
+
+    .news-panel .news-list::-webkit-scrollbar-thumb {
+      background: rgba(48, 54, 61, 0.24);
+      border-radius: 999px;
+    }
+
+    .news-list {
+      padding-left: 1.25rem;
+      color: var(--ink);
+    }
+
+    .news-list li + li {
+      margin-top: 0.45rem;
+    }
+
+    .news-icon {
+      display: none;
+    }
+
+    .paper-list {
+      gap: 1.25rem;
+    }
+
+    .paper-card {
+      grid-template-columns: minmax(160px, 230px) minmax(0, 1fr);
+      gap: 1rem;
+      align-items: start;
+      padding: 0 0 1.25rem;
+      border: 0;
+      border-bottom: 1px solid var(--line);
+      background: transparent;
+    }
+
+    .paper-thumb {
+      min-height: 0;
+      aspect-ratio: 4 / 3;
+      border-radius: 0;
+      border: 1px solid var(--line);
+      background: #f8f9fa;
+    }
+
+    .paper-thumb.teaser-contain {
+      padding: 0.45rem;
+      background: #f8f9fa;
+    }
+
+    .paper-thumb.teaser-contain img {
+      border-radius: 0;
+      background: #ffffff;
+    }
+
+    .thumb-badge {
+      top: 0.45rem;
+      left: 0.45rem;
+      padding: 0.12rem 0.36rem;
+      border-radius: 0;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.92);
+      color: var(--muted);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0;
+    }
+
+    .paper-content {
+      gap: 0.3rem;
+    }
+
+    .paper-head {
+      gap: 0.35rem;
+      margin-bottom: 0.1rem;
+    }
+
+    .meta-pill {
+      min-height: 1.55rem;
+      padding: 0.12rem 0.5rem;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: #ffffff;
+      color: var(--muted);
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+
+    .meta-pill + .meta-pill::before {
+      content: none;
+    }
+
+    .meta-pill.oral {
+      background: rgba(196, 52, 46, 0.12);
+      color: #b42318;
+      border-color: rgba(196, 52, 46, 0.16);
+    }
+
+    .meta-pill.rank,
+    .meta-pill.highlight-rank {
+      background: rgba(216, 154, 43, 0.16);
+      color: #8a5a09;
+      border-color: rgba(216, 154, 43, 0.18);
+    }
+
+    .meta-pill.highlight-rank::before {
+      content: "✦";
+      margin-right: 0.25rem;
+      font-size: 0.72rem;
+      line-height: 1;
+    }
+
+    .paper-content h3 {
+      margin: 0;
+      color: var(--ink);
+      font-size: 1.08rem;
+      line-height: 1.25;
+    }
+
+    .paper-authors,
+    .paper-venue,
+    .paper-summary {
+      color: var(--muted);
+      font-size: 0.93rem;
+      line-height: 1.45;
+    }
+
+    .paper-summary {
+      color: #4f565e;
+    }
+
+    .paper-links {
+      gap: 0.35rem 0.55rem;
+      margin-top: 0.15rem;
+    }
+
+    .link-pill,
+    .link-pill.primary {
+      min-height: 0;
+      padding: 0;
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+      color: var(--accent);
+      font-size: 0.9rem;
+      font-weight: 400;
+    }
+
+    .link-pill:hover,
+    .link-pill.primary:hover {
+      transform: none;
+      box-shadow: none;
+      color: #142d55;
+      text-decoration: underline;
+    }
+
+    .link-pill + .link-pill::before {
+      content: "/";
+      margin-right: 0.55rem;
+      color: var(--muted);
+      text-decoration: none;
+    }
+
+    .service-list {
+      gap: 0.45rem;
+    }
+
+    .service-item {
+      color: var(--ink);
+      font-size: 0.96rem;
+    }
+
+    .service-item strong {
+      color: var(--ink);
+    }
+
+    .citation-chart-panel {
+      display: grid;
+      gap: 0.85rem;
+    }
+
+    .citation-chart {
+      width: 100%;
+      min-height: 210px;
+      color: var(--ink);
+    }
+
+    .citation-chart svg {
+      display: block;
+      width: 100%;
+      height: auto;
+      overflow: visible;
+    }
+
+    .citation-chart .axis,
+    .citation-chart .grid-line {
+      stroke: var(--line);
+      stroke-width: 1;
+    }
+
+    .citation-chart .trend-line {
+      fill: none;
+      stroke: var(--accent);
+      stroke-width: 2.6;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .citation-chart .trend-area {
+      fill: rgba(34, 75, 141, 0.08);
+    }
+
+    .citation-chart .point {
+      fill: #ffffff;
+      stroke: var(--accent);
+      stroke-width: 2;
+    }
+
+    .citation-chart text {
+      fill: var(--muted);
+      font-family: var(--body);
+      font-size: 12px;
+    }
+
+    .citation-chart .value-label {
+      fill: var(--ink);
+      font-weight: 700;
+    }
+
+    .citation-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem 1rem;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .citation-meta strong {
+      color: var(--ink);
+    }
+
+    .footer {
+      padding: 0.4rem 0 3rem;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .fade-up {
+      opacity: 1;
+      transform: none;
+      animation: none;
+    }
+
+    .is-hidden {
+      display: none;
+    }
+
+    @media (max-width: 900px) {
+      .site-layout {
+        grid-template-columns: 1fr;
+        gap: 1.6rem;
+      }
+
+      .profile-panel {
+        position: static;
+        max-width: 280px;
+        margin: 0 auto;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .topbar-inner {
+        align-items: start;
+      }
+
+      .nav {
+        gap: 0.65rem 0.9rem;
+      }
+
+      .paper-card {
+        grid-template-columns: 1fr;
+      }
+
+      .paper-thumb {
+        max-width: 360px;
+      }
+
+      .edu-item {
+        grid-template-columns: 1fr;
+        gap: 0.12rem;
+      }
+
+      .edu-meta {
+        grid-column: auto;
+      }
+    }
   </style>
 </head>
 <body>
@@ -859,35 +1504,13 @@
     </div>
   </header>
 
-  <main class="shell" id="top">
-    <section class="hero" id="about">
-      <aside class="panel profile-panel fade-up" style="--delay: 40ms;">
+  <main class="shell site-layout" id="top">
+    <aside class="panel profile-panel fade-up" id="about" style="--delay: 40ms;">
         <div class="portrait-frame">
           <img src="./src/tiansy.jpg" alt="Portrait of Shi-Yu Tian">
         </div>
         <h1 class="hero-name">Shi-Yu Tian<span>&#30000;&#26102;&#38632;</span></h1>
         <div class="profile-caption">A Ph.D. student in LAMDA Group</div>
-        <div class="logo-grid">
-          <div class="logo-card">
-            <img src="./src/lamda.jpg" alt="LAMDA Group logo">
-          </div>
-          <div class="logo-card">
-            <img src="./src/nju.jpg" alt="Nanjing University logo">
-          </div>
-        </div>
-      </aside>
-
-      <section class="panel intro-panel fade-up" style="--delay: 120ms;">
-        <div class="eyebrow">Spatial Intelligence &middot; Neuro-Symbolic AI &middot; Trustworthy AI</div>
-        <p class="lede">
-          I am a Ph.D. student in Computer Science at <a href="https://www.nju.edu.cn/" target="_blank" rel="noreferrer">Nanjing University</a>
-          and a member of the <a href="https://www.lamda.nju.edu.cn/" target="_blank" rel="noreferrer">LAMDA Group</a>, within the
-          <a href="https://ai.nju.edu.cn/" target="_blank" rel="noreferrer">School of Artificial Intelligence</a>. I am advised by
-          Professor <a href="http://www.lamda.nju.edu.cn/liyf/" target="_blank" rel="noreferrer">Yu-Feng Li</a>, and previously I worked
-          closely with Prof. <a href="https://lfeng1995.github.io/index.html" target="_blank" rel="noreferrer">Lei Feng</a>.
-          My current research mainly focuses on spatial intelligence, especially how learning systems understand, reason about, and act on structured spatial information.
-          I also work on neuro-symbolic AI and trustworthy AI, with an interest in combining large language models, symbolic tools, and reliable reasoning.
-        </p>
         <div class="identity-list">
           <div class="identity-item">
             <svg class="identity-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -914,8 +1537,30 @@
             </a>
           </div>
         </div>
+        <div class="logo-grid">
+          <div class="logo-card">
+            <img src="./src/lamda.jpg" alt="LAMDA Group logo">
+          </div>
+          <div class="logo-card">
+            <img src="./src/nju.jpg" alt="Nanjing University logo">
+          </div>
+        </div>
+    </aside>
+
+    <div class="content-flow">
+      <section class="panel intro-panel fade-up" style="--delay: 120ms;">
+        <h2 class="section-title">🤵🏻 About Me</h2>
+        <p class="lede">
+          I am a Ph.D. student in Computer Science at <a href="https://www.nju.edu.cn/" target="_blank" rel="noreferrer">Nanjing University</a>
+          and a member of the <a href="https://www.lamda.nju.edu.cn/" target="_blank" rel="noreferrer">LAMDA Group</a>, within the
+          <a href="https://ai.nju.edu.cn/" target="_blank" rel="noreferrer">School of Artificial Intelligence</a>. I am advised by
+          Professor <a href="http://www.lamda.nju.edu.cn/liyf/" target="_blank" rel="noreferrer">Yu-Feng Li</a>, and previously I worked
+          closely with Prof. <a href="https://lfeng1995.github.io/index.html" target="_blank" rel="noreferrer">Lei Feng</a>.
+          My current research mainly focuses on spatial intelligence, especially how learning systems understand, reason about, and act on structured spatial information.
+          I also work on neuro-symbolic AI and trustworthy AI, with an interest in combining large language models, symbolic tools, and reliable reasoning.
+        </p>
         <div class="education-block">
-          <h3 class="education-title">Education</h3>
+          <h3 class="education-title">🎓 Education</h3>
           <div class="education-list">
             <div class="edu-item">
               <div class="edu-period">2024 - Present</div>
@@ -930,18 +1575,14 @@
           </div>
         </div>
       </section>
-    </section>
 
     <section class="section" id="news">
       <div class="section-head">
-        <div>
-          <div class="section-label">News</div>
-          <h2 class="section-title">Recent Updates</h2>
-        </div>
-        <p class="section-intro">A short timeline of recent publications, releases, and milestones.</p>
+        <h2 class="section-title">🎉 News</h2>
       </div>
       <div class="plain-panel news-panel fade-up" style="--delay: 30ms;">
         <ul class="news-list">
+          <li>[2026/06] I started my first talent-program internship in the <b>TGT (Tech Genius Team) Program</b> at <b>JD Retail</b>.</li>
           <li>[2026/05] <span class="news-icon" aria-hidden="true">&#10022;</span><b>On the Learnability of Test-Time Adaptation</b> is accepted by <b>ICML 2026</b>.</li>
           <li>[2026/04] <span class="news-icon" aria-hidden="true">&#10022;</span><b>TabularMath</b> is accepted by <b>ACL 2026</b>.</li>
           <li>[2025/08] <span class="news-icon" aria-hidden="true">&#10022;</span><b>VCSearch</b> is accepted by <b>EMNLP 2025 (Oral)</b>.</li>
@@ -955,12 +1596,9 @@
 
     <section class="section" id="publications">
       <div class="section-head">
-        <div>
-          <div class="section-label">Publications</div>
-          <h2 class="section-title">Selected Works</h2>
-        </div>
+        <h2 class="section-title">📝 Selected Works</h2>
         <p class="section-intro">
-          Each paper is shown with a visual card for faster scanning. `*` denotes co-first authorship.
+          Selected papers. * denotes co-first authorship.
         </p>
       </div>
 
@@ -971,11 +1609,7 @@
 
     <section class="section" id="service">
       <div class="section-head">
-        <div>
-          <div class="section-label">Academic Service</div>
-          <h2 class="section-title">Community Work</h2>
-        </div>
-        <p class="section-intro">I regularly review for conferences and journals in machine learning and computer vision.</p>
+        <h2 class="section-title">🤝 Academic Service</h2>
       </div>
       <div class="plain-panel fade-up" style="--delay: 30ms;">
         <div class="service-list">
@@ -998,11 +1632,22 @@
       </div>
     </section>
 
+    <section class="section is-hidden" id="citations">
+      <div class="section-head">
+        <h2 class="section-title">📈 Citations</h2>
+      </div>
+      <div class="plain-panel citation-chart-panel fade-up" style="--delay: 30ms;">
+        <div class="citation-chart" id="citation-chart" aria-label="Google Scholar citations per year"></div>
+        <div class="citation-meta" id="citation-chart-meta"></div>
+      </div>
+    </section>
+
     <footer class="footer">
-      Page updated on 2026.05.
+      Page updated on 2025.06.
     </footer>
+    </div>
   </main>
-  <script src="./assets/data/publications.js"></script>
-  <script src="./assets/js/site-render.js"></script>
+  <script src="./assets/data/publications.js?v=20260612-weekly-citations"></script>
+  <script src="./assets/js/site-render.js?v=20260612-weekly-citations"></script>
 </body>
 </html>

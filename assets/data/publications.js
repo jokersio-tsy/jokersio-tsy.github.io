@@ -1,7 +1,14 @@
 window.SITE_CONFIG = {
   repository: "jokersio-tsy/jokersio-tsy.github.io",
   scholarUserId: "2UwjVasAAAAJ",
-  scholarStatsBranch: "google-scholar-stats"
+  scholarStatsBranch: "google-scholar-stats",
+  citationFallback: {
+    citedby: 59,
+    citation_history: [
+      { week: "2026-06-01", citedby: 59, updated: "2026-06-05T07:03:39.749535+00:00" }
+    ],
+    updated: "2026-06-05T07:03:39.749535+00:00"
+  }
 };
 
 window.SITE_PUBLICATIONS = [
@@ -61,7 +68,7 @@ window.SITE_PUBLICATIONS = [
     selected: true,
     venueTag: "ACL 2026",
     title: "TabularMath: Understanding Math Reasoning over Tables with Large Language Models",
-    authors: "<u>Shi-Yu Tian</u>, Zhi Zhou, Kun-Yang Yu, Ming Yang, Yang Chen, Ziqiao Shang, Lan-Zhe Guo, Yu-Feng Li.",
+    authors: "<u>Shi-Yu Tian</u>*, Zhi Zhou*, Wei Dong*, Kun-Yang Yu, Ming Yang, Zi-Jian Cheng, Lan-Zhe Guo, Yu-Feng Li.",
     venueShort: "In: Findings of the Association for Computational Linguistics: ACL 2026.",
     venueFull: "In: Findings of the Association for Computational Linguistics (ACL 2026 Findings).",
     summary: "A neuro-symbolic pipeline and benchmark for studying mathematical reasoning over large, imperfect, and multimodal tables.",

@@ -154,9 +154,187 @@
     });
   }
 
+  function mondayKey(value) {
+    const date = value ? new Date(value) : new Date();
+    if (Number.isNaN(date.getTime())) {
+      return "";
+    }
+    const monday = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate()));
+    const offset = (monday.getUTCDay() + 6) % 7;
+    monday.setUTCDate(monday.getUTCDate() - offset);
+    return monday.toISOString().slice(0, 10);
+  }
+
+  function timeFor(value) {
+    const time = new Date(value || "").getTime();
+    return Number.isFinite(time) ? time : Infinity;
+  }
+
+  function normalizeCitationHistory(data) {
+    const rawHistory = Array.isArray(data && data.citation_history)
+      ? data.citation_history
+      : Array.isArray(data && data.weekly_citations)
+        ? data.weekly_citations
+        : [];
+
+    const byWeek = new Map();
+    rawHistory.forEach((entry) => {
+      const updated = entry.updated || entry.date || entry.week || "";
+      const week = entry.week || mondayKey(updated);
+      const citedby = Number(entry.citedby ?? entry.citations ?? entry.total);
+      if (week && Number.isFinite(citedby)) {
+        const item = {
+          week,
+          citedby,
+          updated
+        };
+        const existing = byWeek.get(week);
+        const existingTime = existing ? timeFor(existing.updated || existing.week) : Infinity;
+        const itemTime = timeFor(item.updated || item.week);
+        if (!existing || itemTime < existingTime) {
+          byWeek.set(week, item);
+        }
+      }
+    });
+
+    if (!byWeek.size && data && typeof data.citedby === "number") {
+      const week = mondayKey(data.updated);
+      if (week) {
+        byWeek.set(week, {
+          week,
+          citedby: data.citedby,
+          updated: data.updated || ""
+        });
+      }
+    }
+
+    return Array.from(byWeek.values()).sort((a, b) => a.week.localeCompare(b.week));
+  }
+
+  function renderCitationChart(data) {
+    const chart = document.getElementById("citation-chart");
+    const meta = document.getElementById("citation-chart-meta");
+    if (!chart || !data) {
+      return;
+    }
+
+    const entries = normalizeCitationHistory(data);
+    if (!entries.length) {
+      return;
+    }
+
+    const width = 720;
+    const height = 235;
+    const padding = { top: 24, right: 28, bottom: 48, left: 42 };
+    const innerWidth = width - padding.left - padding.right;
+    const innerHeight = height - padding.top - padding.bottom;
+    const maxCitations = Math.max(...entries.map((entry) => entry.citedby), 1);
+    const yMax = Math.ceil(maxCitations / 10) * 10 || maxCitations;
+
+    const xFor = (index) => {
+      if (entries.length === 1) {
+        return padding.left + innerWidth / 2;
+      }
+      return padding.left + (index / (entries.length - 1)) * innerWidth;
+    };
+    const yFor = (value) => padding.top + innerHeight - (value / yMax) * innerHeight;
+
+    const points = entries.map((entry, index) => ({
+      ...entry,
+      x: xFor(index),
+      y: yFor(entry.citedby)
+    }));
+    const linePath = points.map((point, index) => `${index === 0 ? "M" : "L"} ${point.x.toFixed(1)} ${point.y.toFixed(1)}`).join(" ");
+    const areaPath = `${linePath} L ${points[points.length - 1].x.toFixed(1)} ${(padding.top + innerHeight).toFixed(1)} L ${points[0].x.toFixed(1)} ${(padding.top + innerHeight).toFixed(1)} Z`;
+    const gridValues = [0, Math.round(yMax / 2), yMax];
+    const labelEvery = points.length <= 12 ? 1 : Math.ceil(points.length / 8);
+
+    chart.innerHTML = `
+      <svg viewBox="0 0 ${width} ${height}" role="img" aria-labelledby="citation-chart-title">
+        <title id="citation-chart-title">Google Scholar total citations by week</title>
+        ${gridValues.map((value) => {
+          const y = yFor(value);
+          return `
+            <line class="grid-line" x1="${padding.left}" y1="${y.toFixed(1)}" x2="${width - padding.right}" y2="${y.toFixed(1)}"></line>
+            <text x="${padding.left - 10}" y="${(y + 4).toFixed(1)}" text-anchor="end">${value}</text>
+          `;
+        }).join("")}
+        <line class="axis" x1="${padding.left}" y1="${padding.top + innerHeight}" x2="${width - padding.right}" y2="${padding.top + innerHeight}"></line>
+        <path class="trend-area" d="${areaPath}"></path>
+        <path class="trend-line" d="${linePath}"></path>
+        ${points.map((point, index) => {
+          const showLabel = index === 0 || index === points.length - 1 || index % labelEvery === 0;
+          return `
+            <circle class="point" cx="${point.x.toFixed(1)}" cy="${point.y.toFixed(1)}" r="4.5"></circle>
+            <text class="value-label" x="${point.x.toFixed(1)}" y="${(point.y - 10).toFixed(1)}" text-anchor="middle">${point.citedby}</text>
+            ${showLabel ? `<text x="${point.x.toFixed(1)}" y="${height - 14}" text-anchor="middle">${escapeHtml(point.week)}</text>` : ""}
+          `;
+        }).join("")}
+      </svg>
+    `;
+
+    if (meta) {
+      const updated = data.updated ? new Date(data.updated) : null;
+      const updatedText = updated && !Number.isNaN(updated.getTime())
+        ? updated.toISOString().slice(0, 10)
+        : "";
+      meta.innerHTML = `
+        <span><strong>${escapeHtml(data.citedby || 0)}</strong> total citations</span>
+        ${updatedText ? `<span>Updated ${escapeHtml(updatedText)}</span>` : ""}
+        ${entries.length === 1 ? `<span>Weekly history starts ${escapeHtml(entries[0].week)}</span>` : ""}
+      `;
+    }
+  }
+
+  function applyScholarStats(data, totalCitations, citationHistory) {
+    if (!data || typeof data.citedby !== "number") {
+      return false;
+    }
+
+    if (totalCitations) {
+      if (totalCitations.tagName === "IMG") {
+        totalCitations.alt = `Citations: ${data.citedby}`;
+      } else {
+        totalCitations.textContent = `Citations: ${data.citedby}`;
+      }
+      if (data.updated) {
+        totalCitations.title = `Updated: ${data.updated}`;
+      }
+    }
+    renderCitationChart({
+      ...data,
+      citation_history: citationHistory || data.citation_history
+    });
+    return true;
+  }
+
+  async function fetchCitationHistory() {
+    const urls = [
+      `https://cdn.jsdelivr.net/gh/${siteConfig.repository}@${siteConfig.scholarStatsBranch}/citation_history.json`,
+      `https://raw.githubusercontent.com/${siteConfig.repository}/${siteConfig.scholarStatsBranch}/citation_history.json`
+    ];
+
+    for (const url of urls) {
+      try {
+        const response = await fetch(url, { cache: "no-store" });
+        if (!response.ok) {
+          continue;
+        }
+        const history = await response.json();
+        if (Array.isArray(history)) {
+          return history;
+        }
+      } catch (error) {
+        continue;
+      }
+    }
+    return null;
+  }
+
   async function fetchScholarStats() {
     const totalCitations = document.getElementById("scholar-total-citations");
-    if (!totalCitations || !siteConfig.repository || !siteConfig.scholarStatsBranch) {
+    const citationChart = document.getElementById("citation-chart");
+    if ((!totalCitations && !citationChart) || !siteConfig.repository || !siteConfig.scholarStatsBranch) {
       return;
     }
 
@@ -173,23 +351,16 @@
         }
 
         const data = await response.json();
-        if (typeof data.citedby !== "number") {
-          continue;
+        const citationHistory = await fetchCitationHistory();
+        if (applyScholarStats(data, totalCitations, citationHistory)) {
+          return;
         }
-
-        if (totalCitations.tagName === "IMG") {
-          totalCitations.alt = `Citations: ${data.citedby}`;
-        } else {
-          totalCitations.textContent = `Citations: ${data.citedby}`;
-        }
-        if (data.updated) {
-          totalCitations.title = `Updated: ${data.updated}`;
-        }
-        return;
       } catch (error) {
         continue;
       }
     }
+
+    applyScholarStats(siteConfig.citationFallback, totalCitations);
   }
 
   document.addEventListener("DOMContentLoaded", function () {

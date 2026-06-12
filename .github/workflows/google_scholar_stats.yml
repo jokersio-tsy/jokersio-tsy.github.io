@@ -27,6 +27,12 @@ jobs:
       - name: Install dependencies
         run: pip install -r google_scholar_crawler/requirements.txt
 
+      - name: Restore citation history
+        run: |
+          mkdir -p google_scholar_crawler/results
+          curl -fsSL "https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/google-scholar-stats/citation_history.json" \
+            -o google_scholar_crawler/results/citation_history.json || true
+
       - name: Fetch Google Scholar data
         env:
           GOOGLE_SCHOLAR_ID: 2UwjVasAAAAJ
@@ -48,6 +54,6 @@ jobs:
           git init
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add gs_data.json gs_data_shieldsio.json
+          git add gs_data.json gs_data_shieldsio.json citation_history.json
           git commit -m "Update Google Scholar stats" || exit 0
           git push "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" HEAD:google-scholar-stats --force

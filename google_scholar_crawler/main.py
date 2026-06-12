@@ -1,4 +1,4 @@
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 import json
 import os
 
@@ -66,6 +66,83 @@ def fetch_author(scholar_user_id):
     return author
 
 
+def week_start(date_time):
+    date = date_time.date()
+    return (date - timedelta(days=date.weekday())).isoformat()
+
+
+def parse_datetime(value):
+    if not value:
+        return None
+    try:
+        return datetime.fromisoformat(str(value).replace("Z", "+00:00"))
+    except ValueError:
+        try:
+            return datetime.fromisoformat(f"{value}T00:00:00+00:00")
+        except ValueError:
+            return None
+
+
+def load_citation_history(path):
+    if not os.path.exists(path):
+        return []
+    try:
+        with open(path, "r", encoding="utf-8") as file:
+            history = json.load(file)
+    except (json.JSONDecodeError, OSError):
+        return []
+    return history if isinstance(history, list) else []
+
+
+def as_int(value, default=0):
+    try:
+        return int(value)
+    except (TypeError, ValueError):
+        return default
+
+
+def update_citation_history(author, updated_at):
+    history_path = "results/citation_history.json"
+    history = load_citation_history(history_path)
+    week = week_start(updated_at)
+    current = {
+        "week": week,
+        "citedby": int(author.get("citedby", 0)),
+        "updated": author["updated"],
+    }
+
+    by_week = {}
+    for item in history:
+        if not isinstance(item, dict):
+            continue
+        item_time = parse_datetime(item.get("updated") or item.get("date") or item.get("week"))
+        item_week = item.get("week")
+        if not item_week and item_time:
+            item_week = week_start(item_time)
+        if not item_week:
+            continue
+        normalized = {
+            "week": item_week,
+            "citedby": as_int(item.get("citedby", item.get("citations", item.get("total", 0)))),
+            "updated": item.get("updated") or item.get("date") or item_week,
+        }
+        existing = by_week.get(item_week)
+        existing_time = parse_datetime(existing.get("updated")) if existing else None
+        if existing is None or (item_time and (existing_time is None or item_time < existing_time)):
+            by_week[item_week] = normalized
+
+    existing = by_week.get(week)
+    existing_time = parse_datetime(existing.get("updated")) if existing else None
+    if existing is None or existing_time is None or updated_at < existing_time:
+        by_week[week] = current
+    history = [by_week[key] for key in sorted(by_week)]
+    author["citation_history"] = history
+
+    with open(history_path, "w", encoding="utf-8") as file:
+        json.dump(history, file, ensure_ascii=False, indent=2)
+    return history
+
+
 def main():
     proxy_mode = configure_scholarly()
     scholar_user_id = os.environ["GOOGLE_SCHOLAR_ID"]
@@ -83,7 +160,8 @@ def main():
                 "or SCHOLAR_HTTP_PROXY/SCHOLAR_HTTPS_PROXY in GitHub Actions secrets."
             ) from error
 
-    author["updated"] = datetime.now(timezone.utc).isoformat()
+    updated_at = datetime.now(timezone.utc)
+    author["updated"] = updated_at.isoformat()
     author["publications"] = {
         publication["author_pub_id"]: publication for publication in author.get("publications", [])
     }
@@ -93,6 +171,7 @@ def main():
     )
 
     os.makedirs("results", exist_ok=True)
+    citation_history = update_citation_history(author, updated_at)
     with open("results/gs_data.json", "w", encoding="utf-8") as file:
         json.dump(author, file, ensure_ascii=False, indent=2)
 
@@ -103,7 +182,11 @@ def main():
     }
     with open("results/gs_data_shieldsio.json", "w", encoding="utf-8") as file:
         json.dump(shieldsio_data, file, ensure_ascii=False, indent=2)
-    print("[scholar] wrote results/gs_data.json and results/gs_data_shieldsio.json", flush=True)
+    print(
+        "[scholar] wrote results/gs_data.json, results/gs_data_shieldsio.json, "
+        f"and results/citation_history.json ({len(citation_history)} weeks)",
+        flush=True,
+    )
 
 
 if __name__ == "__main__":
