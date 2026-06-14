@@ -1163,6 +1163,28 @@
       font-size: 0.93rem;
     }
 
+    .experience-line {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      min-width: 0;
+      flex-wrap: wrap;
+    }
+
+    .jd-dog-icon {
+      display: inline-flex;
+      align-items: center;
+      width: 28px;
+      height: 20px;
+      flex: 0 0 auto;
+    }
+
+    .jd-dog-icon img {
+      width: 28px;
+      height: 20px;
+      object-fit: contain;
+    }
+
     .section {
       padding: 1.25rem 0 1.7rem;
       border-top: 1px solid var(--line);
@@ -1506,6 +1528,7 @@
       .edu-meta {
         grid-column: auto;
       }
+
     }
   </style>
 </head>
@@ -1595,6 +1618,20 @@
               <div class="edu-period">2020 - 2024</div>
               <div class="edu-degree">B.Sc. in Computer Science</div>
               <div class="edu-meta">College of Computer Science, Chongqing University.</div>
+            </div>
+          </div>
+        </div>
+        <div class="education-block">
+          <h3 class="education-title">💼 Experience</h3>
+          <div class="education-list">
+            <div class="edu-item experience-item">
+              <div class="edu-period">2026.06 - Now</div>
+              <div class="edu-degree experience-line">
+                <span class="jd-dog-icon" aria-hidden="true">
+                  <img src="./src/jd-dog.svg" alt="">
+                </span>
+                <span><a href="https://campus.jd.com/#/talentProject" target="_blank" rel="noreferrer">TGT</a> Program Intern, JD Retail.</span>
+              </div>
             </div>
           </div>
         </div>
