@@ -72,6 +72,10 @@
     return `<a class="${classes}" href="${escapeHtml(link.href)}"${linkAttrs(link)}>${escapeHtml(link.label)}</a>`;
   }
 
+  function emphasizeAuthorName(html) {
+    return String(html || "").replace(/(<u>Shi-Yu Tian<\/u>|Shi-Yu Tian)/g, "<strong>$1</strong>");
+  }
+
   function renderSelectedWork(publication, index) {
     const delay = 30 + index * 60;
     return `
@@ -82,7 +86,7 @@
             ${(publication.badges || []).map(renderSelectedBadge).join("")}
           </div>
           <h3>${escapeHtml(publication.title)}</h3>
-          <p class="paper-authors">${publication.authors || ""}</p>
+          <p class="paper-authors">${emphasizeAuthorName(publication.authors)}</p>
           <p class="paper-venue">${escapeHtml(publication.venueShort || publication.venueFull || "")}</p>
           <p class="paper-summary">${escapeHtml(publication.summary || "")}</p>
           <div class="paper-links">
@@ -118,7 +122,7 @@
     return `
       <li>
         <div class="pub-title">${escapeHtml(publication.title)}</div>
-        <div class="pub-authors">${publication.authors || ""}</div>
+        <div class="pub-authors">${emphasizeAuthorName(publication.authors)}</div>
         <div class="pub-venue">${formatVenue(publication.venueFull || publication.venueShort || "")}</div>
         ${ratings}
         <div class="pub-links">${(publication.fullLinks || []).map(renderFullLink).join("")}</div>
@@ -134,6 +138,67 @@
 
     const selected = publications.filter((publication) => publication.selected);
     container.innerHTML = selected.map(renderSelectedWork).join("");
+  }
+
+  function renderHomeFullPublications() {
+    const groups = [
+      { id: "home-conference-list", category: "conference" },
+      { id: "home-journal-list", category: "journal" },
+      { id: "home-preprint-list", category: "preprint" }
+    ];
+
+    if (groups.every((group) => document.getElementById(group.id)?.dataset.rendered === "true")) {
+      return;
+    }
+
+    groups.forEach((group) => {
+      const container = document.getElementById(group.id);
+      if (!container || container.dataset.rendered === "true") {
+        return;
+      }
+
+      const items = publications.filter((publication) => publication.category === group.category);
+      container.innerHTML = items.map(renderFullPublication).join("");
+      container.dataset.rendered = "true";
+    });
+  }
+
+  function setupHomePublicationTabs() {
+    const tabs = Array.from(document.querySelectorAll("[data-publication-view]"));
+    const selectedPanel = document.getElementById("selected-publications-panel");
+    const allPanel = document.getElementById("all-publications-panel");
+
+    if (!tabs.length || !selectedPanel || !allPanel) {
+      return;
+    }
+
+    const panels = {
+      selected: selectedPanel,
+      all: allPanel
+    };
+
+    function activate(view) {
+      const activeView = panels[view] ? view : "selected";
+      if (activeView === "all") {
+        renderHomeFullPublications();
+      }
+
+      tabs.forEach((tab) => {
+        const isActive = tab.dataset.publicationView === activeView;
+        tab.classList.toggle("is-active", isActive);
+        tab.setAttribute("aria-selected", isActive ? "true" : "false");
+      });
+
+      Object.entries(panels).forEach(([key, panel]) => {
+        panel.hidden = key !== activeView;
+      });
+    }
+
+    tabs.forEach((tab) => {
+      tab.addEventListener("click", () => activate(tab.dataset.publicationView));
+    });
+
+    activate("selected");
   }
 
   function renderFullPublications() {
@@ -366,6 +431,7 @@
   document.addEventListener("DOMContentLoaded", function () {
     renderSelectedWorks();
     renderFullPublications();
+    setupHomePublicationTabs();
     fetchScholarStats();
   });
 })();

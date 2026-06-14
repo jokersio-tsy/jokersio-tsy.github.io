@@ -29,6 +29,7 @@ window.SITE_PUBLICATIONS = [
       { label: "CCF-A", type: "ccf" }
     ],
     fullLinks: [
+      { label: "ArXiv", href: "https://arxiv.org/abs/2605.28057" },
       { label: "BibTeX", href: "./assets/bib/zhou2026learnability.bib" }
     ]
   },

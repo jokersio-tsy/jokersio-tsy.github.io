@@ -1395,6 +1395,130 @@
       text-decoration: none;
     }
 
+    .publication-tabs {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.18rem;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: #f8f9fa;
+    }
+
+    #publications .section-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .publication-tab {
+      min-height: 1.9rem;
+      padding: 0.2rem 0.78rem;
+      border: 0;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--muted);
+      font: inherit;
+      font-size: 0.9rem;
+      cursor: pointer;
+    }
+
+    .publication-tab.is-active {
+      background: #ffffff;
+      color: var(--ink);
+      box-shadow: 0 1px 2px rgba(48, 54, 61, 0.08);
+    }
+
+    .publication-panel[hidden] {
+      display: none;
+    }
+
+    .publication-panel {
+      margin-top: 1rem;
+    }
+
+    .home-pub-list {
+      margin: 0;
+      padding-left: 1.25rem;
+    }
+
+    .home-pub-list li + li {
+      margin-top: 1rem;
+    }
+
+    .home-publication-group + .home-publication-group {
+      margin-top: 1.45rem;
+    }
+
+    .pub-title {
+      color: var(--ink);
+      font-weight: 700;
+      line-height: 1.35;
+    }
+
+    .pub-authors,
+    .pub-venue,
+    .pub-links {
+      color: var(--muted);
+      font-size: 0.94rem;
+      line-height: 1.45;
+    }
+
+    .venue-abbr {
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .venue-oral {
+      color: #a3232a;
+      font-weight: 700;
+    }
+
+    .pub-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      margin: 0.35rem 0 0.4rem;
+    }
+
+    .rating-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 1.55rem;
+      padding: 0.12rem 0.5rem;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: #ffffff;
+      color: var(--ink);
+      font-size: 0.76rem;
+      font-weight: 700;
+    }
+
+    .rating-pill.ccf,
+    .rating-pill.caai {
+      background: rgba(216, 154, 43, 0.16);
+      color: #8a5a09;
+      border-color: rgba(216, 154, 43, 0.18);
+    }
+
+    .pub-links a {
+      color: var(--accent);
+    }
+
+    .pub-links a + a {
+      margin-left: 0.5em;
+    }
+
+    .pub-links a + a::before {
+      content: "· ";
+      display: inline-block;
+      margin-right: 0.15em;
+      color: var(--muted);
+      text-decoration: none;
+    }
+
     .service-list {
       gap: 0.45rem;
     }
@@ -1542,9 +1666,8 @@
       <nav class="nav">
         <a href="#about">About</a>
         <a href="#news">News</a>
-        <a href="#publications">Selected Works</a>
+        <a href="#publications">Publications</a>
         <a href="#service">Service</a>
-        <a class="nav-cta" href="./publications.html">Full Publications</a>
       </nav>
     </div>
   </header>
@@ -1657,14 +1780,29 @@
 
     <section class="section" id="publications">
       <div class="section-head">
-        <h2 class="section-title">📝 Selected Works</h2>
-        <p class="section-intro">
-          Selected papers. * denotes co-first authorship.
-        </p>
+        <h2 class="section-title">📝 Publications</h2>
+        <div class="publication-tabs" role="tablist" aria-label="Publication view">
+          <button class="publication-tab is-active" type="button" role="tab" aria-selected="true" aria-controls="selected-publications-panel" data-publication-view="selected">Selected</button>
+          <button class="publication-tab" type="button" role="tab" aria-selected="false" aria-controls="all-publications-panel" data-publication-view="all">All</button>
+        </div>
       </div>
 
-      <div class="pub-group">
+      <div class="pub-group publication-panel" id="selected-publications-panel" role="tabpanel">
         <div class="paper-list" id="selected-works-list"></div>
+      </div>
+      <div class="pub-group publication-panel" id="all-publications-panel" role="tabpanel" hidden>
+        <div class="home-publication-group">
+          <h3 class="pub-group-title">Conference Papers</h3>
+          <ol class="pub-list home-pub-list" id="home-conference-list"></ol>
+        </div>
+        <div class="home-publication-group">
+          <h3 class="pub-group-title">Journal Papers</h3>
+          <ol class="pub-list home-pub-list" id="home-journal-list"></ol>
+        </div>
+        <div class="home-publication-group">
+          <h3 class="pub-group-title">Preprints and Workshop Papers</h3>
+          <ol class="pub-list home-pub-list" id="home-preprint-list"></ol>
+        </div>
       </div>
     </section>
 
@@ -1708,7 +1846,7 @@
     </footer>
     </div>
   </main>
-  <script src="./assets/data/publications.js?v=20260612-weekly-citations"></script>
-  <script src="./assets/js/site-render.js?v=20260612-weekly-citations"></script>
+  <script src="./assets/data/publications.js?v=20260614-learnability-arxiv"></script>
+  <script src="./assets/js/site-render.js?v=20260614-publication-tabs"></script>
 </body>
 </html>
