@@ -13,6 +13,26 @@ window.SITE_CONFIG = {
 
 window.SITE_PUBLICATIONS = [
   {
+    slug: "nesy-route",
+    category: "conference",
+    selected: false,
+    venueTag: "ECCV 2026",
+    title: "NeSy-Route: A Neuro-Symbolic Benchmark for Constrained Route Planning in Remote Sensing",
+    authors: "Ming Yang, Zhi Zhou, <u>Shi-Yu Tian</u>, Kun-Yang Yu, Lan-Zhe Guo, Yu-Feng Li.",
+    venueShort: "In: European Conference on Computer Vision.",
+    venueFull: "In: European Conference on Computer Vision (ECCV 2026).",
+    badges: [
+      { label: "ECCV 2026" },
+      { label: "CAAI-A", type: "rank-highlight" }
+    ],
+    ratings: [
+      { label: "CAAI-A", type: "caai" }
+    ],
+    fullLinks: [
+      { label: "ArXiv", href: "https://arxiv.org/abs/2603.16307" }
+    ]
+  },
+  {
     slug: "learnability-tta",
     category: "conference",
     selected: false,

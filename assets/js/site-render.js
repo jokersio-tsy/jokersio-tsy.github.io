@@ -69,7 +69,8 @@
 
   function renderSelectedLink(link) {
     const classes = link.primary ? "link-pill primary" : "link-pill";
-    return `<a class="${classes}" href="${escapeHtml(link.href)}"${linkAttrs(link)}>${escapeHtml(link.label)}</a>`;
+    const label = link.label === "ArXiv" ? "Paper" : link.label;
+    return `<a class="${classes}" href="${escapeHtml(link.href)}"${linkAttrs(link)}>${escapeHtml(label)}</a>`;
   }
 
   function emphasizeAuthorName(html) {
@@ -102,8 +103,18 @@
     return `<span class="rating-pill ${type}">${escapeHtml(rating.label)}</span>`;
   }
 
-  function renderFullLink(link) {
-    return `<a href="${escapeHtml(link.href)}"${linkAttrs(link)}>${escapeHtml(link.label)}</a>`;
+  function renderFullLink(link, options) {
+    const label = options && options.home && link.label === "ArXiv" ? "Paper" : link.label;
+    return `<a href="${escapeHtml(link.href)}"${linkAttrs(link)}>${escapeHtml(label)}</a>`;
+  }
+
+  function publicationLinks(publication, options) {
+    const links = publication.fullLinks || [];
+    if (!options || !options.home) {
+      return links;
+    }
+
+    return links.filter((link) => link.label !== "BibTeX");
   }
 
   function formatVenue(text) {
@@ -114,12 +125,13 @@
     });
   }
 
-  function renderFullPublication(publication) {
+  function renderFullPublication(publication, options) {
     const ratings = (publication.ratings || []).length
       ? `<div class="pub-meta">${publication.ratings.map(renderRating).join("")}</div>`
       : "";
-    const links = (publication.fullLinks || []).length
-      ? `<div class="pub-links">${(publication.fullLinks || []).map(renderFullLink).join("")}</div>`
+    const links = publicationLinks(publication, options);
+    const renderedLinks = links.length
+      ? `<div class="pub-links">${links.map((link) => renderFullLink(link, options)).join("")}</div>`
       : "";
 
     return `
@@ -127,7 +139,7 @@
         <div class="pub-title">${escapeHtml(publication.title)}</div>
         <div class="pub-authors">${emphasizeAuthorName(publication.authors)}</div>
         <div class="pub-venue">${formatVenue(publication.venueFull || publication.venueShort || "")}</div>
-        <div class="pub-actions">${ratings}${links}</div>
+        <div class="pub-actions">${ratings}${renderedLinks}</div>
       </li>
     `;
   }
@@ -160,7 +172,7 @@
       }
 
       const items = publications.filter((publication) => publication.category === group.category);
-      container.innerHTML = items.map(renderFullPublication).join("");
+      container.innerHTML = items.map((publication) => renderFullPublication(publication, { home: true })).join("");
       container.dataset.rendered = "true";
     });
   }
