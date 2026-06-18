@@ -118,14 +118,16 @@
     const ratings = (publication.ratings || []).length
       ? `<div class="pub-meta">${publication.ratings.map(renderRating).join("")}</div>`
       : "";
+    const links = (publication.fullLinks || []).length
+      ? `<div class="pub-links">${(publication.fullLinks || []).map(renderFullLink).join("")}</div>`
+      : "";
 
     return `
       <li>
         <div class="pub-title">${escapeHtml(publication.title)}</div>
         <div class="pub-authors">${emphasizeAuthorName(publication.authors)}</div>
         <div class="pub-venue">${formatVenue(publication.venueFull || publication.venueShort || "")}</div>
-        ${ratings}
-        <div class="pub-links">${(publication.fullLinks || []).map(renderFullLink).join("")}</div>
+        <div class="pub-actions">${ratings}${links}</div>
       </li>
     `;
   }

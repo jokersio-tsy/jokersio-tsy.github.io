@@ -1479,7 +1479,15 @@
       display: flex;
       flex-wrap: wrap;
       gap: 0.45rem;
-      margin: 0.35rem 0 0.4rem;
+      margin: 0;
+    }
+
+    .pub-actions {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.4rem 0.7rem;
+      margin-top: 0.35rem;
     }
 
     .rating-pill {
@@ -1783,7 +1791,7 @@
         <h2 class="section-title">📝 Publications</h2>
         <div class="publication-tabs" role="tablist" aria-label="Publication view">
           <button class="publication-tab is-active" type="button" role="tab" aria-selected="true" aria-controls="selected-publications-panel" data-publication-view="selected">Selected</button>
-          <button class="publication-tab" type="button" role="tab" aria-selected="false" aria-controls="all-publications-panel" data-publication-view="all">All</button>
+          <button class="publication-tab" type="button" role="tab" aria-selected="false" aria-controls="all-publications-panel" data-publication-view="all">All by date</button>
         </div>
       </div>
 
@@ -1847,6 +1855,6 @@
     </div>
   </main>
   <script src="./assets/data/publications.js?v=20260614-learnability-arxiv"></script>
-  <script src="./assets/js/site-render.js?v=20260614-publication-tabs"></script>
+  <script src="./assets/js/site-render.js?v=20260618-pub-actions"></script>
 </body>
 </html>
