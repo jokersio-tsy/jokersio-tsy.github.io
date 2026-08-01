@@ -56,7 +56,7 @@ window.SITE_PUBLICATIONS = [
   {
     slug: "last",
     category: "preprint",
-    selected: false,
+    selected: true,
     venueTag: "Preprint",
     title: "LAST: Leveraging Tools as Hints to Enhance Spatial Reasoning for Multimodal Large Language Models",
     authors: "<u>Shi-Yu Tian</u>, Zhi Zhou, Kun-Yang Yu, Ming Yang, Yang Chen, Ziqiao Shang, Lan-Zhe Guo, Yu-Feng Li.",
@@ -69,18 +69,16 @@ window.SITE_PUBLICATIONS = [
     ratings: [],
     thumb: {
       type: "image",
-      src: "./projects/last/image/toolbox.png",
-      alt: "LAST-Box overview",
+      src: "./projects/last/image/figure4-examples.png",
+      alt: "Representative spatial reasoning examples from Figure 4 of the LAST paper",
       badge: "Preprint",
       contain: true
     },
     selectedLinks: [
-      { label: "Project Page", href: "./projects/last/index.html", primary: true },
-      { label: "Preprint", href: "./projects/last/main.pdf" }
+      { label: "ArXiv", href: "https://arxiv.org/abs/2604.09712", primary: true }
     ],
     fullLinks: [
-      { label: "Page", href: "./projects/last/index.html" },
-      { label: "Preprint", href: "./projects/last/main.pdf" }
+      { label: "ArXiv", href: "https://arxiv.org/abs/2604.09712" }
     ]
   },
   {
