@@ -54,6 +54,34 @@ window.SITE_PUBLICATIONS = [
     ]
   },
   {
+    slug: "nesy-spatial",
+    category: "preprint",
+    selected: true,
+    venueTag: "Preprint",
+    title: "Self-Evolving Neuro-Symbolic Skills for Tool-Augmented Spatial Reasoning",
+    authors: "<u>Shi-Yu Tian</u>*, Zhuo-Xia Wang*, Xuan-Yi Zhu, Zhi Zhou, Xinwei Yang, Kun-Yang Yu, Ming Yang, Yang Chen, Yu-Feng Li.",
+    venueShort: "Preprint.",
+    venueFull: "Preprint.",
+    summary: "A self-evolving neuro-symbolic framework that retrieves, executes, refines, fuses, and prunes reusable tool-use and geometry skills for spatial reasoning.",
+    badges: [
+      { label: "Preprint" }
+    ],
+    ratings: [],
+    thumb: {
+      type: "image",
+      src: "./projects/nesy-spatial/image/frame.png",
+      alt: "Overview of the NeSy-Spatial framework",
+      badge: "Preprint",
+      contain: true
+    },
+    selectedLinks: [
+      { label: "ArXiv", href: "https://arxiv.org/abs/2608.07955", primary: true }
+    ],
+    fullLinks: [
+      { label: "ArXiv", href: "https://arxiv.org/abs/2608.07955" }
+    ]
+  },
+  {
     slug: "last",
     category: "preprint",
     selected: true,
