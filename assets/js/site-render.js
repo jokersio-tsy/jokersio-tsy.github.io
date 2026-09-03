@@ -233,6 +233,24 @@
     });
   }
 
+  function renderPageUpdated() {
+    const updated = new Date(document.lastModified);
+    if (Number.isNaN(updated.getTime())) {
+      return;
+    }
+
+    const pad = (value) => String(value).padStart(2, "0");
+    const timestamp = [
+      updated.getFullYear(),
+      pad(updated.getMonth() + 1)
+    ].join(".");
+
+    document.querySelectorAll("[data-page-updated]").forEach((element) => {
+      element.textContent = timestamp;
+      element.setAttribute("datetime", updated.toISOString());
+    });
+  }
+
   function mondayKey(value) {
     const date = value ? new Date(value) : new Date();
     if (Number.isNaN(date.getTime())) {
@@ -446,6 +464,7 @@
     renderSelectedWorks();
     renderFullPublications();
     setupHomePublicationTabs();
+    renderPageUpdated();
     fetchScholarStats();
   });
 })();

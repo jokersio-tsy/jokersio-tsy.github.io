@@ -13,6 +13,26 @@ window.SITE_CONFIG = {
 
 window.SITE_PUBLICATIONS = [
   {
+    slug: "lookstep",
+    category: "conference",
+    selected: false,
+    venueTag: "EMNLP 2026",
+    title: "LookStep: Efficient Vision-Language Navigation with Linguistic Foresight and Event Driven Memory",
+    authors: "Kun-Yang Yu, Yingzhe Li, Hongyu Xu, <u>Shi-Yu Tian</u>, Zhi Zhou, Yang Chen, Ming Yang, Sheng Wang, Qing Yu, Lan-Zhe Guo, Yu-Feng Li.",
+    venueShort: "In: Conference on Empirical Methods in Natural Language Processing.",
+    venueFull: "In: Conference on Empirical Methods in Natural Language Processing (EMNLP 2026).",
+    badges: [
+      { label: "EMNLP 2026" },
+      { label: "CAAI-A", type: "rank-highlight" }
+    ],
+    ratings: [
+      { label: "CAAI-A", type: "caai" }
+    ],
+    fullLinks: [
+      { label: "ArXiv", href: "https://arxiv.org/abs/2609.02350" }
+    ]
+  },
+  {
     slug: "nesy-route",
     category: "conference",
     selected: false,
