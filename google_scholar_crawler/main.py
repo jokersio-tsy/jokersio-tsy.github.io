@@ -5,10 +5,6 @@ import os
 from scholarly import ProxyGenerator, scholarly
 
 
-def _as_bool(value):
-    return str(value).strip().lower() in {"1", "true", "yes", "on"}
-
-
 def configure_scholarly():
     timeout = int(os.getenv("SCHOLARLY_TIMEOUT", "30"))
     retries = int(os.getenv("SCHOLARLY_RETRIES", "3"))
@@ -19,43 +15,27 @@ def configure_scholarly():
     scraperapi_key = os.getenv("SCRAPER_API_KEY", "").strip()
     http_proxy = os.getenv("SCHOLAR_HTTP_PROXY", "").strip()
     https_proxy = os.getenv("SCHOLAR_HTTPS_PROXY", "").strip()
-    use_free_proxies = _as_bool(os.getenv("SCHOLAR_USE_FREE_PROXIES", "false"))
 
     if scraperapi_key:
         pg = ProxyGenerator()
         success = pg.ScraperAPI(scraperapi_key)
         print(f"[scholar] proxy=ScraperAPI success={success}", flush=True)
-        if success:
-            scholarly.use_proxy(pg)
+        if not success:
+            raise RuntimeError("ScraperAPI proxy initialization failed.")
+        scholarly.use_proxy(pg, pg)
         return "scraperapi"
 
     if http_proxy or https_proxy:
         pg = ProxyGenerator()
         success = pg.SingleProxy(http=http_proxy or None, https=https_proxy or None)
         print(f"[scholar] proxy=SingleProxy success={success}", flush=True)
-        if success:
-            scholarly.use_proxy(pg, pg)
+        if not success:
+            raise RuntimeError("Configured HTTP/HTTPS proxy initialization failed.")
+        scholarly.use_proxy(pg, pg)
         return "single"
-
-    if use_free_proxies:
-        pg = ProxyGenerator()
-        success = pg.FreeProxies()
-        print(f"[scholar] proxy=FreeProxies success={success}", flush=True)
-        if success:
-            scholarly.use_proxy(pg)
-        return "free"
 
     print("[scholar] proxy=none", flush=True)
     return "none"
-
-
-def enable_free_proxies():
-    pg = ProxyGenerator()
-    success = pg.FreeProxies()
-    print(f"[scholar] fallback proxy=FreeProxies success={success}", flush=True)
-    if success:
-        scholarly.use_proxy(pg)
-    return success
 
 
 def fetch_author(scholar_user_id):
@@ -64,6 +44,21 @@ def fetch_author(scholar_user_id):
     print("[scholar] filling author profile", flush=True)
     scholarly.fill(author, sections=["basics", "indices", "counts", "publications"])
     return author
+
+
+def validate_author(author, scholar_user_id):
+    """Reject incomplete responses before replacing any published statistics."""
+    if author.get("scholar_id") != scholar_user_id or not author.get("name"):
+        raise ValueError("Google Scholar returned an incomplete or mismatched author profile.")
+    citedby = author.get("citedby")
+    if type(citedby) is not int or citedby < 0:
+        raise ValueError("Google Scholar did not return a valid citation count.")
+    publications = author.get("publications")
+    if not isinstance(publications, list) or any(
+        not isinstance(publication, dict) or not publication.get("author_pub_id")
+        for publication in publications
+    ):
+        raise ValueError("Google Scholar returned invalid publication data.")
 
 
 def week_start(date_time):
@@ -149,17 +144,14 @@ def main():
     try:
         author = fetch_author(scholar_user_id)
     except Exception as error:
-        print(f"[scholar] direct fetch failed: {type(error).__name__}: {error}", flush=True)
-        should_try_fallback = proxy_mode == "none" and _as_bool(os.getenv("GITHUB_ACTIONS", "false"))
-        if should_try_fallback and enable_free_proxies():
-            print("[scholar] retrying fetch with free proxies", flush=True)
-            author = fetch_author(scholar_user_id)
-        else:
-            raise RuntimeError(
-                "Google Scholar rejected the runner request. Configure SCRAPER_API_KEY "
-                "or SCHOLAR_HTTP_PROXY/SCHOLAR_HTTPS_PROXY in GitHub Actions secrets."
-            ) from error
+        print(f"[scholar] fetch failed (proxy={proxy_mode}): {type(error).__name__}: {error}", flush=True)
+        raise RuntimeError(
+            f"Google Scholar fetch failed (proxy={proxy_mode}). The workflow retries "
+            "in a fresh process. If failures persist, configure SCRAPER_API_KEY "
+            "or SCHOLAR_HTTP_PROXY/SCHOLAR_HTTPS_PROXY in GitHub Actions secrets."
+        ) from error
 
+    validate_author(author, scholar_user_id)
     updated_at = datetime.now(timezone.utc)
     author["updated"] = updated_at.isoformat()
     author["publications"] = {

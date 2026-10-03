@@ -11,6 +11,10 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: google-scholar-stats
+  cancel-in-progress: false
+
 jobs:
   update-scholar-stats:
     runs-on: ubuntu-latest
@@ -25,26 +29,43 @@ jobs:
           python-version: "3.11"
 
       - name: Install dependencies
-        run: pip install -r google_scholar_crawler/requirements.txt
+        run: |
+          python -m pip install -r google_scholar_crawler/requirements.txt
+          python -m pip check
+
+      - name: Verify crawler dependencies and failure handling
+        run: |
+          python -c "from scholarly import scholarly, ProxyGenerator; from importlib.metadata import version; print({name: version(name) for name in ('scholarly', 'bibtexparser', 'free-proxy')})"
+          python -m unittest discover -s google_scholar_crawler -p 'test_*.py'
 
       - name: Restore citation history
         run: |
           mkdir -p google_scholar_crawler/results
-          curl -fsSL "https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/google-scholar-stats/citation_history.json" \
-            -o google_scholar_crawler/results/citation_history.json || true
+          curl -fsSL --retry 3 --connect-timeout 10 --max-time 30 \
+            "https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/google-scholar-stats/citation_history.json" \
+            -o google_scholar_crawler/results/citation_history.json
 
       - name: Fetch Google Scholar data
         env:
           GOOGLE_SCHOLAR_ID: 2UwjVasAAAAJ
           SCHOLARLY_TIMEOUT: "30"
           SCHOLARLY_RETRIES: "3"
-          SCHOLAR_USE_FREE_PROXIES: ${{ secrets.SCHOLAR_USE_FREE_PROXIES }}
           SCHOLAR_HTTP_PROXY: ${{ secrets.SCHOLAR_HTTP_PROXY }}
           SCHOLAR_HTTPS_PROXY: ${{ secrets.SCHOLAR_HTTPS_PROXY }}
           SCRAPER_API_KEY: ${{ secrets.SCRAPER_API_KEY }}
         run: |
           cd google_scholar_crawler
-          python -u main.py
+          for attempt in 1 2 3; do
+            echo "[scholar] attempt ${attempt}/3 (120s limit)"
+            if timeout --kill-after=5s 120s python -u main.py; then
+              exit 0
+            fi
+            if [ "$attempt" -lt 3 ]; then
+              sleep 10
+            fi
+          done
+          echo "::error::Google Scholar fetch failed after 3 attempts; published statistics were not changed."
+          exit 1
 
       - name: Publish stats branch
         env:
