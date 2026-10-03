@@ -17,7 +17,7 @@
   ],
   "email_domain": "@lamda.nju.edu.cn",
   "homepage": "https://www.lamda.nju.edu.cn/tiansy/",
-  "citedby": 95,
+  "citedby": 103,
   "publications": {
     "2UwjVasAAAAJ:u5HHmVD_uO8C": {
       "container_type": "Publication",
@@ -28,7 +28,7 @@
       },
       "filled": false,
       "author_pub_id": "2UwjVasAAAAJ:u5HHmVD_uO8C",
-      "num_citations": 33,
+      "num_citations": 37,
       "citedby_url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=3647096781729090049",
       "cites_id": [
         "3647096781729090049"
@@ -166,7 +166,7 @@
       },
       "filled": false,
       "author_pub_id": "2UwjVasAAAAJ:hqOjcs7Dif8C",
-      "num_citations": 1,
+      "num_citations": 2,
       "citedby_url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=10848311606657277781",
       "cites_id": [
         "10848311606657277781"
@@ -181,7 +181,7 @@
       },
       "filled": false,
       "author_pub_id": "2UwjVasAAAAJ:UebtZRa9Y70C",
-      "num_citations": 1,
+      "num_citations": 2,
       "citedby_url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=16037758975560951759",
       "cites_id": [
         "16037758975560951759"
@@ -196,7 +196,11 @@
       },
       "filled": false,
       "author_pub_id": "2UwjVasAAAAJ:5nxA0vEk-isC",
-      "num_citations": 0
+      "num_citations": 1,
+      "citedby_url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=16882596181438724365",
+      "cites_id": [
+        "16882596181438724365"
+      ]
     },
     "2UwjVasAAAAJ:0EnyYjriUFMC": {
       "container_type": "Publication",
@@ -207,7 +211,11 @@
       },
       "filled": false,
       "author_pub_id": "2UwjVasAAAAJ:0EnyYjriUFMC",
-      "num_citations": 0
+      "num_citations": 1,
+      "citedby_url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=12219654304934897974",
+      "cites_id": [
+        "12219654304934897974"
+      ]
     },
     "2UwjVasAAAAJ:W7OEmFMy1HYC": {
       "container_type": "Publication",
@@ -220,7 +228,7 @@
       "num_citations": 0
     }
   },
-  "citedby5y": 95,
+  "citedby5y": 103,
   "hindex": 5,
   "hindex5y": 5,
   "i10index": 3,
@@ -228,9 +236,9 @@
   "cites_per_year": {
     "2024": 3,
     "2025": 33,
-    "2026": 59
+    "2026": 67
   },
-  "updated": "2026-09-07T07:47:13.102056+00:00",
+  "updated": "2026-10-03T09:15:18.654872+00:00",
   "citation_history": [
     {
       "week": "2026-06-08",
@@ -291,6 +299,11 @@
       "week": "2026-09-07",
       "citedby": 95,
       "updated": "2026-09-07T07:47:13.102056+00:00"
+    },
+    {
+      "week": "2026-09-28",
+      "citedby": 103,
+      "updated": "2026-10-03T09:15:18.654872+00:00"
     }
   ]
 }
