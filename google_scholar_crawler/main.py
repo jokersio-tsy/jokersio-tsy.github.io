@@ -146,9 +146,9 @@ def main():
     except Exception as error:
         print(f"[scholar] fetch failed (proxy={proxy_mode}): {type(error).__name__}: {error}", flush=True)
         raise RuntimeError(
-            f"Google Scholar fetch failed (proxy={proxy_mode}). The workflow retries "
+            f"Google Scholar fetch failed (proxy={proxy_mode}). The updater retries "
             "in a fresh process. If failures persist, configure SCRAPER_API_KEY "
-            "or SCHOLAR_HTTP_PROXY/SCHOLAR_HTTPS_PROXY in GitHub Actions secrets."
+            "or SCHOLAR_HTTP_PROXY/SCHOLAR_HTTPS_PROXY in the updater environment."
         ) from error
 
     validate_author(author, scholar_user_id)

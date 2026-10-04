@@ -1,0 +1,28 @@
+[Unit]
+Description=Fetch and publish Google Scholar statistics
+Wants=network-online.target scholar-proxy.service
+After=network-online.target scholar-proxy.service
+StartLimitIntervalSec=6h
+StartLimitBurst=3
+
+[Service]
+Type=oneshot
+User=scholar-updater
+Group=scholar-updater
+StateDirectory=homepage-scholar
+StateDirectoryMode=0750
+WorkingDirectory=/var/lib/homepage-scholar
+EnvironmentFile=/etc/homepage-scholar/updater.env
+ExecStart=/opt/homepage-scholar/venv/bin/python /opt/homepage-scholar/deploy/scholar/update.py
+TimeoutStartSec=15min
+TimeoutStopSec=10s
+KillMode=control-group
+Restart=on-failure
+RestartSec=15min
+UMask=0077
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/lib/homepage-scholar
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6

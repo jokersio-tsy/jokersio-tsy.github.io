@@ -1,0 +1,24 @@
+[Unit]
+Description=Loopback proxy for homepage Scholar updates
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=simple
+User=scholar-proxy
+Group=scholar-proxy
+ExecStart=/usr/local/lib/scholar-proxy/mihomo -d /var/lib/scholar-proxy -f /etc/scholar-proxy/config.yaml
+Restart=on-failure
+RestartSec=5s
+UMask=0077
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/lib/scholar-proxy
+RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX
+CapabilityBoundingSet=
+LimitNOFILE=65536
+
+[Install]
+WantedBy=multi-user.target

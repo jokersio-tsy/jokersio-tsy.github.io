@@ -440,20 +440,53 @@
     return true;
   }
 
+  async function fetchJSON(url) {
+    const controller = new AbortController();
+    let timer;
+    const timeout = new Promise((_, reject) => {
+      timer = setTimeout(() => {
+        controller.abort();
+        reject(new Error("Citation data request timed out"));
+      }, 5000);
+    });
+
+    try {
+      return await Promise.race([
+        (async () => {
+          const response = await fetch(url, { cache: "no-store", signal: controller.signal });
+          if (!response.ok) {
+            throw new Error(`Citation data request failed: ${response.status}`);
+          }
+          return await response.json();
+        })(),
+        timeout
+      ]);
+    } finally {
+      clearTimeout(timer);
+    }
+  }
+
+  function validCitationHistory(history) {
+    return Array.isArray(history) && history.length > 0 && history.every((entry) => {
+      if (!entry || typeof entry !== "object") {
+        return false;
+      }
+      const citedby = Number(entry.citedby ?? entry.citations ?? entry.total);
+      const date = entry.week || entry.updated || entry.date;
+      return Number.isFinite(citedby) && citedby >= 0 && date && !Number.isNaN(new Date(date).getTime());
+    });
+  }
+
   async function fetchCitationHistory() {
     const urls = [
-      `https://cdn.jsdelivr.net/gh/${siteConfig.repository}@${siteConfig.scholarStatsBranch}/citation_history.json`,
-      `https://raw.githubusercontent.com/${siteConfig.repository}/${siteConfig.scholarStatsBranch}/citation_history.json`
+      `https://raw.githubusercontent.com/${siteConfig.repository}/${siteConfig.scholarStatsBranch}/citation_history.json`,
+      `https://cdn.jsdelivr.net/gh/${siteConfig.repository}@${siteConfig.scholarStatsBranch}/citation_history.json`
     ];
 
     for (const url of urls) {
       try {
-        const response = await fetch(url, { cache: "no-store" });
-        if (!response.ok) {
-          continue;
-        }
-        const history = await response.json();
-        if (Array.isArray(history)) {
+        const history = await fetchJSON(url);
+        if (validCitationHistory(history)) {
           return history;
         }
       } catch (error) {
@@ -471,19 +504,21 @@
     }
 
     const baseUrls = [
-      `https://cdn.jsdelivr.net/gh/${siteConfig.repository}@${siteConfig.scholarStatsBranch}/gs_data.json`,
-      `https://raw.githubusercontent.com/${siteConfig.repository}/${siteConfig.scholarStatsBranch}/gs_data.json`
+      `https://raw.githubusercontent.com/${siteConfig.repository}/${siteConfig.scholarStatsBranch}/gs_data.json`,
+      `https://cdn.jsdelivr.net/gh/${siteConfig.repository}@${siteConfig.scholarStatsBranch}/gs_data.json`
     ];
 
     for (const url of baseUrls) {
       try {
-        const response = await fetch(url, { cache: "no-store" });
-        if (!response.ok) {
+        const data = await fetchJSON(url);
+        if (!data || !Number.isFinite(data.citedby)) {
           continue;
         }
-
-        const data = await response.json();
-        const citationHistory = await fetchCitationHistory();
+        const citationHistory = validCitationHistory(data.citation_history)
+          ? data.citation_history
+          : validCitationHistory(data.weekly_citations)
+            ? data.weekly_citations
+            : (await fetchCitationHistory()) || [];
         if (applyScholarStats(data, totalCitations, citationHistory)) {
           return;
         }

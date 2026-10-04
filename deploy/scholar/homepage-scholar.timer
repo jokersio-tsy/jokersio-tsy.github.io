@@ -1,0 +1,11 @@
+[Unit]
+Description=Update Scholar daily at 11:00 Beijing time
+
+[Timer]
+OnCalendar=*-*-* 03:00:00 UTC
+Persistent=true
+AccuracySec=1min
+Unit=homepage-scholar.service
+
+[Install]
+WantedBy=timers.target
