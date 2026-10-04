@@ -17,7 +17,7 @@
   ],
   "email_domain": "@lamda.nju.edu.cn",
   "homepage": "https://www.lamda.nju.edu.cn/tiansy/",
-  "citedby": 103,
+  "citedby": 107,
   "publications": {
     "2UwjVasAAAAJ:u5HHmVD_uO8C": {
       "container_type": "Publication",
@@ -58,7 +58,7 @@
       },
       "filled": false,
       "author_pub_id": "2UwjVasAAAAJ:zYLM7Y9cAGgC",
-      "num_citations": 12,
+      "num_citations": 13,
       "citedby_url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=7161241870803916192",
       "cites_id": [
         "7161241870803916192"
@@ -73,12 +73,27 @@
       },
       "filled": false,
       "author_pub_id": "2UwjVasAAAAJ:YsMSGLbcyi4C",
-      "num_citations": 7,
+      "num_citations": 8,
       "citedby_url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=13509911868097941693,11851664692189461412,5813773494250998201",
       "cites_id": [
         "13509911868097941693",
         "11851664692189461412",
         "5813773494250998201"
+      ]
+    },
+    "2UwjVasAAAAJ:2osOgNQ5qMEC": {
+      "container_type": "Publication",
+      "source": "AUTHOR_PUBLICATION_ENTRY",
+      "bib": {
+        "title": "Rethinking evaluation for multi-label drug-drug interaction prediction",
+        "pub_year": "2025"
+      },
+      "filled": false,
+      "author_pub_id": "2UwjVasAAAAJ:2osOgNQ5qMEC",
+      "num_citations": 6,
+      "citedby_url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=2338901982686123231",
+      "cites_id": [
+        "2338901982686123231"
       ]
     },
     "2UwjVasAAAAJ:roLk4NBRz8UC": {
@@ -111,21 +126,6 @@
         "7742276981122043447"
       ]
     },
-    "2UwjVasAAAAJ:2osOgNQ5qMEC": {
-      "container_type": "Publication",
-      "source": "AUTHOR_PUBLICATION_ENTRY",
-      "bib": {
-        "title": "Rethinking evaluation for multi-label drug-drug interaction prediction",
-        "pub_year": "2025"
-      },
-      "filled": false,
-      "author_pub_id": "2UwjVasAAAAJ:2osOgNQ5qMEC",
-      "num_citations": 5,
-      "citedby_url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=2338901982686123231",
-      "cites_id": [
-        "2338901982686123231"
-      ]
-    },
     "2UwjVasAAAAJ:WF5omc3nYNoC": {
       "container_type": "Publication",
       "source": "AUTHOR_PUBLICATION_ENTRY",
@@ -139,6 +139,21 @@
       "citedby_url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=2973243343817137202",
       "cites_id": [
         "2973243343817137202"
+      ]
+    },
+    "2UwjVasAAAAJ:hqOjcs7Dif8C": {
+      "container_type": "Publication",
+      "source": "AUTHOR_PUBLICATION_ENTRY",
+      "bib": {
+        "title": "Self-Evolving Neuro-Symbolic Skills for Tool-Augmented Spatial Reasoning",
+        "pub_year": "2026"
+      },
+      "filled": false,
+      "author_pub_id": "2UwjVasAAAAJ:hqOjcs7Dif8C",
+      "num_citations": 3,
+      "citedby_url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=10848311606657277781",
+      "cites_id": [
+        "10848311606657277781"
       ]
     },
     "2UwjVasAAAAJ:Se3iqnhoufwC": {
@@ -155,21 +170,6 @@
       "cites_id": [
         "9418012546504353805",
         "18134269311725438016"
-      ]
-    },
-    "2UwjVasAAAAJ:hqOjcs7Dif8C": {
-      "container_type": "Publication",
-      "source": "AUTHOR_PUBLICATION_ENTRY",
-      "bib": {
-        "title": "Self-Evolving Neuro-Symbolic Skills for Tool-Augmented Spatial Reasoning",
-        "pub_year": "2026"
-      },
-      "filled": false,
-      "author_pub_id": "2UwjVasAAAAJ:hqOjcs7Dif8C",
-      "num_citations": 2,
-      "citedby_url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=10848311606657277781",
-      "cites_id": [
-        "10848311606657277781"
       ]
     },
     "2UwjVasAAAAJ:UebtZRa9Y70C": {
@@ -228,7 +228,7 @@
       "num_citations": 0
     }
   },
-  "citedby5y": 103,
+  "citedby5y": 107,
   "hindex": 5,
   "hindex5y": 5,
   "i10index": 3,
@@ -236,9 +236,9 @@
   "cites_per_year": {
     "2024": 3,
     "2025": 33,
-    "2026": 67
+    "2026": 71
   },
-  "updated": "2026-10-03T09:15:18.654872+00:00",
+  "updated": "2026-10-04T15:26:48.589100+00:00",
   "citation_history": [
     {
       "week": "2026-06-08",
