@@ -3,9 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Shi-Yu Tian | Homepage</title>
+  <title data-i18n="home.documentTitle">Shi-Yu Tian | Homepage</title>
   <meta
     name="description"
+    data-i18n-content="home.description"
     content="Shi-Yu Tian, Ph.D. student at LAMDA Group, Nanjing University. Research interests include spatial intelligence, neuro-symbolic AI, and trustworthy AI."
   >
   <style>
@@ -1663,19 +1664,26 @@
 
     }
   </style>
+  <link rel="stylesheet" href="./assets/css/i18n.css?v=20261004">
 </head>
-<body>
+<body data-page="home">
   <header class="topbar">
     <div class="shell topbar-inner">
-      <a class="brand" href="#top">
-        <span class="brand-mark">SY</span>
-        <span class="brand-name">Shi-Yu Tian</span>
-      </a>
-      <nav class="nav">
-        <a href="#about">About</a>
-        <a href="#news">News</a>
-        <a href="#publications">Publications</a>
-        <a href="#service">Service</a>
+      <div class="brand-group">
+        <a class="brand" href="#top">
+          <span class="brand-mark">SY</span>
+          <span class="brand-name">Shi-Yu Tian</span>
+        </a>
+        <div class="language-switch" role="group" aria-label="Language / 语言" hidden>
+          <button type="button" data-language="en" aria-pressed="true" lang="en">EN</button>
+          <button type="button" data-language="zh" aria-pressed="false" lang="zh-CN">中文</button>
+        </div>
+      </div>
+      <nav class="nav" aria-label="Main navigation" data-i18n-aria-label="nav.label">
+        <a href="#about" data-i18n="nav.about">About</a>
+        <a href="#news" data-i18n="nav.news">News</a>
+        <a href="#publications" data-i18n="nav.publications">Publications</a>
+        <a href="#service" data-i18n="nav.service">Service</a>
       </nav>
     </div>
   </header>
@@ -1683,10 +1691,10 @@
   <main class="shell site-layout" id="top">
     <aside class="panel profile-panel fade-up" id="about" style="--delay: 40ms;">
         <div class="portrait-frame">
-          <img src="./src/tiansy.jpg" alt="Portrait of Shi-Yu Tian">
+          <img src="./src/tiansy.jpg" alt="Portrait of Shi-Yu Tian" data-i18n-alt="profile.portrait">
         </div>
         <h1 class="hero-name">Shi-Yu Tian<span>&#30000;&#26102;&#38632;</span></h1>
-        <div class="profile-caption">A Ph.D. student in LAMDA Group</div>
+        <div class="profile-caption" data-i18n="profile.caption">A Ph.D. student in LAMDA Group</div>
         <div class="identity-list">
           <div class="identity-item">
             <svg class="identity-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -1709,7 +1717,7 @@
             </svg>
             <span class="scholar-links">
               <a href="https://scholar.google.com/citations?user=2UwjVasAAAAJ" target="_blank" rel="noreferrer">Google Scholar</a>
-              <a class="citation-badge" href="https://scholar.google.com/citations?user=2UwjVasAAAAJ" target="_blank" rel="noreferrer" aria-label="Google Scholar citation count">
+              <a class="citation-badge" href="https://scholar.google.com/citations?user=2UwjVasAAAAJ" target="_blank" rel="noreferrer" aria-label="Google Scholar citation count" data-i18n-aria-label="profile.scholarCount">
                 <img id="scholar-total-citations" src="https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Fjokersio-tsy%2Fjokersio-tsy.github.io%2Fgoogle-scholar-stats%2Fgs_data_shieldsio.json&logo=Google%20Scholar&labelColor=f6f6f6&color=9cf&style=flat&label=citations" alt="Google Scholar citations">
               </a>
             </span>
@@ -1717,18 +1725,18 @@
         </div>
         <div class="logo-grid">
           <div class="logo-card">
-            <img src="./src/lamda.jpg" alt="LAMDA Group logo">
+            <img src="./src/lamda.jpg" alt="LAMDA Group logo" data-i18n-alt="profile.lamdaLogo">
           </div>
           <div class="logo-card">
-            <img src="./src/nju.jpg" alt="Nanjing University logo">
+            <img src="./src/nju.jpg" alt="Nanjing University logo" data-i18n-alt="profile.njuLogo">
           </div>
         </div>
     </aside>
 
     <div class="content-flow">
       <section class="panel intro-panel fade-up" style="--delay: 120ms;">
-        <h2 class="section-title">🤵🏻 About Me</h2>
-        <p class="lede">
+        <h2 class="section-title" data-i18n="about.title">🤵🏻 About Me</h2>
+        <p class="lede" data-i18n="about.text">
           I am a Ph.D. student in Computer Science at <a href="https://www.nju.edu.cn/" target="_blank" rel="noreferrer">Nanjing University</a>
           and a member of the <a href="https://www.lamda.nju.edu.cn/" target="_blank" rel="noreferrer">LAMDA Group</a> in the
           <a href="https://ai.nju.edu.cn/" target="_blank" rel="noreferrer">School of Artificial Intelligence</a>, advised by Professor
@@ -1740,30 +1748,30 @@
           improvement, and reliable reasoning capabilities of LLMs.
         </p>
         <div class="education-block">
-          <h3 class="education-title">🎓 Education</h3>
+          <h3 class="education-title" data-i18n="education.title">🎓 Education</h3>
           <div class="education-list">
             <div class="edu-item">
-              <div class="edu-period">2024 - Present</div>
-              <div class="edu-degree">Ph.D. in Computer Science</div>
-              <div class="edu-meta">School of Artificial Intelligence, Nanjing University.</div>
+              <div class="edu-period" data-i18n="education.phdPeriod">2024 - Present</div>
+              <div class="edu-degree" data-i18n="education.phdDegree">Ph.D. in Computer Science</div>
+              <div class="edu-meta" data-i18n="education.phdSchool">School of Artificial Intelligence, Nanjing University.</div>
             </div>
             <div class="edu-item">
               <div class="edu-period">2020 - 2024</div>
-              <div class="edu-degree">B.Sc. in Computer Science</div>
-              <div class="edu-meta">College of Computer Science, Chongqing University.</div>
+              <div class="edu-degree" data-i18n="education.bachelorDegree">B.Sc. in Computer Science</div>
+              <div class="edu-meta" data-i18n="education.bachelorSchool">College of Computer Science, Chongqing University.</div>
             </div>
           </div>
         </div>
         <div class="education-block">
-          <h3 class="education-title">💼 Experience</h3>
+          <h3 class="education-title" data-i18n="experience.title">💼 Experience</h3>
           <div class="education-list">
             <div class="edu-item experience-item">
-              <div class="edu-period">2026.06 - Now</div>
+              <div class="edu-period" data-i18n="experience.period">2026.06 - Now</div>
               <div class="edu-degree experience-line">
                 <span class="jd-dog-icon" aria-hidden="true">
                   <img src="./src/jd-dog.svg" alt="">
                 </span>
-                <span><a href="https://campus.jd.com/#/talentProject" target="_blank" rel="noreferrer">TGT</a> Program Intern, JD Retail.</span>
+                <span data-i18n="experience.jd"><a href="https://campus.jd.com/#/talentProject" target="_blank" rel="noreferrer">TGT</a> Program Intern, JD Retail.</span>
               </div>
             </div>
           </div>
@@ -1772,32 +1780,33 @@
 
     <section class="section" id="news">
       <div class="section-head">
-        <h2 class="section-title">🎉 News</h2>
+        <h2 class="section-title" data-i18n="news.title">🎉 News</h2>
       </div>
       <div class="plain-panel news-panel fade-up" style="--delay: 30ms;">
         <ul class="news-list">
-          <li>[2026/08] <span class="news-icon" aria-hidden="true">&#10022;</span><b>LookStep</b> is accepted by <b>EMNLP 2026</b>.</li>
-          <li>[2026/08] We released <a href="https://arxiv.org/abs/2608.07955" target="_blank" rel="noreferrer"><b>NeSy-Spatial</b></a>, a self-evolving neuro-symbolic framework for spatial reasoning.</li>
-          <li>[2026/06] <span class="news-icon" aria-hidden="true">&#10022;</span><b>NeSy-Route</b> is accepted by <b>ECCV 2026</b>.</li>
-          <li>[2026/06] I started my first talent-program internship in the <b>TGT (Tech Genius Team) Program</b> at <b>JD Retail</b>.</li>
-          <li>[2026/05] <span class="news-icon" aria-hidden="true">&#10022;</span><b>On the Learnability of Test-Time Adaptation</b> is accepted by <b>ICML 2026</b>.</li>
-          <li>[2026/04] <span class="news-icon" aria-hidden="true">&#10022;</span><b>TabularMath</b> is accepted by <b>ACL 2026</b>.</li>
-          <li>[2026/04] We released the <a href="https://arxiv.org/abs/2604.09712" target="_blank" rel="noreferrer">LAST</a> paper, a tool-augmented framework for spatial reasoning.</li>
-          <li>[2025/08] <span class="news-icon" aria-hidden="true">&#10022;</span><b>VCSearch</b> is accepted by <b>EMNLP 2025 (Oral)</b>.</li>
-          <li>[2025/06] We released the <a href="https://huggingface.co/datasets/kevin715/PMC" target="_blank" rel="noreferrer">PMC</a> benchmark of VCSearch.</li>
-          <li>[2025/05] We released <a href="https://huggingface.co/datasets/kevin715/TabularGSM" target="_blank" rel="noreferrer">TabularMath</a>, a reasoning-intensive table QA benchmark.</li>
-          <li>[2024/12] One paper is accepted by <b>Frontiers of Computer Science</b>.</li>
-          <li>[2024/02] <span class="news-icon" aria-hidden="true">&#10022;</span><b>CroSel</b> is accepted by <b>CVPR 2024 (Oral)</b>.</li>
+          <li data-i18n="news.citations">[2026/09] <span class="news-icon" aria-hidden="true">&#10022;</span>My publications have reached <b>100 citations</b> on Google Scholar.</li>
+          <li data-i18n="news.lookstep">[2026/08] <span class="news-icon" aria-hidden="true">&#10022;</span><b>LookStep</b> is accepted by <b>EMNLP 2026</b>.</li>
+          <li data-i18n="news.nesySpatial">[2026/08] We released <a href="https://arxiv.org/abs/2608.07955" target="_blank" rel="noreferrer"><b>NeSy-Spatial</b></a>, a self-evolving neuro-symbolic framework for spatial reasoning.</li>
+          <li data-i18n="news.nesyRoute">[2026/06] <span class="news-icon" aria-hidden="true">&#10022;</span><b>NeSy-Route</b> is accepted by <b>ECCV 2026</b>.</li>
+          <li data-i18n="news.jd">[2026/06] I started my first talent-program internship in the <b>TGT (Tech Genius Team) Program</b> at <b>JD Retail</b>.</li>
+          <li data-i18n="news.tta">[2026/05] <span class="news-icon" aria-hidden="true">&#10022;</span><b>On the Learnability of Test-Time Adaptation</b> is accepted by <b>ICML 2026</b>.</li>
+          <li data-i18n="news.tabularmath">[2026/04] <span class="news-icon" aria-hidden="true">&#10022;</span><b>TabularMath</b> is accepted by <b>ACL 2026</b>.</li>
+          <li data-i18n="news.last">[2026/04] We released the <a href="https://arxiv.org/abs/2604.09712" target="_blank" rel="noreferrer">LAST</a> paper, a tool-augmented framework for spatial reasoning.</li>
+          <li data-i18n="news.vcsearch">[2025/08] <span class="news-icon" aria-hidden="true">&#10022;</span><b>VCSearch</b> is accepted by <b>EMNLP 2025 (Oral)</b>.</li>
+          <li data-i18n="news.pmc">[2025/06] We released the <a href="https://huggingface.co/datasets/kevin715/PMC" target="_blank" rel="noreferrer">PMC</a> benchmark of VCSearch.</li>
+          <li data-i18n="news.tabularBenchmark">[2025/05] We released <a href="https://huggingface.co/datasets/kevin715/TabularGSM" target="_blank" rel="noreferrer">TabularMath</a>, a reasoning-intensive table QA benchmark.</li>
+          <li data-i18n="news.fcs">[2024/12] One paper is accepted by <b>Frontiers of Computer Science</b>.</li>
+          <li data-i18n="news.crosel">[2024/02] <span class="news-icon" aria-hidden="true">&#10022;</span><b>CroSel</b> is accepted by <b>CVPR 2024 (Oral)</b>.</li>
         </ul>
       </div>
     </section>
 
     <section class="section" id="publications">
       <div class="section-head">
-        <h2 class="section-title">📝 Publications</h2>
-        <div class="publication-tabs" role="tablist" aria-label="Publication view">
-          <button class="publication-tab is-active" type="button" role="tab" aria-selected="true" aria-controls="selected-publications-panel" data-publication-view="selected">Selected</button>
-          <button class="publication-tab" type="button" role="tab" aria-selected="false" aria-controls="all-publications-panel" data-publication-view="all">All by date</button>
+        <h2 class="section-title" data-i18n="publications.title">📝 Publications</h2>
+        <div class="publication-tabs" role="tablist" aria-label="Publication view" data-i18n-aria-label="publications.view">
+          <button class="publication-tab is-active" type="button" role="tab" aria-selected="true" aria-controls="selected-publications-panel" data-publication-view="selected" data-i18n="publications.selected">Selected</button>
+          <button class="publication-tab" type="button" role="tab" aria-selected="false" aria-controls="all-publications-panel" data-publication-view="all" data-i18n="publications.all">All by date</button>
         </div>
       </div>
 
@@ -1806,15 +1815,15 @@
       </div>
       <div class="pub-group publication-panel" id="all-publications-panel" role="tabpanel" hidden>
         <div class="home-publication-group">
-          <h3 class="pub-group-title">Conference Papers</h3>
+          <h3 class="pub-group-title" data-i18n="publications.conference">Conference Papers</h3>
           <ol class="pub-list home-pub-list" id="home-conference-list"></ol>
         </div>
         <div class="home-publication-group">
-          <h3 class="pub-group-title">Journal Papers</h3>
+          <h3 class="pub-group-title" data-i18n="publications.journal">Journal Papers</h3>
           <ol class="pub-list home-pub-list" id="home-journal-list"></ol>
         </div>
         <div class="home-publication-group">
-          <h3 class="pub-group-title">Preprints and Workshop Papers</h3>
+          <h3 class="pub-group-title" data-i18n="publications.preprint">Preprints and Workshop Papers</h3>
           <ol class="pub-list home-pub-list" id="home-preprint-list"></ol>
         </div>
       </div>
@@ -1822,23 +1831,23 @@
 
     <section class="section" id="service">
       <div class="section-head">
-        <h2 class="section-title">🤝 Academic Service</h2>
+        <h2 class="section-title" data-i18n="service.title">🤝 Academic Service</h2>
       </div>
       <div class="plain-panel fade-up" style="--delay: 30ms;">
         <div class="service-list">
           <div class="service-item">
-            <strong>Journal Reviewer</strong>
+            <strong data-i18n="service.journal">Journal Reviewer</strong>
             Neural Networks.
           </div>
           <div class="service-item">
-            <strong>Conference Reviewer</strong>
+            <strong data-i18n="service.conference">Conference Reviewer</strong>
             IJCAI 2025; ICLR 2025, 2026; ICML 2026; CVPR 2026; ECCV 2026; ACM MM 2026; AAAI 2027; KDD 2027.
           </div>
           <div class="service-item">
-            <strong>Teaching Assistant</strong>
+            <strong data-i18n="service.teaching">Teaching Assistant</strong>
             <div class="service-lines">
-              <div>2026 Spring: Matrix Computation, with Prof. Yu-Feng Li.</div>
-              <div>2026 Spring: Advanced Machine Learning, with Prof. Yu-Feng Li.</div>
+              <div data-i18n="service.matrix">2026 Spring: Matrix Computation, with Prof. Yu-Feng Li.</div>
+              <div data-i18n="service.ml">2026 Spring: Advanced Machine Learning, with Prof. Yu-Feng Li.</div>
             </div>
           </div>
         </div>
@@ -1847,20 +1856,21 @@
 
     <section class="section is-hidden" id="citations">
       <div class="section-head">
-        <h2 class="section-title">📈 Citations</h2>
+        <h2 class="section-title" data-i18n="citations.title">📈 Citations</h2>
       </div>
       <div class="plain-panel citation-chart-panel fade-up" style="--delay: 30ms;">
-        <div class="citation-chart" id="citation-chart" aria-label="Google Scholar citations per year"></div>
+        <div class="citation-chart" id="citation-chart" aria-label="Google Scholar total citations by week" data-i18n-aria-label="citations.chartTitle"></div>
         <div class="citation-meta" id="citation-chart-meta"></div>
       </div>
     </section>
 
     <footer class="footer">
-      Page updated on <time data-page-updated></time>.
+      <span data-i18n="footer.updated">Page updated on </span><time data-page-updated></time><span data-i18n="footer.period">.</span>
     </footer>
     </div>
   </main>
-  <script src="./assets/data/publications.js?v=20260903-lookstep"></script>
-  <script src="./assets/js/site-render.js?v=20260903-page-updated"></script>
+  <script src="./assets/data/publications.js?v=20261004-i18n"></script>
+  <script src="./assets/js/i18n.js?v=20261004"></script>
+  <script src="./assets/js/site-render.js?v=20261004-i18n"></script>
 </body>
 </html>

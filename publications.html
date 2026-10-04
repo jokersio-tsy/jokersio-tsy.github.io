@@ -3,10 +3,11 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Shi-Yu Tian | Full Publications</title>
+  <title data-i18n="publicationsPage.documentTitle">Shi-Yu Tian | Full Publications</title>
   <meta
     name="description"
     content="Full publication list of Shi-Yu Tian."
+    data-i18n-content="publicationsPage.description"
   >
   <style>
     :root {
@@ -236,58 +237,66 @@
       }
     }
   </style>
+  <link rel="stylesheet" href="./assets/css/i18n.css?v=20261004">
 </head>
-<body>
+<body data-page="publications">
   <header class="topbar">
     <div class="shell topbar-inner">
-      <a class="brand" href="./index.html">
-        <span class="brand-mark">ST</span>
-        <span>Shi-Yu Tian</span>
-      </a>
-      <nav class="nav">
-        <a href="./index.html">Home</a>
-        <a href="#conference">Conference</a>
-        <a href="#journal">Journal</a>
-        <a href="#preprint">Preprints</a>
+      <div class="brand-group">
+        <a class="brand" href="./index.html" data-language-link>
+          <span class="brand-mark">ST</span>
+          <span>Shi-Yu Tian</span>
+        </a>
+        <div class="language-switch" role="group" aria-label="Language / 语言" hidden>
+          <button type="button" data-language="en" aria-pressed="true" lang="en">EN</button>
+          <button type="button" data-language="zh" aria-pressed="false" lang="zh-CN">中文</button>
+        </div>
+      </div>
+      <nav class="nav" aria-label="Main navigation" data-i18n-aria-label="nav.label">
+        <a href="./index.html" data-language-link data-i18n="nav.home">Home</a>
+        <a href="#conference" data-i18n="nav.conference">Conference</a>
+        <a href="#journal" data-i18n="nav.journal">Journal</a>
+        <a href="#preprint" data-i18n="nav.preprints">Preprints</a>
       </nav>
     </div>
   </header>
 
   <main class="shell">
     <section class="hero">
-      <div class="eyebrow">Publications</div>
-      <h1>📝 Full Publications</h1>
-      <p>
+      <div class="eyebrow" data-i18n="publicationsPage.eyebrow">Publications</div>
+      <h1 data-i18n="publicationsPage.title">📝 Full Publications</h1>
+      <p data-i18n="publicationsPage.intro">
         A text-only publication list. * denotes co-first authorship.
       </p>
     </section>
 
     <section class="section" id="conference">
       <div class="section-card">
-        <h2 class="section-title">🎤 Conference Papers</h2>
+        <h2 class="section-title" data-i18n="publicationsPage.conference">🎤 Conference Papers</h2>
         <ol class="pub-list" id="conference-list"></ol>
       </div>
     </section>
 
     <section class="section" id="journal">
       <div class="section-card">
-        <h2 class="section-title">📚 Journal Papers</h2>
+        <h2 class="section-title" data-i18n="publicationsPage.journal">📚 Journal Papers</h2>
         <ol class="pub-list" id="journal-list"></ol>
       </div>
     </section>
 
     <section class="section" id="preprint">
       <div class="section-card">
-        <h2 class="section-title">🧪 Preprints and Workshop Papers</h2>
+        <h2 class="section-title" data-i18n="publicationsPage.preprint">🧪 Preprints and Workshop Papers</h2>
         <ol class="pub-list" id="preprint-list"></ol>
       </div>
     </section>
 
     <footer class="footer">
-      Page updated on <time data-page-updated></time>.
+      <span data-i18n="footer.updated">Page updated on </span><time data-page-updated></time><span data-i18n="footer.period">.</span>
     </footer>
   </main>
-  <script src="./assets/data/publications.js?v=20260903-lookstep"></script>
-  <script src="./assets/js/site-render.js?v=20260903-page-updated"></script>
+  <script src="./assets/data/publications.js?v=20261004-i18n"></script>
+  <script src="./assets/js/i18n.js?v=20261004"></script>
+  <script src="./assets/js/site-render.js?v=20261004-i18n"></script>
 </body>
 </html>

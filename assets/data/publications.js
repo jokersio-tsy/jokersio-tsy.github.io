@@ -83,6 +83,7 @@ window.SITE_PUBLICATIONS = [
     venueShort: "Preprint.",
     venueFull: "Preprint.",
     summary: "A self-evolving neuro-symbolic framework that retrieves, executes, refines, fuses, and prunes reusable tool-use and geometry skills for spatial reasoning.",
+    summaryZh: "一个自进化的神经符号框架，通过检索、执行、改进、融合与剪枝可复用的工具使用和几何技能，支持空间推理。",
     badges: [
       { label: "Preprint" }
     ],
@@ -91,6 +92,7 @@ window.SITE_PUBLICATIONS = [
       type: "image",
       src: "./projects/nesy-spatial/image/frame.png",
       alt: "Overview of the NeSy-Spatial framework",
+      altZh: "NeSy-Spatial 框架概览",
       badge: "Preprint",
       contain: true
     },
@@ -111,6 +113,7 @@ window.SITE_PUBLICATIONS = [
     venueShort: "Preprint.",
     venueFull: "Preprint.",
     summary: "A tool-augmented framework with LAST-Box and progressive training that turns vision tools into short-horizon hints for multimodal spatial reasoning.",
+    summaryZh: "结合 LAST-Box 与渐进式训练的工具增强框架，将视觉工具的结果转化为局部推理提示，辅助多模态空间推理。",
     badges: [
       { label: "Preprint" }
     ],
@@ -119,6 +122,7 @@ window.SITE_PUBLICATIONS = [
       type: "image",
       src: "./projects/last/image/figure4-examples.png",
       alt: "Representative spatial reasoning examples from Figure 4 of the LAST paper",
+      altZh: "LAST 论文图 4 中的代表性空间推理示例",
       badge: "Preprint",
       contain: true
     },
@@ -139,6 +143,7 @@ window.SITE_PUBLICATIONS = [
     venueShort: "In: Findings of the Association for Computational Linguistics: ACL 2026.",
     venueFull: "In: Findings of the Association for Computational Linguistics (ACL 2026 Findings).",
     summary: "A neuro-symbolic pipeline and benchmark for studying mathematical reasoning over large, imperfect, and multimodal tables.",
+    summaryZh: "面向大规模、不完备及多模态表格的神经符号推理流程与评测基准，用于研究表格上的数学推理。",
     badges: [
       { label: "ACL 2026 (Findings)" },
       { label: "CCF-A", type: "rank-highlight" }
@@ -150,6 +155,7 @@ window.SITE_PUBLICATIONS = [
       type: "image",
       src: "./projects/tabularmath/Figure/intro.png",
       alt: "TabularMath benchmark examples",
+      altZh: "TabularMath 评测基准示例",
       badge: "ACL 2026",
       contain: true
     },
@@ -176,6 +182,7 @@ window.SITE_PUBLICATIONS = [
     venueShort: "In: Conference on Empirical Methods in Natural Language Processing.",
     venueFull: "In: Conference on Empirical Methods in Natural Language Processing (EMNLP 2025 Oral).",
     summary: "A training-free neuro-symbolic framework and benchmark for identifying unsolvable mathematical reasoning problems with missing or contradictory conditions.",
+    summaryZh: "无需训练的神经符号框架与评测基准，用于识别因条件缺失或矛盾而无法求解的数学推理问题。",
     badges: [
       { label: "EMNLP 2025" },
       { label: "Oral", type: "oral" },
@@ -188,6 +195,7 @@ window.SITE_PUBLICATIONS = [
       type: "image",
       src: "./projects/vcsearch/picture/intro.png",
       alt: "VCSearch problem illustration",
+      altZh: "VCSearch 问题示意图",
       badge: "EMNLP 2025",
       contain: true
     },
@@ -215,6 +223,7 @@ window.SITE_PUBLICATIONS = [
     venueShort: "In: IEEE/CVF Conference on Computer Vision and Pattern Recognition.",
     venueFull: "In: IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR 2024 Oral).",
     summary: "A high-precision pseudo-label selection framework that uses cross supervision and consistency regularization to improve partial-label learning.",
+    summaryZh: "高精度伪标签筛选框架，通过交叉监督与一致性正则化提升偏标记学习性能。",
     badges: [
       { label: "CVPR 2024" },
       { label: "Oral", type: "oral" },
@@ -227,6 +236,7 @@ window.SITE_PUBLICATIONS = [
       type: "image",
       src: "./projects/crosel/img/frame1.png",
       alt: "CroSel framework overview",
+      altZh: "CroSel 框架概览",
       badge: "CVPR 2024",
       contain: true
     },

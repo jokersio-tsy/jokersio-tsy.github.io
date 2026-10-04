@@ -1,0 +1,77 @@
+.brand-group {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+}
+
+.brand-group .brand {
+  white-space: nowrap;
+}
+
+.language-switch {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px;
+  gap: 2px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: #f6f8fa;
+}
+
+.language-switch[hidden] {
+  display: none;
+}
+
+.language-switch button {
+  appearance: none;
+  border: 0;
+  border-radius: 4px;
+  padding: 0.2rem 0.45rem;
+  min-height: 28px;
+  background: transparent;
+  color: var(--muted);
+  font: inherit;
+  font-size: 0.78rem;
+  line-height: 1.4;
+  cursor: pointer;
+}
+
+.language-switch button[aria-pressed="true"] {
+  color: var(--accent);
+  background: #ffffff;
+  box-shadow: 0 1px 3px rgba(24, 50, 74, 0.12);
+  font-weight: 700;
+}
+
+.language-switch button:hover {
+  color: var(--accent);
+}
+
+.language-switch button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+html[lang="zh-CN"] {
+  --body: "Trebuchet MS", "Aptos", "Segoe UI", "PingFang SC", "Microsoft YaHei", Helvetica, Arial, sans-serif;
+  --display: var(--body);
+}
+
+html[lang="zh-CN"] .lede,
+html[lang="zh-CN"] .news-list,
+html[lang="zh-CN"] .service-lines,
+html[lang="zh-CN"] .paper-summary {
+  line-height: 1.8;
+}
+
+@media (max-width: 720px) {
+  .brand-group {
+    width: 100%;
+  }
+
+  .language-switch button {
+    min-height: 32px;
+    min-width: 38px;
+  }
+}

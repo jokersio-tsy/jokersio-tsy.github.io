@@ -1,6 +1,36 @@
 (function () {
   const publications = Array.isArray(window.SITE_PUBLICATIONS) ? window.SITE_PUBLICATIONS : [];
   const siteConfig = window.SITE_CONFIG || {};
+  let cachedScholarStats = null;
+
+  function language() {
+    return window.SiteI18n ? window.SiteI18n.getLanguage() : "en";
+  }
+
+  function translate(key, fallback) {
+    return window.SiteI18n ? window.SiteI18n.t(key, fallback) : fallback;
+  }
+
+  function label(text) {
+    return window.SiteI18n ? window.SiteI18n.label(text) : text;
+  }
+
+  function localizedText(value, translatedValue) {
+    return language() === "zh" && translatedValue ? translatedValue : value;
+  }
+
+  function localizeCitationBadge() {
+    const badge = document.getElementById("scholar-total-citations");
+    if (!badge || badge.tagName !== "IMG") {
+      return;
+    }
+    const badgeUrl = new URL(badge.src, document.baseURI);
+    const badgeLabel = language() === "zh" ? "引用" : "citations";
+    if (badgeUrl.searchParams.get("label") !== badgeLabel) {
+      badgeUrl.searchParams.set("label", badgeLabel);
+      badge.src = badgeUrl.toString();
+    }
+  }
 
   function escapeHtml(text) {
     return String(text)
@@ -12,7 +42,7 @@
   }
 
   function linkAttrs(link) {
-    const title = link.title ? ` title="${escapeHtml(link.title)}"` : "";
+    const title = link.title ? ` title="${escapeHtml(localizedText(link.title, link.titleZh))}"` : "";
     const externalAttrs = link.href && link.href !== "#" ? ' target="_blank" rel="noreferrer"' : "";
     return `${title}${externalAttrs}`;
   }
@@ -23,8 +53,8 @@
       const containClass = thumb.contain ? " teaser-contain" : "";
       return `
         <div class="paper-thumb${containClass}">
-          <img src="${escapeHtml(thumb.src)}" alt="${escapeHtml(thumb.alt || publication.title)}">
-          ${thumb.badge ? `<span class="thumb-badge">${escapeHtml(thumb.badge)}</span>` : ""}
+          <img src="${escapeHtml(thumb.src)}" alt="${escapeHtml(localizedText(thumb.alt, thumb.altZh) || publication.title)}">
+          ${thumb.badge ? `<span class="thumb-badge">${escapeHtml(label(thumb.badge))}</span>` : ""}
         </div>
       `;
     }
@@ -37,7 +67,7 @@
       return `
         <div class="paper-thumb">
           <div class="thumb-shell thumb-crosel">
-            ${thumb.badge ? `<span class="thumb-badge">${escapeHtml(thumb.badge)}</span>` : ""}
+            ${thumb.badge ? `<span class="thumb-badge">${escapeHtml(label(thumb.badge))}</span>` : ""}
             <div>
               <div class="thumb-title">${escapeHtml(thumb.title || publication.title)}</div>
               <div class="thumb-subtitle">${escapeHtml(thumb.subtitle || "")}</div>
@@ -64,13 +94,13 @@
     if (badge.type === "rank-highlight") {
       classes += " rank highlight-rank";
     }
-    return `<span class="${classes}">${escapeHtml(badge.label)}</span>`;
+    return `<span class="${classes}">${escapeHtml(label(badge.label))}</span>`;
   }
 
   function renderSelectedLink(link) {
     const classes = link.primary ? "link-pill primary" : "link-pill";
-    const label = link.label === "ArXiv" ? "Paper" : link.label;
-    return `<a class="${classes}" href="${escapeHtml(link.href)}"${linkAttrs(link)}>${escapeHtml(label)}</a>`;
+    const linkLabel = link.label === "ArXiv" ? "Paper" : link.label;
+    return `<a class="${classes}" href="${escapeHtml(link.href)}"${linkAttrs(link)}>${escapeHtml(label(linkLabel))}</a>`;
   }
 
   function emphasizeAuthorName(html) {
@@ -86,10 +116,10 @@
           <div class="paper-head">
             ${(publication.badges || []).map(renderSelectedBadge).join("")}
           </div>
-          <h3>${escapeHtml(publication.title)}</h3>
-          <p class="paper-authors">${emphasizeAuthorName(publication.authors)}</p>
-          <p class="paper-venue">${escapeHtml(publication.venueShort || publication.venueFull || "")}</p>
-          <p class="paper-summary">${escapeHtml(publication.summary || "")}</p>
+          <h3 lang="en" translate="no">${escapeHtml(publication.title)}</h3>
+          <p class="paper-authors" lang="en" translate="no">${emphasizeAuthorName(publication.authors)}</p>
+          <p class="paper-venue" lang="en" translate="no">${escapeHtml(publication.venueShort || publication.venueFull || "")}</p>
+          <p class="paper-summary">${escapeHtml(localizedText(publication.summary, publication.summaryZh) || "")}</p>
           <div class="paper-links">
             ${(publication.selectedLinks || []).map(renderSelectedLink).join("")}
           </div>
@@ -104,8 +134,8 @@
   }
 
   function renderFullLink(link, options) {
-    const label = options && options.home && link.label === "ArXiv" ? "Paper" : link.label;
-    return `<a href="${escapeHtml(link.href)}"${linkAttrs(link)}>${escapeHtml(label)}</a>`;
+    const linkLabel = options && options.home && link.label === "ArXiv" ? "Paper" : link.label;
+    return `<a href="${escapeHtml(link.href)}"${linkAttrs(link)}>${escapeHtml(label(linkLabel))}</a>`;
   }
 
   function publicationLinks(publication, options) {
@@ -136,9 +166,9 @@
 
     return `
       <li>
-        <div class="pub-title">${escapeHtml(publication.title)}</div>
-        <div class="pub-authors">${emphasizeAuthorName(publication.authors)}</div>
-        <div class="pub-venue">${formatVenue(publication.venueFull || publication.venueShort || "")}</div>
+        <div class="pub-title" lang="en" translate="no">${escapeHtml(publication.title)}</div>
+        <div class="pub-authors" lang="en" translate="no">${emphasizeAuthorName(publication.authors)}</div>
+        <div class="pub-venue" lang="en" translate="no">${formatVenue(publication.venueFull || publication.venueShort || "")}</div>
         <div class="pub-actions">${ratings}${renderedLinks}</div>
       </li>
     `;
@@ -161,19 +191,21 @@
       { id: "home-preprint-list", category: "preprint" }
     ];
 
-    if (groups.every((group) => document.getElementById(group.id)?.dataset.rendered === "true")) {
+    const activeLanguage = language();
+    if (groups.every((group) => document.getElementById(group.id)?.dataset.renderedLanguage === activeLanguage)) {
       return;
     }
 
     groups.forEach((group) => {
       const container = document.getElementById(group.id);
-      if (!container || container.dataset.rendered === "true") {
+      if (!container || container.dataset.renderedLanguage === activeLanguage) {
         return;
       }
 
       const items = publications.filter((publication) => publication.category === group.category);
       container.innerHTML = items.map((publication) => renderFullPublication(publication, { home: true })).join("");
       container.dataset.rendered = "true";
+      container.dataset.renderedLanguage = activeLanguage;
     });
   }
 
@@ -348,7 +380,7 @@
 
     chart.innerHTML = `
       <svg viewBox="0 0 ${width} ${height}" role="img" aria-labelledby="citation-chart-title">
-        <title id="citation-chart-title">Google Scholar total citations by week</title>
+        <title id="citation-chart-title">${escapeHtml(translate("citations.chartTitle", "Google Scholar total citations by week"))}</title>
         ${gridValues.map((value) => {
           const y = yFor(value);
           return `
@@ -376,9 +408,9 @@
         ? updated.toISOString().slice(0, 10)
         : "";
       meta.innerHTML = `
-        <span><strong>${escapeHtml(data.citedby || 0)}</strong> total citations</span>
-        ${updatedText ? `<span>Updated ${escapeHtml(updatedText)}</span>` : ""}
-        ${entries.length === 1 ? `<span>Weekly history starts ${escapeHtml(entries[0].week)}</span>` : ""}
+        <span><strong>${escapeHtml(data.citedby || 0)}</strong> ${escapeHtml(translate("citations.total", "total citations"))}</span>
+        ${updatedText ? `<span>${escapeHtml(translate("citations.updated", "Updated"))} ${escapeHtml(updatedText)}</span>` : ""}
+        ${entries.length === 1 ? `<span>${escapeHtml(translate("citations.historyStarts", "Weekly history starts"))} ${escapeHtml(entries[0].week)}</span>` : ""}
       `;
     }
   }
@@ -388,20 +420,23 @@
       return false;
     }
 
-    if (totalCitations) {
-      if (totalCitations.tagName === "IMG") {
-        totalCitations.alt = `Citations: ${data.citedby}`;
-      } else {
-        totalCitations.textContent = `Citations: ${data.citedby}`;
-      }
-      if (data.updated) {
-        totalCitations.title = `Updated: ${data.updated}`;
-      }
-    }
-    renderCitationChart({
+    cachedScholarStats = {
       ...data,
       citation_history: citationHistory || data.citation_history
-    });
+    };
+
+    if (totalCitations) {
+      const citationLabel = `${translate("citations.label", "Citations")}: ${data.citedby}`;
+      if (totalCitations.tagName === "IMG") {
+        totalCitations.alt = citationLabel;
+      } else {
+        totalCitations.textContent = citationLabel;
+      }
+      if (data.updated) {
+        totalCitations.title = `${translate("citations.updated", "Updated")}: ${data.updated}`;
+      }
+    }
+    renderCitationChart(cachedScholarStats);
     return true;
   }
 
@@ -465,6 +500,17 @@
     renderFullPublications();
     setupHomePublicationTabs();
     renderPageUpdated();
+    localizeCitationBadge();
     fetchScholarStats();
+  });
+
+  window.addEventListener("site:languagechange", function () {
+    renderSelectedWorks();
+    renderFullPublications();
+    renderHomeFullPublications();
+    localizeCitationBadge();
+    if (cachedScholarStats) {
+      applyScholarStats(cachedScholarStats, document.getElementById("scholar-total-citations"));
+    }
   });
 })();
