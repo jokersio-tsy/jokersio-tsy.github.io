@@ -19,7 +19,7 @@
     "profile.njuLogo": "南京大学校徽",
     "profile.scholarCount": "Google Scholar 引用次数",
     "about.title": "🤵🏻 关于我",
-    "about.text": '我是<a href="https://www.nju.edu.cn/" target="_blank" rel="noreferrer">南京大学</a><a href="https://ai.nju.edu.cn/" target="_blank" rel="noreferrer">人工智能学院</a>计算机科学博士生，<a href="https://www.lamda.nju.edu.cn/" target="_blank" rel="noreferrer">LAMDA 研究所</a>成员，导师为 <a href="http://www.lamda.nju.edu.cn/liyf/" target="_blank" rel="noreferrer">李宇峰</a> 教授。此前，我曾与重庆大学的 <a href="https://lfeng1995.github.io/index.html" target="_blank" rel="noreferrer">冯磊</a> 教授密切合作。我的研究关注如何让大语言模型（LLMs）具备稳健的推理能力，更好地解决复杂任务，尤其是数学、法律与空间推理等实际领域的问题。近期，我主要探索智能体强化学习（Agentic RL）、同策略蒸馏（on-policy distillation）与自我进化等方法，以提升大语言模型的自主学习、持续改进与可靠推理能力。',
+    "about.text": '我是<a href="https://www.nju.edu.cn/" target="_blank" rel="noreferrer">南京大学</a><a href="https://ai.nju.edu.cn/" target="_blank" rel="noreferrer">人工智能学院</a>计算机科学博士生，也是由<a href="http://cs.nju.edu.cn/zhouzh/" target="_blank" rel="noreferrer">周志华</a>院士领导的 <a href="https://www.lamda.nju.edu.cn/" target="_blank" rel="noreferrer">LAMDA 组</a>成员，导师为 <a href="http://www.lamda.nju.edu.cn/liyf/" target="_blank" rel="noreferrer">李宇峰</a> 教授。此前，我曾与重庆大学的 <a href="https://lfeng1995.github.io/index.html" target="_blank" rel="noreferrer">冯磊</a> 教授密切合作。我的研究关注如何让大语言模型（LLMs）具备稳健的推理能力，更好地解决复杂任务，尤其是数学、法律与空间推理等实际领域的问题。近期，我主要探索智能体强化学习（Agentic RL）、同策略蒸馏（on-policy distillation）与自我进化等方法，以提升大语言模型的自主学习、持续改进与可靠推理能力。',
     "education.title": "🎓 教育经历",
     "education.phdPeriod": "2024 — 至今",
     "education.phdDegree": "计算机科学博士（在读）",
