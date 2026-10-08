@@ -17,7 +17,7 @@
   ],
   "email_domain": "@lamda.nju.edu.cn",
   "homepage": "https://www.lamda.nju.edu.cn/tiansy/",
-  "citedby": 111,
+  "citedby": 112,
   "publications": {
     "2UwjVasAAAAJ:u5HHmVD_uO8C": {
       "container_type": "Publication",
@@ -81,6 +81,21 @@
         "5813773494250998201"
       ]
     },
+    "2UwjVasAAAAJ:ufrVoPGSRksC": {
+      "container_type": "Publication",
+      "source": "AUTHOR_PUBLICATION_ENTRY",
+      "bib": {
+        "title": "Thinking with Tables: Enhancing Multi-Modal Tabular Understanding via Neuro-Symbolic Reasoning",
+        "pub_year": "2026"
+      },
+      "filled": false,
+      "author_pub_id": "2UwjVasAAAAJ:ufrVoPGSRksC",
+      "num_citations": 7,
+      "citedby_url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=7742276981122043447",
+      "cites_id": [
+        "7742276981122043447"
+      ]
+    },
     "2UwjVasAAAAJ:roLk4NBRz8UC": {
       "container_type": "Publication",
       "source": "AUTHOR_PUBLICATION_ENTRY",
@@ -94,21 +109,6 @@
       "citedby_url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=3187083707527837893",
       "cites_id": [
         "3187083707527837893"
-      ]
-    },
-    "2UwjVasAAAAJ:ufrVoPGSRksC": {
-      "container_type": "Publication",
-      "source": "AUTHOR_PUBLICATION_ENTRY",
-      "bib": {
-        "title": "Thinking with Tables: Enhancing Multi-Modal Tabular Understanding via Neuro-Symbolic Reasoning",
-        "pub_year": "2026"
-      },
-      "filled": false,
-      "author_pub_id": "2UwjVasAAAAJ:ufrVoPGSRksC",
-      "num_citations": 6,
-      "citedby_url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=7742276981122043447",
-      "cites_id": [
-        "7742276981122043447"
       ]
     },
     "2UwjVasAAAAJ:2osOgNQ5qMEC": {
@@ -228,7 +228,7 @@
       "num_citations": 0
     }
   },
-  "citedby5y": 111,
+  "citedby5y": 112,
   "hindex": 6,
   "hindex5y": 6,
   "i10index": 4,
@@ -238,7 +238,7 @@
     "2025": 33,
     "2026": 75
   },
-  "updated": "2026-10-07T03:00:10.537757+00:00",
+  "updated": "2026-10-08T03:00:16.787149+00:00",
   "citation_history": [
     {
       "week": "2026-06-08",
