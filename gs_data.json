@@ -217,6 +217,16 @@
         "12219654304934897974"
       ]
     },
+    "2UwjVasAAAAJ:8k81kl-MbHgC": {
+      "container_type": "Publication",
+      "source": "AUTHOR_PUBLICATION_ENTRY",
+      "bib": {
+        "title": "面向遥感路径规划的神经符号协同方法"
+      },
+      "filled": false,
+      "author_pub_id": "2UwjVasAAAAJ:8k81kl-MbHgC",
+      "num_citations": 0
+    },
     "2UwjVasAAAAJ:W7OEmFMy1HYC": {
       "container_type": "Publication",
       "source": "AUTHOR_PUBLICATION_ENTRY",
@@ -238,7 +248,7 @@
     "2025": 33,
     "2026": 75
   },
-  "updated": "2026-10-08T03:00:16.787149+00:00",
+  "updated": "2026-10-09T03:00:16.500557+00:00",
   "citation_history": [
     {
       "week": "2026-06-08",
