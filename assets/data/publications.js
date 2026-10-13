@@ -13,6 +13,36 @@ window.SITE_CONFIG = {
 
 window.SITE_PUBLICATIONS = [
   {
+    slug: "roadmopd",
+    category: "preprint",
+    selected: true,
+    venueTag: "Preprint",
+    title: "Beyond Domain-Routed Supervision: Cross-Teacher Guarding for Multi-Teacher On-Policy Distillation",
+    authors: "<u>Shi-Yu Tian</u>*, Yong Liu*, Ximan Liu, Tianrui Zhu, Sule Bai, Xinwei Yang, Ruiqi Liu, Kun-Yang Yu, Ming Yang, Zhi Zhou, Yu-Feng Li, Yipeng Sun, Gu Simiu.",
+    venueShort: "Preprint.",
+    venueFull: "Preprint.",
+    summary: "RoadMOPD combines cross-teacher-guided token credit assignment with preventive gradient projection to mitigate cross-domain conflicts in multi-teacher on-policy distillation.",
+    summaryZh: "RoadMOPD 结合跨教师引导的词元级信用分配与预防性梯度投影，缓解多教师同策略蒸馏中的跨域冲突。",
+    badges: [
+      { label: "Preprint" }
+    ],
+    ratings: [],
+    thumb: {
+      type: "image",
+      src: "./projects/roadmopd/image/framework.png",
+      alt: "RoadMOPD framework: cross-teacher-guided credit assignment and preventive multi-teacher gradient projection",
+      altZh: "RoadMOPD 框架：跨教师引导的信用分配与预防性多教师梯度投影",
+      badge: "Preprint",
+      contain: true
+    },
+    selectedLinks: [
+      { label: "ArXiv", href: "https://arxiv.org/abs/2610.13521", primary: true }
+    ],
+    fullLinks: [
+      { label: "ArXiv", href: "https://arxiv.org/abs/2610.13521" }
+    ]
+  },
+  {
     slug: "lookstep",
     category: "conference",
     selected: false,

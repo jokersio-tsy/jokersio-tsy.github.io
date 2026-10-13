@@ -30,6 +30,7 @@
     "experience.period": "2026.06 — 至今",
     "experience.jd": '京东零售 <a href="https://campus.jd.com/#/talentProject" target="_blank" rel="noreferrer">TGT（顶尖青年技术天才计划）</a> 实习生',
     "news.title": "🎉 最新动态",
+    "news.roadmopd": '[2026/10] 我们发布了 <a href="https://arxiv.org/abs/2610.13521" target="_blank" rel="noreferrer"><b>RoadMOPD</b></a> 预印本，通过跨教师守护缓解多教师同策略蒸馏中的梯度冲突。',
     "news.citations": '[2026/09] <span class="news-icon" aria-hidden="true">✦</span>我的论文在 Google Scholar 上的总引用次数达到 <b>100 次</b>。',
     "news.lookstep": '[2026/08] <span class="news-icon" aria-hidden="true">✦</span><b>LookStep</b> 被 <b>EMNLP 2026</b> 录用。',
     "news.nesySpatial": '[2026/08] 我们发布了 <a href="https://arxiv.org/abs/2608.07955" target="_blank" rel="noreferrer"><b>NeSy-Spatial</b></a>，一个面向空间推理的自进化神经符号框架。',
