@@ -103,6 +103,12 @@
     return `<a class="${classes}" href="${escapeHtml(link.href)}"${linkAttrs(link)}>${escapeHtml(label(linkLabel))}</a>`;
   }
 
+  function renderPublicationHonors(publication) {
+    return (publication.honors || []).map((honor) =>
+      `<a class="publication-honor" href="${escapeHtml(honor.href)}"${linkAttrs(honor)}>${escapeHtml(localizedText(honor.label, honor.labelZh))}</a>`
+    ).join("");
+  }
+
   function emphasizeAuthorName(html) {
     return String(html || "").replace(/(<u>Shi-Yu Tian<\/u>|Shi-Yu Tian)/g, "<strong>$1</strong>");
   }
@@ -115,6 +121,7 @@
         <div class="paper-content">
           <div class="paper-head">
             ${(publication.badges || []).map(renderSelectedBadge).join("")}
+            ${renderPublicationHonors(publication)}
           </div>
           <h3 lang="en" translate="no">${escapeHtml(publication.title)}</h3>
           <p class="paper-authors" lang="en" translate="no">${emphasizeAuthorName(publication.authors)}</p>
@@ -169,7 +176,7 @@
         <div class="pub-title" lang="en" translate="no">${escapeHtml(publication.title)}</div>
         <div class="pub-authors" lang="en" translate="no">${emphasizeAuthorName(publication.authors)}</div>
         <div class="pub-venue" lang="en" translate="no">${formatVenue(publication.venueFull || publication.venueShort || "")}</div>
-        <div class="pub-actions">${ratings}${renderedLinks}</div>
+        <div class="pub-actions">${renderPublicationHonors(publication)}${ratings}${renderedLinks}</div>
       </li>
     `;
   }

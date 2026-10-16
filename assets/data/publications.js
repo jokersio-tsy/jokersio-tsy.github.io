@@ -26,6 +26,14 @@ window.SITE_PUBLICATIONS = [
     badges: [
       { label: "Preprint" }
     ],
+    honors: [
+      {
+        label: "🤗 HF Daily Papers · Top 3",
+        href: "https://huggingface.co/papers/2610.13521",
+        title: "Hugging Face Daily Papers — Top 3",
+        titleZh: "Hugging Face 每日论文榜 Top 3"
+      }
+    ],
     ratings: [],
     thumb: {
       type: "image",

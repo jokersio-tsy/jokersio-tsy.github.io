@@ -1,0 +1,27 @@
+.publication-honor {
+  display: inline-flex;
+  align-items: center;
+  max-width: 100%;
+  min-height: 1.55rem;
+  padding: 0.12rem 0.5rem;
+  border: 1px solid #ecd79b;
+  border-radius: 999px;
+  background: #fff7df;
+  color: #805a10;
+  font-size: 0.8rem;
+  font-weight: 700;
+  line-height: 1.4;
+  text-decoration: none;
+}
+
+.publication-honor:hover {
+  background: #ffefc2;
+  color: #684609;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.publication-honor:focus-visible {
+  outline: 2px solid #805a10;
+  outline-offset: 3px;
+}
