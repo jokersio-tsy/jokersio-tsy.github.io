@@ -17,7 +17,7 @@
   ],
   "email_domain": "@lamda.nju.edu.cn",
   "homepage": "https://www.lamda.nju.edu.cn/tiansy/",
-  "citedby": 120,
+  "citedby": 122,
   "publications": {
     "2UwjVasAAAAJ:u5HHmVD_uO8C": {
       "container_type": "Publication",
@@ -28,7 +28,7 @@
       },
       "filled": false,
       "author_pub_id": "2UwjVasAAAAJ:u5HHmVD_uO8C",
-      "num_citations": 40,
+      "num_citations": 41,
       "citedby_url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=3647096781729090049",
       "cites_id": [
         "3647096781729090049"
@@ -156,6 +156,21 @@
         "10848311606657277781"
       ]
     },
+    "2UwjVasAAAAJ:UebtZRa9Y70C": {
+      "container_type": "Publication",
+      "source": "AUTHOR_PUBLICATION_ENTRY",
+      "bib": {
+        "title": "On the Learnability of Test-Time Adaptation: A Recovery Complexity Perspective",
+        "pub_year": "2026"
+      },
+      "filled": false,
+      "author_pub_id": "2UwjVasAAAAJ:UebtZRa9Y70C",
+      "num_citations": 3,
+      "citedby_url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=16037758975560951759",
+      "cites_id": [
+        "16037758975560951759"
+      ]
+    },
     "2UwjVasAAAAJ:Se3iqnhoufwC": {
       "container_type": "Publication",
       "source": "AUTHOR_PUBLICATION_ENTRY",
@@ -170,21 +185,6 @@
       "cites_id": [
         "9418012546504353805",
         "18134269311725438016"
-      ]
-    },
-    "2UwjVasAAAAJ:UebtZRa9Y70C": {
-      "container_type": "Publication",
-      "source": "AUTHOR_PUBLICATION_ENTRY",
-      "bib": {
-        "title": "On the Learnability of Test-Time Adaptation: A Recovery Complexity Perspective",
-        "pub_year": "2026"
-      },
-      "filled": false,
-      "author_pub_id": "2UwjVasAAAAJ:UebtZRa9Y70C",
-      "num_citations": 2,
-      "citedby_url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=16037758975560951759",
-      "cites_id": [
-        "16037758975560951759"
       ]
     },
     "2UwjVasAAAAJ:5nxA0vEk-isC": {
@@ -249,7 +249,7 @@
       "num_citations": 0
     }
   },
-  "citedby5y": 120,
+  "citedby5y": 122,
   "hindex": 6,
   "hindex5y": 6,
   "i10index": 4,
@@ -257,9 +257,9 @@
   "cites_per_year": {
     "2024": 3,
     "2025": 32,
-    "2026": 84
+    "2026": 86
   },
-  "updated": "2026-10-30T03:00:17.920181+00:00",
+  "updated": "2026-10-31T03:00:17.559087+00:00",
   "citation_history": [
     {
       "week": "2026-06-08",
