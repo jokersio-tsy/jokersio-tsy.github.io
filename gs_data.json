@@ -17,7 +17,7 @@
   ],
   "email_domain": "@lamda.nju.edu.cn",
   "homepage": "https://www.lamda.nju.edu.cn/tiansy/",
-  "citedby": 122,
+  "citedby": 125,
   "publications": {
     "2UwjVasAAAAJ:u5HHmVD_uO8C": {
       "container_type": "Publication",
@@ -165,10 +165,25 @@
       },
       "filled": false,
       "author_pub_id": "2UwjVasAAAAJ:UebtZRa9Y70C",
-      "num_citations": 3,
+      "num_citations": 4,
       "citedby_url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=16037758975560951759",
       "cites_id": [
         "16037758975560951759"
+      ]
+    },
+    "2UwjVasAAAAJ:0EnyYjriUFMC": {
+      "container_type": "Publication",
+      "source": "AUTHOR_PUBLICATION_ENTRY",
+      "bib": {
+        "title": "STEGNav: Spatio-Temporal Event Graph Reasoning for Multimodal Lifelong Object Navigation",
+        "pub_year": "2026"
+      },
+      "filled": false,
+      "author_pub_id": "2UwjVasAAAAJ:0EnyYjriUFMC",
+      "num_citations": 3,
+      "citedby_url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=12219654304934897974",
+      "cites_id": [
+        "12219654304934897974"
       ]
     },
     "2UwjVasAAAAJ:Se3iqnhoufwC": {
@@ -200,21 +215,6 @@
       "citedby_url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=16882596181438724365",
       "cites_id": [
         "16882596181438724365"
-      ]
-    },
-    "2UwjVasAAAAJ:0EnyYjriUFMC": {
-      "container_type": "Publication",
-      "source": "AUTHOR_PUBLICATION_ENTRY",
-      "bib": {
-        "title": "STEGNav: Spatio-Temporal Event Graph Reasoning for Multimodal Lifelong Object Navigation",
-        "pub_year": "2026"
-      },
-      "filled": false,
-      "author_pub_id": "2UwjVasAAAAJ:0EnyYjriUFMC",
-      "num_citations": 1,
-      "citedby_url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=12219654304934897974",
-      "cites_id": [
-        "12219654304934897974"
       ]
     },
     "2UwjVasAAAAJ:MXK_kJrjxJIC": {
@@ -249,7 +249,7 @@
       "num_citations": 0
     }
   },
-  "citedby5y": 122,
+  "citedby5y": 125,
   "hindex": 6,
   "hindex5y": 6,
   "i10index": 4,
@@ -257,9 +257,9 @@
   "cites_per_year": {
     "2024": 3,
     "2025": 32,
-    "2026": 86
+    "2026": 89
   },
-  "updated": "2026-11-02T03:00:17.473915+00:00",
+  "updated": "2026-11-03T03:16:27.746339+00:00",
   "citation_history": [
     {
       "week": "2026-06-08",
