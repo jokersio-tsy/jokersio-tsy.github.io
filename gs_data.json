@@ -17,7 +17,7 @@
   ],
   "email_domain": "@lamda.nju.edu.cn",
   "homepage": "https://www.lamda.nju.edu.cn/tiansy/",
-  "citedby": 125,
+  "citedby": 127,
   "publications": {
     "2UwjVasAAAAJ:u5HHmVD_uO8C": {
       "container_type": "Publication",
@@ -171,6 +171,22 @@
         "16037758975560951759"
       ]
     },
+    "2UwjVasAAAAJ:Se3iqnhoufwC": {
+      "container_type": "Publication",
+      "source": "AUTHOR_PUBLICATION_ENTRY",
+      "bib": {
+        "title": "MapTab: Are MLLMs Ready for Multi-Criteria Route Planning in Heterogeneous Graphs?",
+        "pub_year": "2026"
+      },
+      "filled": false,
+      "author_pub_id": "2UwjVasAAAAJ:Se3iqnhoufwC",
+      "num_citations": 4,
+      "citedby_url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=9418012546504353805,18134269311725438016",
+      "cites_id": [
+        "9418012546504353805",
+        "18134269311725438016"
+      ]
+    },
     "2UwjVasAAAAJ:0EnyYjriUFMC": {
       "container_type": "Publication",
       "source": "AUTHOR_PUBLICATION_ENTRY",
@@ -186,20 +202,19 @@
         "12219654304934897974"
       ]
     },
-    "2UwjVasAAAAJ:Se3iqnhoufwC": {
+    "2UwjVasAAAAJ:MXK_kJrjxJIC": {
       "container_type": "Publication",
       "source": "AUTHOR_PUBLICATION_ENTRY",
       "bib": {
-        "title": "MapTab: Are MLLMs Ready for Multi-Criteria Route Planning in Heterogeneous Graphs?",
+        "title": "Beyond Domain-Routed Supervision: Cross-Teacher Guarding for Multi-Teacher On-Policy Distillation",
         "pub_year": "2026"
       },
       "filled": false,
-      "author_pub_id": "2UwjVasAAAAJ:Se3iqnhoufwC",
-      "num_citations": 3,
-      "citedby_url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=9418012546504353805,18134269311725438016",
+      "author_pub_id": "2UwjVasAAAAJ:MXK_kJrjxJIC",
+      "num_citations": 1,
+      "citedby_url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=16393430550109484676",
       "cites_id": [
-        "9418012546504353805",
-        "18134269311725438016"
+        "16393430550109484676"
       ]
     },
     "2UwjVasAAAAJ:5nxA0vEk-isC": {
@@ -216,17 +231,6 @@
       "cites_id": [
         "16882596181438724365"
       ]
-    },
-    "2UwjVasAAAAJ:MXK_kJrjxJIC": {
-      "container_type": "Publication",
-      "source": "AUTHOR_PUBLICATION_ENTRY",
-      "bib": {
-        "title": "Beyond Domain-Routed Supervision: Cross-Teacher Guarding for Multi-Teacher On-Policy Distillation",
-        "pub_year": "2026"
-      },
-      "filled": false,
-      "author_pub_id": "2UwjVasAAAAJ:MXK_kJrjxJIC",
-      "num_citations": 0
     },
     "2UwjVasAAAAJ:8k81kl-MbHgC": {
       "container_type": "Publication",
@@ -249,7 +253,7 @@
       "num_citations": 0
     }
   },
-  "citedby5y": 125,
+  "citedby5y": 127,
   "hindex": 6,
   "hindex5y": 6,
   "i10index": 4,
@@ -257,9 +261,9 @@
   "cites_per_year": {
     "2024": 3,
     "2025": 32,
-    "2026": 89
+    "2026": 91
   },
-  "updated": "2026-11-06T03:00:12.462262+00:00",
+  "updated": "2026-11-07T03:00:17.641137+00:00",
   "citation_history": [
     {
       "week": "2026-06-08",
