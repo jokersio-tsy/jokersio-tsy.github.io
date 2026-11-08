@@ -17,7 +17,7 @@
   ],
   "email_domain": "@lamda.nju.edu.cn",
   "homepage": "https://www.lamda.nju.edu.cn/tiansy/",
-  "citedby": 127,
+  "citedby": 129,
   "publications": {
     "2UwjVasAAAAJ:u5HHmVD_uO8C": {
       "container_type": "Publication",
@@ -126,6 +126,37 @@
         "2338901982686123231"
       ]
     },
+    "2UwjVasAAAAJ:hqOjcs7Dif8C": {
+      "container_type": "Publication",
+      "source": "AUTHOR_PUBLICATION_ENTRY",
+      "bib": {
+        "title": "Self-Evolving Neuro-Symbolic Skills for Tool-Augmented Spatial Reasoning",
+        "pub_year": "2026"
+      },
+      "filled": false,
+      "author_pub_id": "2UwjVasAAAAJ:hqOjcs7Dif8C",
+      "num_citations": 5,
+      "citedby_url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=10848311606657277781",
+      "cites_id": [
+        "10848311606657277781"
+      ]
+    },
+    "2UwjVasAAAAJ:Se3iqnhoufwC": {
+      "container_type": "Publication",
+      "source": "AUTHOR_PUBLICATION_ENTRY",
+      "bib": {
+        "title": "MapTab: Are MLLMs Ready for Multi-Criteria Route Planning in Heterogeneous Graphs?",
+        "pub_year": "2026"
+      },
+      "filled": false,
+      "author_pub_id": "2UwjVasAAAAJ:Se3iqnhoufwC",
+      "num_citations": 5,
+      "citedby_url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=9418012546504353805,18134269311725438016",
+      "cites_id": [
+        "9418012546504353805",
+        "18134269311725438016"
+      ]
+    },
     "2UwjVasAAAAJ:WF5omc3nYNoC": {
       "container_type": "Publication",
       "source": "AUTHOR_PUBLICATION_ENTRY",
@@ -141,21 +172,6 @@
         "2973243343817137202"
       ]
     },
-    "2UwjVasAAAAJ:hqOjcs7Dif8C": {
-      "container_type": "Publication",
-      "source": "AUTHOR_PUBLICATION_ENTRY",
-      "bib": {
-        "title": "Self-Evolving Neuro-Symbolic Skills for Tool-Augmented Spatial Reasoning",
-        "pub_year": "2026"
-      },
-      "filled": false,
-      "author_pub_id": "2UwjVasAAAAJ:hqOjcs7Dif8C",
-      "num_citations": 4,
-      "citedby_url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=10848311606657277781",
-      "cites_id": [
-        "10848311606657277781"
-      ]
-    },
     "2UwjVasAAAAJ:UebtZRa9Y70C": {
       "container_type": "Publication",
       "source": "AUTHOR_PUBLICATION_ENTRY",
@@ -169,22 +185,6 @@
       "citedby_url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=16037758975560951759",
       "cites_id": [
         "16037758975560951759"
-      ]
-    },
-    "2UwjVasAAAAJ:Se3iqnhoufwC": {
-      "container_type": "Publication",
-      "source": "AUTHOR_PUBLICATION_ENTRY",
-      "bib": {
-        "title": "MapTab: Are MLLMs Ready for Multi-Criteria Route Planning in Heterogeneous Graphs?",
-        "pub_year": "2026"
-      },
-      "filled": false,
-      "author_pub_id": "2UwjVasAAAAJ:Se3iqnhoufwC",
-      "num_citations": 4,
-      "citedby_url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=9418012546504353805,18134269311725438016",
-      "cites_id": [
-        "9418012546504353805",
-        "18134269311725438016"
       ]
     },
     "2UwjVasAAAAJ:0EnyYjriUFMC": {
@@ -253,7 +253,7 @@
       "num_citations": 0
     }
   },
-  "citedby5y": 127,
+  "citedby5y": 129,
   "hindex": 6,
   "hindex5y": 6,
   "i10index": 4,
@@ -261,9 +261,9 @@
   "cites_per_year": {
     "2024": 3,
     "2025": 32,
-    "2026": 91
+    "2026": 93
   },
-  "updated": "2026-11-07T03:00:17.641137+00:00",
+  "updated": "2026-11-08T03:00:17.450463+00:00",
   "citation_history": [
     {
       "week": "2026-06-08",
