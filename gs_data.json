@@ -17,7 +17,7 @@
   ],
   "email_domain": "@lamda.nju.edu.cn",
   "homepage": "https://www.lamda.nju.edu.cn/tiansy/",
-  "citedby": 130,
+  "citedby": 131,
   "publications": {
     "2UwjVasAAAAJ:u5HHmVD_uO8C": {
       "container_type": "Publication",
@@ -211,7 +211,7 @@
       },
       "filled": false,
       "author_pub_id": "2UwjVasAAAAJ:MXK_kJrjxJIC",
-      "num_citations": 1,
+      "num_citations": 2,
       "citedby_url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=16393430550109484676",
       "cites_id": [
         "16393430550109484676"
@@ -253,7 +253,7 @@
       "num_citations": 0
     }
   },
-  "citedby5y": 130,
+  "citedby5y": 131,
   "hindex": 6,
   "hindex5y": 6,
   "i10index": 4,
@@ -261,9 +261,9 @@
   "cites_per_year": {
     "2024": 3,
     "2025": 32,
-    "2026": 94
+    "2026": 95
   },
-  "updated": "2026-11-13T03:00:15.513726+00:00",
+  "updated": "2026-11-14T03:00:16.920366+00:00",
   "citation_history": [
     {
       "week": "2026-06-08",
