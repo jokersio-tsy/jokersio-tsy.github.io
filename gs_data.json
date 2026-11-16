@@ -17,7 +17,7 @@
   ],
   "email_domain": "@lamda.nju.edu.cn",
   "homepage": "https://www.lamda.nju.edu.cn/tiansy/",
-  "citedby": 131,
+  "citedby": 132,
   "publications": {
     "2UwjVasAAAAJ:u5HHmVD_uO8C": {
       "container_type": "Publication",
@@ -96,6 +96,21 @@
         "7742276981122043447"
       ]
     },
+    "2UwjVasAAAAJ:hqOjcs7Dif8C": {
+      "container_type": "Publication",
+      "source": "AUTHOR_PUBLICATION_ENTRY",
+      "bib": {
+        "title": "Self-Evolving Neuro-Symbolic Skills for Tool-Augmented Spatial Reasoning",
+        "pub_year": "2026"
+      },
+      "filled": false,
+      "author_pub_id": "2UwjVasAAAAJ:hqOjcs7Dif8C",
+      "num_citations": 6,
+      "citedby_url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=10848311606657277781",
+      "cites_id": [
+        "10848311606657277781"
+      ]
+    },
     "2UwjVasAAAAJ:roLk4NBRz8UC": {
       "container_type": "Publication",
       "source": "AUTHOR_PUBLICATION_ENTRY",
@@ -124,21 +139,6 @@
       "citedby_url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=2338901982686123231",
       "cites_id": [
         "2338901982686123231"
-      ]
-    },
-    "2UwjVasAAAAJ:hqOjcs7Dif8C": {
-      "container_type": "Publication",
-      "source": "AUTHOR_PUBLICATION_ENTRY",
-      "bib": {
-        "title": "Self-Evolving Neuro-Symbolic Skills for Tool-Augmented Spatial Reasoning",
-        "pub_year": "2026"
-      },
-      "filled": false,
-      "author_pub_id": "2UwjVasAAAAJ:hqOjcs7Dif8C",
-      "num_citations": 5,
-      "citedby_url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=10848311606657277781",
-      "cites_id": [
-        "10848311606657277781"
       ]
     },
     "2UwjVasAAAAJ:Se3iqnhoufwC": {
@@ -253,7 +253,7 @@
       "num_citations": 0
     }
   },
-  "citedby5y": 131,
+  "citedby5y": 132,
   "hindex": 6,
   "hindex5y": 6,
   "i10index": 4,
@@ -261,9 +261,9 @@
   "cites_per_year": {
     "2024": 3,
     "2025": 32,
-    "2026": 95
+    "2026": 96
   },
-  "updated": "2026-11-15T03:00:15.086762+00:00",
+  "updated": "2026-11-16T03:00:17.220976+00:00",
   "citation_history": [
     {
       "week": "2026-06-08",
@@ -359,6 +359,11 @@
       "week": "2026-11-09",
       "citedby": 129,
       "updated": "2026-11-09T03:00:17.338837+00:00"
+    },
+    {
+      "week": "2026-11-16",
+      "citedby": 132,
+      "updated": "2026-11-16T03:00:17.220976+00:00"
     }
   ]
 }
