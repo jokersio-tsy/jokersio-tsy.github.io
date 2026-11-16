@@ -187,7 +187,9 @@
       return;
     }
 
-    const selected = publications.filter((publication) => publication.selected);
+    const selected = publications
+      .filter((publication) => publication.selected)
+      .sort((left, right) => (left.selectedOrder ?? Infinity) - (right.selectedOrder ?? Infinity));
     container.innerHTML = selected.map(renderSelectedWork).join("");
   }
 

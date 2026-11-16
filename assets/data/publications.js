@@ -13,9 +13,44 @@ window.SITE_CONFIG = {
 
 window.SITE_PUBLICATIONS = [
   {
+    slug: "last",
+    category: "conference",
+    selected: true,
+    selectedOrder: 3,
+    venueTag: "KDD 2027",
+    title: "LAST: Leveraging Tools as Hints to Enhance Spatial Reasoning for Multimodal Large Language Models",
+    authors: "<u>Shi-Yu Tian</u>, Zhi Zhou, Kun-Yang Yu, Ming Yang, Yang Chen, Ziqiao Shang, Lan-Zhe Guo, Yu-Feng Li.",
+    venueShort: "In: ACM SIGKDD Conference on Knowledge Discovery and Data Mining.",
+    venueFull: "In: ACM SIGKDD Conference on Knowledge Discovery and Data Mining (KDD 2027).",
+    summary: "A tool-augmented framework with LAST-Box and progressive training that turns vision tools into short-horizon hints for multimodal spatial reasoning.",
+    summaryZh: "结合 LAST-Box 与渐进式训练的工具增强框架，将视觉工具的结果转化为局部推理提示，辅助多模态空间推理。",
+    badges: [
+      { label: "KDD 2027" },
+      { label: "CCF-A", type: "rank-highlight" }
+    ],
+    ratings: [
+      { label: "CCF-A", type: "ccf" }
+    ],
+    thumb: {
+      type: "image",
+      src: "./projects/last/image/figure4-examples.png",
+      alt: "Representative spatial reasoning examples from Figure 4 of the LAST paper",
+      altZh: "LAST 论文图 4 中的代表性空间推理示例",
+      badge: "KDD 2027",
+      contain: true
+    },
+    selectedLinks: [
+      { label: "ArXiv", href: "https://arxiv.org/abs/2604.09712", primary: true }
+    ],
+    fullLinks: [
+      { label: "ArXiv", href: "https://arxiv.org/abs/2604.09712" }
+    ]
+  },
+  {
     slug: "roadmopd",
     category: "preprint",
     selected: true,
+    selectedOrder: 1,
     venueTag: "Preprint",
     title: "Beyond Domain-Routed Supervision: Cross-Teacher Guarding for Multi-Teacher On-Policy Distillation",
     authors: "<u>Shi-Yu Tian</u>*, Yong Liu*, Ximan Liu, Tianrui Zhu, Sule Bai, Xinwei Yang, Ruiqi Liu, Kun-Yang Yu, Ming Yang, Zhi Zhou, Yu-Feng Li, Yipeng Sun, Gu Simiu.",
@@ -44,7 +79,8 @@ window.SITE_PUBLICATIONS = [
       contain: true
     },
     selectedLinks: [
-      { label: "ArXiv", href: "https://arxiv.org/abs/2610.13521", primary: true }
+      { label: "ArXiv", href: "https://arxiv.org/abs/2610.13521", primary: true },
+      { label: "机器之心", href: "https://www.jiqizhixin.com/articles/2026-11-02-8", title: "Media coverage by 机器之心", titleZh: "机器之心报道" }
     ],
     fullLinks: [
       { label: "ArXiv", href: "https://arxiv.org/abs/2610.13521" }
@@ -114,7 +150,8 @@ window.SITE_PUBLICATIONS = [
   {
     slug: "nesy-spatial",
     category: "preprint",
-    selected: true,
+    selected: false,
+    selectedOrder: 2,
     venueTag: "Preprint",
     title: "Self-Evolving Neuro-Symbolic Skills for Tool-Augmented Spatial Reasoning",
     authors: "<u>Shi-Yu Tian</u>*, Zhuo-Xia Wang*, Xuan-Yi Zhu, Zhi Zhou, Xinwei Yang, Kun-Yang Yu, Ming Yang, Yang Chen, Yu-Feng Li.",
@@ -142,39 +179,10 @@ window.SITE_PUBLICATIONS = [
     ]
   },
   {
-    slug: "last",
-    category: "preprint",
-    selected: true,
-    venueTag: "Preprint",
-    title: "LAST: Leveraging Tools as Hints to Enhance Spatial Reasoning for Multimodal Large Language Models",
-    authors: "<u>Shi-Yu Tian</u>, Zhi Zhou, Kun-Yang Yu, Ming Yang, Yang Chen, Ziqiao Shang, Lan-Zhe Guo, Yu-Feng Li.",
-    venueShort: "Preprint.",
-    venueFull: "Preprint.",
-    summary: "A tool-augmented framework with LAST-Box and progressive training that turns vision tools into short-horizon hints for multimodal spatial reasoning.",
-    summaryZh: "结合 LAST-Box 与渐进式训练的工具增强框架，将视觉工具的结果转化为局部推理提示，辅助多模态空间推理。",
-    badges: [
-      { label: "Preprint" }
-    ],
-    ratings: [],
-    thumb: {
-      type: "image",
-      src: "./projects/last/image/figure4-examples.png",
-      alt: "Representative spatial reasoning examples from Figure 4 of the LAST paper",
-      altZh: "LAST 论文图 4 中的代表性空间推理示例",
-      badge: "Preprint",
-      contain: true
-    },
-    selectedLinks: [
-      { label: "ArXiv", href: "https://arxiv.org/abs/2604.09712", primary: true }
-    ],
-    fullLinks: [
-      { label: "ArXiv", href: "https://arxiv.org/abs/2604.09712" }
-    ]
-  },
-  {
     slug: "tabularmath",
     category: "conference",
     selected: true,
+    selectedOrder: 4,
     venueTag: "ACL 2026",
     title: "TabularMath: Understanding Math Reasoning over Tables with Large Language Models",
     authors: "<u>Shi-Yu Tian</u>*, Zhi Zhou*, Wei Dong*, Kun-Yang Yu, Ming Yang, Zi-Jian Cheng, Lan-Zhe Guo, Yu-Feng Li.",
@@ -183,7 +191,7 @@ window.SITE_PUBLICATIONS = [
     summary: "A neuro-symbolic pipeline and benchmark for studying mathematical reasoning over large, imperfect, and multimodal tables.",
     summaryZh: "面向大规模、不完备及多模态表格的神经符号推理流程与评测基准，用于研究表格上的数学推理。",
     badges: [
-      { label: "ACL 2026 (Findings)" },
+      { label: "ACL 2026" },
       { label: "CCF-A", type: "rank-highlight" }
     ],
     ratings: [
@@ -214,6 +222,7 @@ window.SITE_PUBLICATIONS = [
     slug: "vcsearch",
     category: "conference",
     selected: true,
+    selectedOrder: 5,
     venueTag: "EMNLP 2025",
     title: "VCSearch: Bridging the Gap Between Well-Defined and Ill-Defined Problems in Mathematical Reasoning",
     authors: "<u>Shi-Yu Tian</u>*, Zhi Zhou*, Kun-Yang Yu, Ming Yang, Lin-Han Jia, Lan-Zhe Guo, Yu-Feng Li.",
@@ -255,6 +264,7 @@ window.SITE_PUBLICATIONS = [
     slug: "crosel",
     category: "conference",
     selected: true,
+    selectedOrder: 6,
     venueTag: "CVPR 2024",
     title: "CroSel: Cross Selection of Confident Pseudo Labels for Partial-Label Learning",
     authors: "<u>Shi-Yu Tian</u>, Hong-Xin Wei, Yi-Qun Wang, Lei Feng.",
