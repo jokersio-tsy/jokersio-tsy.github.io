@@ -80,10 +80,12 @@ window.SITE_PUBLICATIONS = [
     },
     selectedLinks: [
       { label: "ArXiv", href: "https://arxiv.org/abs/2610.13521", primary: true },
+      { label: "Code", href: "https://github.com/jokersio-tsy/RoadMOPD" },
       { label: "机器之心", href: "https://www.jiqizhixin.com/articles/2026-11-02-8", title: "Media coverage by 机器之心", titleZh: "机器之心报道" }
     ],
     fullLinks: [
-      { label: "ArXiv", href: "https://arxiv.org/abs/2610.13521" }
+      { label: "ArXiv", href: "https://arxiv.org/abs/2610.13521" },
+      { label: "Code", href: "https://github.com/jokersio-tsy/RoadMOPD" }
     ]
   },
   {
