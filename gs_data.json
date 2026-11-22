@@ -17,7 +17,7 @@
   ],
   "email_domain": "@lamda.nju.edu.cn",
   "homepage": "https://www.lamda.nju.edu.cn/tiansy/",
-  "citedby": 133,
+  "citedby": 134,
   "publications": {
     "2UwjVasAAAAJ:u5HHmVD_uO8C": {
       "container_type": "Publication",
@@ -172,6 +172,21 @@
         "2973243343817137202"
       ]
     },
+    "2UwjVasAAAAJ:0EnyYjriUFMC": {
+      "container_type": "Publication",
+      "source": "AUTHOR_PUBLICATION_ENTRY",
+      "bib": {
+        "title": "STEGNav: Spatio-Temporal Event Graph Reasoning for Multimodal Lifelong Object Navigation",
+        "pub_year": "2026"
+      },
+      "filled": false,
+      "author_pub_id": "2UwjVasAAAAJ:0EnyYjriUFMC",
+      "num_citations": 4,
+      "citedby_url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=12219654304934897974",
+      "cites_id": [
+        "12219654304934897974"
+      ]
+    },
     "2UwjVasAAAAJ:UebtZRa9Y70C": {
       "container_type": "Publication",
       "source": "AUTHOR_PUBLICATION_ENTRY",
@@ -200,21 +215,6 @@
       "citedby_url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=16393430550109484676",
       "cites_id": [
         "16393430550109484676"
-      ]
-    },
-    "2UwjVasAAAAJ:0EnyYjriUFMC": {
-      "container_type": "Publication",
-      "source": "AUTHOR_PUBLICATION_ENTRY",
-      "bib": {
-        "title": "STEGNav: Spatio-Temporal Event Graph Reasoning for Multimodal Lifelong Object Navigation",
-        "pub_year": "2026"
-      },
-      "filled": false,
-      "author_pub_id": "2UwjVasAAAAJ:0EnyYjriUFMC",
-      "num_citations": 3,
-      "citedby_url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=12219654304934897974",
-      "cites_id": [
-        "12219654304934897974"
       ]
     },
     "2UwjVasAAAAJ:5nxA0vEk-isC": {
@@ -253,7 +253,7 @@
       "num_citations": 0
     }
   },
-  "citedby5y": 133,
+  "citedby5y": 134,
   "hindex": 6,
   "hindex5y": 6,
   "i10index": 4,
@@ -261,9 +261,9 @@
   "cites_per_year": {
     "2024": 3,
     "2025": 32,
-    "2026": 97
+    "2026": 98
   },
-  "updated": "2026-11-21T03:00:17.074025+00:00",
+  "updated": "2026-11-22T03:00:15.314978+00:00",
   "citation_history": [
     {
       "week": "2026-06-08",
