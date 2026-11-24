@@ -17,7 +17,7 @@
   ],
   "email_domain": "@lamda.nju.edu.cn",
   "homepage": "https://www.lamda.nju.edu.cn/tiansy/",
-  "citedby": 134,
+  "citedby": 137,
   "publications": {
     "2UwjVasAAAAJ:u5HHmVD_uO8C": {
       "container_type": "Publication",
@@ -28,7 +28,7 @@
       },
       "filled": false,
       "author_pub_id": "2UwjVasAAAAJ:u5HHmVD_uO8C",
-      "num_citations": 41,
+      "num_citations": 42,
       "citedby_url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=3647096781729090049",
       "cites_id": [
         "3647096781729090049"
@@ -105,7 +105,7 @@
       },
       "filled": false,
       "author_pub_id": "2UwjVasAAAAJ:hqOjcs7Dif8C",
-      "num_citations": 6,
+      "num_citations": 7,
       "citedby_url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=10848311606657277781",
       "cites_id": [
         "10848311606657277781"
@@ -141,6 +141,21 @@
         "2338901982686123231"
       ]
     },
+    "2UwjVasAAAAJ:WF5omc3nYNoC": {
+      "container_type": "Publication",
+      "source": "AUTHOR_PUBLICATION_ENTRY",
+      "bib": {
+        "title": "NeSy-Route: A neuro-symbolic benchmark for constrained route planning in remote sensing",
+        "pub_year": "2026"
+      },
+      "filled": false,
+      "author_pub_id": "2UwjVasAAAAJ:WF5omc3nYNoC",
+      "num_citations": 5,
+      "citedby_url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=2973243343817137202",
+      "cites_id": [
+        "2973243343817137202"
+      ]
+    },
     "2UwjVasAAAAJ:Se3iqnhoufwC": {
       "container_type": "Publication",
       "source": "AUTHOR_PUBLICATION_ENTRY",
@@ -155,21 +170,6 @@
       "cites_id": [
         "9418012546504353805",
         "18134269311725438016"
-      ]
-    },
-    "2UwjVasAAAAJ:WF5omc3nYNoC": {
-      "container_type": "Publication",
-      "source": "AUTHOR_PUBLICATION_ENTRY",
-      "bib": {
-        "title": "NeSy-Route: A neuro-symbolic benchmark for constrained route planning in remote sensing",
-        "pub_year": "2026"
-      },
-      "filled": false,
-      "author_pub_id": "2UwjVasAAAAJ:WF5omc3nYNoC",
-      "num_citations": 4,
-      "citedby_url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=2973243343817137202",
-      "cites_id": [
-        "2973243343817137202"
       ]
     },
     "2UwjVasAAAAJ:0EnyYjriUFMC": {
@@ -253,7 +253,7 @@
       "num_citations": 0
     }
   },
-  "citedby5y": 134,
+  "citedby5y": 137,
   "hindex": 6,
   "hindex5y": 6,
   "i10index": 4,
@@ -261,9 +261,9 @@
   "cites_per_year": {
     "2024": 3,
     "2025": 32,
-    "2026": 98
+    "2026": 101
   },
-  "updated": "2026-11-23T03:00:17.338423+00:00",
+  "updated": "2026-11-24T03:00:18.229243+00:00",
   "citation_history": [
     {
       "week": "2026-06-08",
