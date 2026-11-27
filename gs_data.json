@@ -17,7 +17,7 @@
   ],
   "email_domain": "@lamda.nju.edu.cn",
   "homepage": "https://www.lamda.nju.edu.cn/tiansy/",
-  "citedby": 137,
+  "citedby": 141,
   "publications": {
     "2UwjVasAAAAJ:u5HHmVD_uO8C": {
       "container_type": "Publication",
@@ -81,6 +81,21 @@
         "5813773494250998201"
       ]
     },
+    "2UwjVasAAAAJ:hqOjcs7Dif8C": {
+      "container_type": "Publication",
+      "source": "AUTHOR_PUBLICATION_ENTRY",
+      "bib": {
+        "title": "Self-Evolving Neuro-Symbolic Skills for Tool-Augmented Spatial Reasoning",
+        "pub_year": "2026"
+      },
+      "filled": false,
+      "author_pub_id": "2UwjVasAAAAJ:hqOjcs7Dif8C",
+      "num_citations": 8,
+      "citedby_url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=10848311606657277781",
+      "cites_id": [
+        "10848311606657277781"
+      ]
+    },
     "2UwjVasAAAAJ:ufrVoPGSRksC": {
       "container_type": "Publication",
       "source": "AUTHOR_PUBLICATION_ENTRY",
@@ -96,21 +111,6 @@
         "7742276981122043447"
       ]
     },
-    "2UwjVasAAAAJ:hqOjcs7Dif8C": {
-      "container_type": "Publication",
-      "source": "AUTHOR_PUBLICATION_ENTRY",
-      "bib": {
-        "title": "Self-Evolving Neuro-Symbolic Skills for Tool-Augmented Spatial Reasoning",
-        "pub_year": "2026"
-      },
-      "filled": false,
-      "author_pub_id": "2UwjVasAAAAJ:hqOjcs7Dif8C",
-      "num_citations": 7,
-      "citedby_url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=10848311606657277781",
-      "cites_id": [
-        "10848311606657277781"
-      ]
-    },
     "2UwjVasAAAAJ:roLk4NBRz8UC": {
       "container_type": "Publication",
       "source": "AUTHOR_PUBLICATION_ENTRY",
@@ -120,7 +120,7 @@
       },
       "filled": false,
       "author_pub_id": "2UwjVasAAAAJ:roLk4NBRz8UC",
-      "num_citations": 6,
+      "num_citations": 7,
       "citedby_url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=3187083707527837893",
       "cites_id": [
         "3187083707527837893"
@@ -156,6 +156,21 @@
         "2973243343817137202"
       ]
     },
+    "2UwjVasAAAAJ:0EnyYjriUFMC": {
+      "container_type": "Publication",
+      "source": "AUTHOR_PUBLICATION_ENTRY",
+      "bib": {
+        "title": "STEGNav: Spatio-Temporal Event Graph Reasoning for Multimodal Lifelong Object Navigation",
+        "pub_year": "2026"
+      },
+      "filled": false,
+      "author_pub_id": "2UwjVasAAAAJ:0EnyYjriUFMC",
+      "num_citations": 5,
+      "citedby_url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=12219654304934897974",
+      "cites_id": [
+        "12219654304934897974"
+      ]
+    },
     "2UwjVasAAAAJ:Se3iqnhoufwC": {
       "container_type": "Publication",
       "source": "AUTHOR_PUBLICATION_ENTRY",
@@ -170,21 +185,6 @@
       "cites_id": [
         "9418012546504353805",
         "18134269311725438016"
-      ]
-    },
-    "2UwjVasAAAAJ:0EnyYjriUFMC": {
-      "container_type": "Publication",
-      "source": "AUTHOR_PUBLICATION_ENTRY",
-      "bib": {
-        "title": "STEGNav: Spatio-Temporal Event Graph Reasoning for Multimodal Lifelong Object Navigation",
-        "pub_year": "2026"
-      },
-      "filled": false,
-      "author_pub_id": "2UwjVasAAAAJ:0EnyYjriUFMC",
-      "num_citations": 4,
-      "citedby_url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=12219654304934897974",
-      "cites_id": [
-        "12219654304934897974"
       ]
     },
     "2UwjVasAAAAJ:UebtZRa9Y70C": {
@@ -226,7 +226,7 @@
       },
       "filled": false,
       "author_pub_id": "2UwjVasAAAAJ:5nxA0vEk-isC",
-      "num_citations": 1,
+      "num_citations": 2,
       "citedby_url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=16882596181438724365",
       "cites_id": [
         "16882596181438724365"
@@ -253,17 +253,17 @@
       "num_citations": 0
     }
   },
-  "citedby5y": 137,
-  "hindex": 6,
-  "hindex5y": 6,
+  "citedby5y": 141,
+  "hindex": 7,
+  "hindex5y": 7,
   "i10index": 4,
   "i10index5y": 4,
   "cites_per_year": {
     "2024": 3,
     "2025": 32,
-    "2026": 101
+    "2026": 105
   },
-  "updated": "2026-11-26T03:00:13.866458+00:00",
+  "updated": "2026-11-27T03:00:13.454619+00:00",
   "citation_history": [
     {
       "week": "2026-06-08",
