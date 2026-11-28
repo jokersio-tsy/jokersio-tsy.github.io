@@ -17,7 +17,7 @@
   ],
   "email_domain": "@lamda.nju.edu.cn",
   "homepage": "https://www.lamda.nju.edu.cn/tiansy/",
-  "citedby": 141,
+  "citedby": 142,
   "publications": {
     "2UwjVasAAAAJ:u5HHmVD_uO8C": {
       "container_type": "Publication",
@@ -187,6 +187,21 @@
         "18134269311725438016"
       ]
     },
+    "2UwjVasAAAAJ:MXK_kJrjxJIC": {
+      "container_type": "Publication",
+      "source": "AUTHOR_PUBLICATION_ENTRY",
+      "bib": {
+        "title": "Beyond Domain-Routed Supervision: Cross-Teacher Guarding for Multi-Teacher On-Policy Distillation",
+        "pub_year": "2026"
+      },
+      "filled": false,
+      "author_pub_id": "2UwjVasAAAAJ:MXK_kJrjxJIC",
+      "num_citations": 4,
+      "citedby_url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=16393430550109484676",
+      "cites_id": [
+        "16393430550109484676"
+      ]
+    },
     "2UwjVasAAAAJ:UebtZRa9Y70C": {
       "container_type": "Publication",
       "source": "AUTHOR_PUBLICATION_ENTRY",
@@ -200,21 +215,6 @@
       "citedby_url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=16037758975560951759",
       "cites_id": [
         "16037758975560951759"
-      ]
-    },
-    "2UwjVasAAAAJ:MXK_kJrjxJIC": {
-      "container_type": "Publication",
-      "source": "AUTHOR_PUBLICATION_ENTRY",
-      "bib": {
-        "title": "Beyond Domain-Routed Supervision: Cross-Teacher Guarding for Multi-Teacher On-Policy Distillation",
-        "pub_year": "2026"
-      },
-      "filled": false,
-      "author_pub_id": "2UwjVasAAAAJ:MXK_kJrjxJIC",
-      "num_citations": 3,
-      "citedby_url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=16393430550109484676",
-      "cites_id": [
-        "16393430550109484676"
       ]
     },
     "2UwjVasAAAAJ:5nxA0vEk-isC": {
@@ -253,7 +253,7 @@
       "num_citations": 0
     }
   },
-  "citedby5y": 141,
+  "citedby5y": 142,
   "hindex": 7,
   "hindex5y": 7,
   "i10index": 4,
@@ -261,9 +261,9 @@
   "cites_per_year": {
     "2024": 3,
     "2025": 32,
-    "2026": 105
+    "2026": 106
   },
-  "updated": "2026-11-27T03:00:13.454619+00:00",
+  "updated": "2026-11-28T03:00:19.481907+00:00",
   "citation_history": [
     {
       "week": "2026-06-08",
